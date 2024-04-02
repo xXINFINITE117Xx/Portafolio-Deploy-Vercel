@@ -10,7 +10,7 @@ html {
 
 body {
   font-family: Arial, sans-serif;
-  background-image: url(outerspace-70.gif);
+  background-image: url(img/outerspace-70.gif);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -593,6 +593,7 @@ a {
 
   .menu {
     list-style: none;
+    gap: 15px;
     display: flex;
     flex-direction: column;
   }
@@ -884,7 +885,7 @@ a {
 
   input {
     margin-left: -261%;
-    width: 24.7rem;
+    width: 17.6rem;
     background: transparent;
     color: white;
     border: 1px solid;
@@ -918,12 +919,10 @@ a {
   }
 
   button {
-    margin-left: 38%;
+    margin-left: 33%;
     margin-top: 10%;
-    border-radius: 0 0 1 rgb(0, 217, 255);
     padding: 0.5rem;
  }
-
 }
 
 
@@ -938,7 +937,7 @@ a {
   }
 
   h1 {
-    font-size: 1.3rem;
+    font-size: 12.6px;
     margin: auto;
   }
 
@@ -957,6 +956,7 @@ a {
 
   .menu {
     list-style: none;
+    gap: 15px;
     display: flex;
     flex-direction: column;
   }
@@ -1241,7 +1241,7 @@ a {
 
   input {
     margin-left: -192%;
-    width: 29.4rem;
+    width: 19.9rem;
     background: transparent;
     color: white;
     border: 1px solid;
@@ -1265,7 +1265,7 @@ a {
 
   textarea {
     margin-left: 16%;
-    width: 65%;
+    width: 72%;
   }
 
   .button-container {
@@ -1291,7 +1291,7 @@ a {
   }
 
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     margin-left: 15%;
   }
 
@@ -1591,7 +1591,7 @@ a {
   input {
     margin-left: -192%;
     margin-bottom: 12%;
-    width: 35.6rem;
+    width: 29.6rem;
     background: transparent;
     color: white;
     border: 1px solid;
@@ -1643,7 +1643,7 @@ a {
   }
 
   h1 {
-    font-size: 2.3rem;
+    font-size: 1.6rem;
     margin-left: 15%;
   }
 
@@ -1698,7 +1698,7 @@ a {
   }
 
   .Home > p {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .icons-socials {
@@ -1908,7 +1908,7 @@ a {
 
   .footer {
     margin-left: 0.3%;
-    width: 94%;
+    width: 96%;
     padding: 1rem;
     background-color: none;
     border-radius: 50px;
@@ -1943,9 +1943,9 @@ a {
   }
 
   input {
-    margin-left: 16%;
-    margin-bottom: 2%;
-    width: 65.2%;
+    margin-left: -192%;
+    margin-bottom: 23%;
+    width: 35.6rem;
     background: transparent;
     color: white;
     border: 1px solid;
