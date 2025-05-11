@@ -52,96 +52,264 @@
   </header>
   <main class="main-home">
     <section class="services" id="portfolio">
-      <h2>My
-        <span>Projects</span>
-      </h2>
-      <section>
-        <div class="card">
-          <div class="container-card">
-            <img src="img/futbol.jpg">
-            <h2>Soccer</h2>
-            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sequi tempora esse
-              reprehenderit repudiandae dolores voluptates sit hic excepturi, quia expedita cum illum voluptatum, quidem
-              suscipit perspiciatis eius necessitatibus dicta?</p>
-          </div>
-          <div class="container-card">
-            <img src="img/image-tijera_piedra_papel.png">
-            <h2>Stone, Paper Or Sccouser</h2>
-            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sequi tempora esse
-              reprehenderit repudiandae dolores voluptates sit hic excepturi, quia expedita cum illum voluptatum, quidem
-              suscipit perspiciatis eius necessitatibus dicta?</p>
-          </div>
-          <div class="container-card">
-            <img src="img/image-21.png">
-            <h2>Blackjack 21</h2>
-            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sequi tempora esse
-              reprehenderit repudiandae dolores voluptates sit hic excepturi, quia expedita cum illum voluptatum, quidem
-              suscipit perspiciatis eius necessitatibus dicta?</p>
-          </div>
-
+      <h2>My <span>Projects</span></h2>
+      <!-- Botones de filtro -->
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="games">Games</button>
+        <button class="filter-btn" data-filter="web-apps">Web Apps</button>
+      </div>
+      <div class="card">
+        <!-- Proyecto 1: Soccer -->
+        <div class="container-card" data-category="web-apps" data-modal="modal-soccer">
+          <img src="img/futbol.jpg" alt="Soccer Project" loading="lazy" />
+          <h3>Soccer</h3>
+          <p>
+            A dynamic web application for soccer enthusiasts, featuring live
+            scores, player stats, and team updates.
+          </p>
+          <button class="view-details">View Details</button>
         </div>
-        <section class="projects" id="services">
-          <h3>Our
-            <span>Services</span>
-          </h3>
-        </section>
-        <div class="project">
-          <div class="container-projects">
-            <img src="img/web-designing-icon-22 (1).jpg">
-            <h4>Web Development</h4>
-            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sequi tempora esse
-              reprehenderit repudiandae dolores voluptates sit hic excepturi, quia expedita cum illum voluptatum, quidem
-              suscipit perspiciatis eius necessitatibus dicta?</p>
-            <a class="projects" href="">Read More</a>
-          </div>
-          <div class="container-projects">
-            <img src="img/graphic-design-icon.png">
-            <h4>Graphic Design</h4>
-            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sequi tempora esse
-              reprehenderit repudiandae dolores voluptates sit hic excepturi, quia expedita cum illum voluptatum, quidem
-              suscipit perspiciatis eius necessitatibus dicta?</p>
-            <a class="projects" href="">Read More</a>
-          </div>
-          <div class="container-projects">
-            <img src="img/marketing_design-removebg-preview.png">
-            <h4>Digital Marketing</h4>
-            <p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem sequi tempora esse
-              reprehenderit repudiandae dolores voluptates sit hic excepturi, quia expedita cum illum voluptatum, quidem
-              suscipit perspiciatis eius necessitatibus dicta?</p>
-            <a class="projects" href="">Read More</a>
-          </div>
-      </section>
+        <!-- Proyecto 2: Rock, Paper, Scissors -->
+        <div class="container-card" data-category="games" data-modal="modal-rps">
+          <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project" />
+          <h3>Rock, Paper, Scissors</h3>
+          <p>
+            An interactive game built with JavaScript, featuring smooth
+            animations and a user-friendly interface.
+          </p>
+          <button class="view-details">View Details</button>
+        </div>
+        <!-- Proyecto 3: Blackjack 21 -->
+        <div class="container-card" data-category="games" data-modal="modal-blackjack">
+          <img src="img/image-21.png" alt="Blackjack 21 Project" />
+          <h3>Blackjack 21</h3>
+          <p>
+            A classic card game developed with HTML, CSS, and JavaScript,
+            offering an engaging gameplay experience.
+          </p>
+          <button class="view-details">View Details</button>
+        </div>
+      </div>
+    </section>
 
-      <section class="contact" id="contact">
-        <h5 class="heading">Contact
-          <span>Me</span>
-        </h5>
-        <form action="#">
-          <div class="container">
-            <div class="centered-inputs">
-              <label for="full-name">Name Complete</label>
-              <input type="text" id="full-name" placeholder="Full Name">
+    <!-- Modals (mantener los modales existentes sin cambios) -->
+    <div class="modal" id="modal-soccer">
+      <div class="modal-content">
+        <span class="close-modal">×</span>
+        <h3>Soccer</h3>
+        <img src="img/futbol.jpg" alt="Soccer Project" />
+        <p>
+          A dynamic web application for soccer enthusiasts, featuring live
+          scores, player stats, and team updates.
+        </p>
+        <div class="modal-details">
+          <h4>Technologies Used:</h4>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>REST API for live scores</li>
+            <li>Bootstrap for responsive design</li>
+          </ul>
+          <h4>Challenges:</h4>
+          <p>
+            Integrating real-time data from a third-party API and ensuring the
+            app remains responsive during high traffic.
+          </p>
+          <h4>Links:</h4>
+          <p>
+            <a href="#" target="_blank">Live Demo</a> |
+            <a href="#" target="_blank">GitHub Repository</a>
+          </p>
+        </div>
+      </div>
+    </div>
 
-              <label for="email-address">Email Address Complete</label>
-              <input type="email" id="email-address" placeholder="Email Address">
+    <div class="modal" id="modal-rps">
+      <div class="modal-content">
+        <span class="close-modal">×</span>
+        <h3>Rock, Paper, Scissors</h3>
+        <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project" />
+        <p>
+          An interactive game built with JavaScript, featuring smooth
+          animations and a user-friendly interface.
+        </p>
+        <div class="modal-details">
+          <h4>Technologies Used:</h4>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>Custom animations with CSS keyframes</li>
+          </ul>
+          <h4>Challenges:</h4>
+          <p>
+            Ensuring the game logic was fair and handling edge cases like
+            ties.
+          </p>
+          <h4>Links:</h4>
+          <p>
+            <a href="#" target="_blank">Live Demo</a> |
+            <a href="#" target="_blank">GitHub Repository</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-blackjack">
+      <div class="modal-content">
+        <span class="close-modal">×</span>
+        <h3>Blackjack 21</h3>
+        <img src="img/image-21.png" alt="Blackjack 21 Project" />
+        <p>
+          A classic card game developed with HTML, CSS, and JavaScript,
+          offering an engaging gameplay experience.
+        </p>
+        <div class="modal-details">
+          <h4>Technologies Used:</h4>
+          <ul>
+            <li>HTML, CSS, JavaScript</li>
+            <li>LocalStorage for saving game state</li>
+          </ul>
+          <h4>Challenges:</h4>
+          <p>
+            Implementing the game logic for card dealing and scoring while
+            keeping the UI intuitive.
+          </p>
+          <h4>Links:</h4>
+          <p>
+            <a href="#" target="_blank">Live Demo</a> |
+            <a href="#" target="_blank">GitHub Repository</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <section class="skills" id="skills">
+      <h2>My <span>Skills</span></h2>
+      <div class="skills-container">
+        <div class="skill">
+          <img src="img/html.gif" alt="HTML Icon" />
+          <h4>HTML</h4>
+          <p>
+            Experiencia en creación de estructuras semánticas y accesibles.
+          </p>
+        </div>
+        <div class="skill">
+          <img src="img/css.gif" alt="CSS Icon" />
+          <h4>CSS</h4>
+          <p>Diseño de interfaces responsivas con animaciones avanzadas.</p>
+        </div>
+        <div class="skill">
+          <img src="img/secuencia-de-comandos-de-java.png" alt="JavaScript Icon" />
+          <h4>JavaScript</h4>
+          <p>Desarrollo de aplicaciones interactivas y dinámicas.</p>
+        </div>
+        <div class="skill">
+          <img src="img/grafico-de-barras.gif" alt="Graphic Design Icon" />
+          <h4>Graphic Design</h4>
+          <p>Creación de diseños visuales para branding y marketing.</p>
+        </div>
+        <div class="skill">
+          <img src="img/java.gif" alt="Graphic Design Icon" />
+          <h4>JAVA</h4>
+          <p>
+            Experiencia en desarrollo backend robusto y orientado a objetos
+            con Java, aplicando buenas prácticas y patrones de diseño.
+          </p>
+        </div>
+        <div class="skill">
+          <img src="img/React.gif" alt="Graphic Design Icon" />
+          <h4>REACT</h4>
+          <p>
+            Dominio en creación de interfaces dinámicas y reutilizables con
+            React, garantizando una experiencia de usuario fluida.
+          </p>
+        </div>
+        <div class="skill">
+          <img src="img/Mongo DB.gif" alt="Graphic Design Icon" />
+          <h4>MONGO DB</h4>
+          <p>
+            Manejo de bases de datos NoSQL con MongoDB, ideal para estructuras
+            de datos flexibles y escalables.
+          </p>
+        </div>
+        <div class="skill">
+          <img src="img/Base De Datos.gif" alt="Graphic Design Icon" />
+          <h4>MySQL</h4>
+          <p>
+            Conocimiento sólido en diseño y consultas de bases de datos
+            relacionales con MySQL, garantizando integridad y rendimiento.
+          </p>
+        </div>
+        <div class="skill">
+          <img src="img/api.gif" alt="Graphic Design Icon" />
+          <h4>POSTMAN</h4>
+          <p>
+            Uso de Postman para pruebas de APIs REST, validación de endpoints
+            y automatización de flujos de prueba.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="projects" id="services">
+      <h2>Our <span>Services</span></h2>
+      <div class="project">
+        <div class="container-projects">
+          <img src="img/web-designing-icon-22 (1).jpg" alt="Web Development Icon" />
+          <h4>Web Development</h4>
+          <p>
+            Building responsive and modern websites tailored to your needs
+            using the latest technologies.
+          </p>
+          <a href="#services">Read More</a>
+        </div>
+        <div class="container-projects">
+          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" />
+          <h4>Graphic Design</h4>
+          <p>
+            Creating visually appealing designs for branding, marketing, and
+            digital media.
+          </p>
+          <a href="#services">Read More</a>
+        </div>
+        <div class="container-projects">
+          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" />
+          <h4>Digital Marketing</h4>
+          <p>
+            Strategizing and executing campaigns to boost your online presence
+            and engagement.
+          </p>
+          <a href="#services">Read More</a>
+        </div>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <h2>Contact <span>Me</span></h2>
+      <div class="contact-container">
+        <form class="contact-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="full-name">Full Name</label>
+              <input type="text" id="full-name" placeholder="Your Name" required />
             </div>
-
-            <div class="centered-inputs">
-              <label for="mobile-number">Number Complete</label>
-              <input type="number" id="mobile-number" placeholder="Mobile Number">
-
-              <label for="email-subject">Email Complete</label>
-              <input type="text" id="email-subject" placeholder="Email Subject">
+            <div class="form-group">
+              <label for="email-address">Email Address</label>
+              <input type="email" id="email-address" placeholder="Your Email" required />
+            </div>
+            <div class="form-group">
+              <label for="mobile-number">Mobile Number</label>
+              <input type="tel" id="mobile-number" placeholder="Your Number" />
+            </div>
+            <div class="form-group">
+              <label for="email-subject">Subject</label>
+              <input type="text" id="email-subject" placeholder="Subject" />
             </div>
           </div>
-          <div class="textarea-container">
-            <textarea cols="30" rows="10" placeholder="Your Message"></textarea>
+          <div class="form-group textarea-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
           </div>
-          <div class="button-container">
-            <button>Send Message</button>
-          </div>
+          <button type="submit">Send Message</button>
         </form>
-      </section>
+      </div>
+    </section>
   </main>
   <footer class="footer">
     <div class="footer-text">
