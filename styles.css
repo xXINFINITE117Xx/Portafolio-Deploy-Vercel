@@ -1,4 +1,9 @@
-body, h1, h2, h3, p, ul {
+body,
+h1,
+h2,
+h3,
+p,
+ul {
   margin: 0;
   padding: 0;
 }
@@ -33,15 +38,20 @@ h1 {
 }
 
 @keyframes animationSequence {
-  0%, 100% {
+
+  0%,
+  100% {
     width: 0;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     width: 70%;
   }
+
   50% {
     width: 70%;
-    border-color: transparent; 
+    border-color: transparent;
   }
 }
 
@@ -99,7 +109,7 @@ h1 {
   height: 500px;
 }
 
-.Home > p {
+.Home>p {
   font-size: 1.5rem;
 }
 
@@ -108,7 +118,7 @@ h1 {
   flex-direction: column;
 }
 
-.icons > a {
+.icons>a {
   text-decoration: none;
   margin-right: 10px;
   font-size: 24px;
@@ -128,7 +138,7 @@ h1 {
   transition: 0.3s;
 }
 
-.icons > a:hover {
+.icons>a:hover {
   color: #f1f1f1;
   transform: scale(0.9);
   transition: 0.3s;
@@ -147,10 +157,10 @@ h1 {
   border-radius: 50px;
   box-shadow: 0 0 1rem rgba(0, 238, 255, 0.7);
   font-size: 1rem;
-  color: #fff; 
-  letter-spacing: 0.1rem; 
+  color: #fff;
+  letter-spacing: 0.1rem;
   width: 7rem;
-  margin-top: -11rem; 
+  margin-top: -11rem;
   transition: 0.3s;
 }
 
@@ -164,12 +174,20 @@ h1 {
 
 
 @keyframes animacionFlotante {
-  0% { transform: translate(0, 0); }
-  50% { transform: translate(0, -20px); }
-  100% { transform: translate(0, 0); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(0, -20px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
 }
 
-.profile-picture > img {
+.profile-picture>img {
   border-radius: 50%;
   width: 300px;
   height: 300px;
@@ -185,7 +203,7 @@ h1 {
   z-index: -1;
 }
 
-img:hover{
+img:hover {
   filter: drop-shadow(20px 20px 20px);
 }
 
@@ -205,7 +223,8 @@ img:hover{
 }
 
 
-.container-cards, h2 {
+.container-cards,
+h2 {
   text-align: center;
 }
 
@@ -219,14 +238,14 @@ img:hover{
 }
 
 
-.card > img {
+.card>img {
   width: 100px;
   height: 50px;
   border-radius: 5px 5px;
   object-fit: cover;
 }
 
-.services > h2 {
+.services>h2 {
   margin-top: 11rem;
   width: 100%;
   text-align: center;
@@ -235,16 +254,16 @@ img:hover{
 }
 
 
-.card > h2 {
+.card>h2 {
   margin-top: 0.5rem;
   font-size: 1.1rem;
   width: 100%;
   text-align: center;
-  color:#0000ff;
+  color: #0000ff;
   padding: 0.5rem;
 }
 
-.container-card > h2 {
+.container-card>h2 {
   display: block;
   font-size: 1.1em;
   overflow: hidden;
@@ -259,15 +278,20 @@ img:hover{
 }
 
 @keyframes animationContainer-H2 {
-  0%, 100% {
+
+  0%,
+  100% {
     width: 0;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     width: 68%;
   }
+
   50% {
     width: 68%;
-    border-color: transparent; 
+    border-color: transparent;
   }
 }
 
@@ -290,18 +314,18 @@ img:hover{
 }
 
 
-.container-card:hover{
+.container-card:hover {
   color: #f1f1f1;
   transform: scale(0.9);
 }
 
-.container-card > img {
+.container-card>img {
   width: 100px;
   height: 100px;
   margin: 1rem;
 }
 
-.container-card > p {
+.container-card>p {
   text-align: center;
   margin: 1.5rem;
 }
@@ -310,14 +334,14 @@ img:hover{
   display: flex;
 }
 
-.project > img {
+.project>img {
   width: 100px;
   height: 50px;
   border-radius: 5px 5px;
   object-fit: cover;
 }
 
-.projects > h3 {
+.projects>h3 {
   margin-top: 0.5rem;
   width: 100%;
   text-align: center;
@@ -325,7 +349,7 @@ img:hover{
   font-size: 5rem;
 }
 
-.container-projects > a {
+.container-projects>a {
   width: 7rem;
   font-size: 1.2rem;
   text-decoration: none;
@@ -338,7 +362,7 @@ img:hover{
   box-shadow: 0 0 1rem rgb(0, 238, 255);
 }
 
-.container-projects > a:hover {
+.container-projects>a:hover {
   background-color: #2285b4;
   transform: scale(0.9);
 }
@@ -366,19 +390,19 @@ img:hover{
   transform: scale(0.9);
 }
 
-.container-projects > img {
+.container-projects>img {
   width: 100px;
   height: 100px;
   margin: 1rem;
 }
 
-.container-projects > p {
+.container-projects>p {
   text-align: center;
   margin: 1.5rem;
 }
 
 
-.container-projects > h4 {
+.container-projects>h4 {
   display: block;
   font-size: 1.1em;
   margin-block-start: 0.83em;
@@ -394,15 +418,20 @@ img:hover{
 
 
 @keyframes animation-H4 {
-  0%, 100% {
+
+  0%,
+  100% {
     width: 0;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     width: 48%;
   }
+
   50% {
     width: 48%;
-    border-color: transparent; 
+    border-color: transparent;
   }
 }
 
@@ -446,15 +475,20 @@ span {
 }
 
 @keyframes animationFooter {
-  0%, 100% {
+
+  0%,
+  100% {
     width: 0;
   }
-  25%, 75% {
+
+  25%,
+  75% {
     width: 100%;
   }
+
   50% {
     width: 100%;
-    border-color: transparent; 
+    border-color: transparent;
   }
 }
 
@@ -480,10 +514,10 @@ span {
 
 .container {
   display: flex;
-    flex-direction: column;
-    margin-top: -7%;
-    width: 16%;
-    margin-left: 47%;
+  flex-direction: column;
+  margin-top: -7%;
+  width: 16%;
+  margin-left: 47%;
 }
 
 .centered-inputs {
@@ -492,10 +526,10 @@ span {
 
 label {
   display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: rgb(0, 238, 255);
-    margin-left: -64%;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: rgb(0, 238, 255);
+  margin-left: -64%;
 }
 
 input {
@@ -507,7 +541,7 @@ input {
   border-color: rgb(0, 234, 255);
   margin-bottom: 13%;
   margin-left: -62%;
-  color:#ffffff ;
+  color: #ffffff;
 }
 
 
@@ -569,11 +603,11 @@ a {
     margin: 0;
     text-align: left;
   }
-  
-  
+
+
   h1 {
     font-size: 13.8px;
-    margin:  auto;
+    margin: auto;
   }
 
   .container-nav {
@@ -614,7 +648,7 @@ a {
     padding: 5px;
   }
 
-  
+
 
   .general-description {
     display: block;
@@ -631,7 +665,7 @@ a {
     height: auto;
   }
 
-  .Home > p {
+  .Home>p {
     font-size: 1rem;
   }
 
@@ -641,9 +675,9 @@ a {
     align-items: center;
     margin-top: 10px;
   }
-  
 
-  .icons > a {
+
+  .icons>a {
     text-decoration: none;
     margin-right: 10px;
     font-size: 18px;
@@ -668,7 +702,7 @@ a {
     width: 100%;
     margin-top: 80px;
     justify-content: center;
-  }  
+  }
 
   .Download-cv {
     display: flex;
@@ -676,7 +710,7 @@ a {
     margin-top: -18%;
   }
 
-  .profile-picture > img {
+  .profile-picture>img {
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -710,7 +744,8 @@ a {
     top: 0;
   }
 
-  .container-cards, h2 {
+  .container-cards,
+  h2 {
     text-align: center;
 
   }
@@ -727,14 +762,14 @@ a {
     margin: 0 auto;
   }
 
-  .card > img {
+  .card>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .services > h2 {
+  .services>h2 {
     margin-left: 11%;
     margin-top: 5rem;
     width: 80%;
@@ -743,7 +778,7 @@ a {
     font-size: 3rem;
   }
 
-  .card > h2 {
+  .card>h2 {
     margin-top: 0.25rem;
     font-size: 0.8rem;
     width: 80%;
@@ -752,7 +787,7 @@ a {
     padding: 0.25rem;
   }
 
-  .container-card > h2 {
+  .container-card>h2 {
     display: inline-block;
     font-size: 0.8em;
     overflow: visible;
@@ -771,13 +806,13 @@ a {
     margin-left: 5rem;
   }
 
-  .container-card > img {
+  .container-card>img {
     width: 75px;
     height: 75px;
     margin: 0.5rem;
   }
 
-  .container-card > p {
+  .container-card>p {
     text-align: center;
     margin: 0 1rem;
   }
@@ -787,14 +822,14 @@ a {
     margin: 0 1rem;
   }
 
-  .project > img {
+  .project>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .projects > h3 {
+  .projects>h3 {
     margin-top: 0;
     width: auto;
     text-align: center;
@@ -802,7 +837,7 @@ a {
     font-size: 3rem;
   }
 
-  .container-projects > a {
+  .container-projects>a {
     width: auto;
     padding: 1rem;
     font-size: 1rem;
@@ -820,18 +855,18 @@ a {
     padding: 2rem 0rem 2rem 0rem;
   }
 
-  .container-projects > img {
+  .container-projects>img {
     width: 75px;
     height: 75px;
     margin: 0 1rem;
     margin-bottom: 1.5rem;
   }
 
-  .container-projects > p {
+  .container-projects>p {
     text-align: center;
   }
 
-  .container-projects > h4 {
+  .container-projects>h4 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -896,12 +931,12 @@ a {
 
   label {
     display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: rgb(0, 238, 255);
-      margin-left: -64%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: rgb(0, 238, 255);
+    margin-left: -64%;
   }
-  
+
 
   .textarea-container {
     display: block;
@@ -922,7 +957,7 @@ a {
     margin-left: 33%;
     margin-top: 10%;
     padding: 0.5rem;
- }
+  }
 }
 
 
@@ -942,11 +977,11 @@ a {
   }
 
   .container-nav {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-      position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    position: relative;
   }
 
   .logo {
@@ -992,7 +1027,7 @@ a {
     height: auto;
   }
 
-  .Home > p {
+  .Home>p {
     font-size: 1rem;
   }
 
@@ -1002,7 +1037,7 @@ a {
     margin-top: 10px;
   }
 
-  .icons > a {
+  .icons>a {
     text-decoration: none;
     margin-right: 10px;
     font-size: 18px;
@@ -1027,7 +1062,7 @@ a {
     width: 100%;
     margin-top: 80px;
     justify-content: center;
-  }  
+  }
 
   .Download-cv {
     display: flex;
@@ -1036,7 +1071,7 @@ a {
     margin-left: 39.5%;
   }
 
-  .profile-picture > img {
+  .profile-picture>img {
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -1070,7 +1105,8 @@ a {
     top: 0;
   }
 
-  .container-cards, h2 {
+  .container-cards,
+  h2 {
     text-align: center;
 
   }
@@ -1087,14 +1123,14 @@ a {
     margin: 0 auto;
   }
 
-  .card > img {
+  .card>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .services > h2 {
+  .services>h2 {
     margin-left: 11%;
     margin-top: 5rem;
     width: 80%;
@@ -1103,7 +1139,7 @@ a {
     font-size: 3rem;
   }
 
-  .card > h2 {
+  .card>h2 {
     margin-top: 0.25rem;
     font-size: 0.8rem;
     width: 80%;
@@ -1112,7 +1148,7 @@ a {
     padding: 0.25rem;
   }
 
-  .container-card > h2 {
+  .container-card>h2 {
     display: inline-block;
     font-size: 0.8em;
     overflow: visible;
@@ -1131,13 +1167,13 @@ a {
     height: auto;
   }
 
-  .container-card > img {
+  .container-card>img {
     width: 75px;
     height: 75px;
     margin: 0.5rem;
   }
 
-  .container-card > p {
+  .container-card>p {
     text-align: center;
     margin: 0 1rem;
   }
@@ -1147,14 +1183,14 @@ a {
     margin: 0 1rem;
   }
 
-  .project > img {
+  .project>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .projects > h3 {
+  .projects>h3 {
     margin-top: 0;
     width: auto;
     text-align: center;
@@ -1162,7 +1198,7 @@ a {
     font-size: 3rem;
   }
 
-  .container-projects > a {
+  .container-projects>a {
     width: 7rem;
     font-size: 1rem;
     margin-top: 2rem;
@@ -1177,17 +1213,17 @@ a {
     height: auto;
   }
 
-  .container-projects > img {
+  .container-projects>img {
     width: 75px;
     height: 75px;
     margin: 0 1rem;
   }
 
-  .container-projects > p {
+  .container-projects>p {
     text-align: center;
   }
 
-  .container-projects > h4 {
+  .container-projects>h4 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -1256,7 +1292,7 @@ a {
     color: rgb(0, 238, 255);
     margin-left: -64%;
   }
-  
+
 
   .textarea-container {
     display: block;
@@ -1296,11 +1332,11 @@ a {
   }
 
   .container-nav {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-      position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    position: relative;
   }
 
   .logo {
@@ -1345,7 +1381,7 @@ a {
     height: auto;
   }
 
-  .Home > p {
+  .Home>p {
     font-size: 1rem;
   }
 
@@ -1355,7 +1391,7 @@ a {
     margin-top: 10px;
   }
 
-  .icons > a {
+  .icons>a {
     text-decoration: none;
     margin-right: 10px;
     font-size: 18px;
@@ -1380,7 +1416,7 @@ a {
     width: 100%;
     margin-top: 80px;
     justify-content: center;
-  }  
+  }
 
   .Download-cv {
     display: flex;
@@ -1389,7 +1425,7 @@ a {
     margin-left: 41.5%;
   }
 
-  .profile-picture > img {
+  .profile-picture>img {
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -1423,7 +1459,8 @@ a {
     top: 0;
   }
 
-  .container-cards, h2 {
+  .container-cards,
+  h2 {
     text-align: center;
 
   }
@@ -1440,14 +1477,14 @@ a {
     margin: 0 auto;
   }
 
-  .card > img {
+  .card>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .services > h2 {
+  .services>h2 {
     margin-left: 11%;
     margin-top: 5rem;
     width: 80%;
@@ -1456,7 +1493,7 @@ a {
     font-size: 3rem;
   }
 
-  .card > h2 {
+  .card>h2 {
     margin-top: 0.25rem;
     font-size: 0.8rem;
     width: 80%;
@@ -1465,7 +1502,7 @@ a {
     padding: 0.25rem;
   }
 
-  .container-card > h2 {
+  .container-card>h2 {
     display: inline-block;
     font-size: 0.8em;
     margin-block-start: 0;
@@ -1482,13 +1519,13 @@ a {
     height: auto;
   }
 
-  .container-card > img {
+  .container-card>img {
     width: 75px;
     height: 75px;
     margin: 0.5rem;
   }
 
-  .container-card > p {
+  .container-card>p {
     text-align: center;
     margin: 0 1rem;
   }
@@ -1498,14 +1535,14 @@ a {
     margin: 0 1rem;
   }
 
-  .project > img {
+  .project>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .projects > h3 {
+  .projects>h3 {
     margin-top: 0;
     width: auto;
     text-align: center;
@@ -1513,7 +1550,7 @@ a {
     font-size: 3rem;
   }
 
-  .container-projects > a {
+  .container-projects>a {
     width: 7rem;
     font-size: 1rem;
     margin-top: 2rem;
@@ -1528,17 +1565,17 @@ a {
     height: auto;
   }
 
-  .container-projects > img {
+  .container-projects>img {
     width: 75px;
     height: 75px;
     margin: 0 1rem;
   }
 
-  .container-projects > p {
+  .container-projects>p {
     text-align: center;
   }
 
-  .container-projects > h4 {
+  .container-projects>h4 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -1606,7 +1643,7 @@ a {
     color: rgb(0, 238, 255);
     margin-left: -64%;
   }
-  
+
 
   .textarea-container {
     display: block;
@@ -1648,11 +1685,11 @@ a {
   }
 
   .container-nav {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      height: auto;
-      position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    position: relative;
   }
 
   .logo {
@@ -1697,7 +1734,7 @@ a {
     height: auto;
   }
 
-  .Home > p {
+  .Home>p {
     font-size: 1.5rem;
   }
 
@@ -1707,7 +1744,7 @@ a {
     margin-top: 10px;
   }
 
-  .icons > a {
+  .icons>a {
     text-decoration: none;
     margin-right: 10px;
     font-size: 62px;
@@ -1732,7 +1769,7 @@ a {
     width: 100%;
     margin-top: 80px;
     justify-content: center;
-  }  
+  }
 
   .Download-cv {
     width: 15%;
@@ -1742,7 +1779,7 @@ a {
     margin-left: 41.3%;
   }
 
-  .profile-picture > img {
+  .profile-picture>img {
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -1776,7 +1813,8 @@ a {
     top: 0;
   }
 
-  .container-cards, h2 {
+  .container-cards,
+  h2 {
     text-align: center;
 
   }
@@ -1793,14 +1831,14 @@ a {
     margin: 0 auto;
   }
 
-  .card > img {
+  .card>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .services > h2 {
+  .services>h2 {
     margin-left: 10%;
     margin-top: 5rem;
     width: 80%;
@@ -1809,7 +1847,7 @@ a {
     font-size: 3rem;
   }
 
-  .card > h2 {
+  .card>h2 {
     margin-top: 0.25rem;
     font-size: 0.8rem;
     width: 80%;
@@ -1818,7 +1856,7 @@ a {
     padding: 0.25rem;
   }
 
-  .container-card > h2 {
+  .container-card>h2 {
     display: inline-block;
     font-size: 0.8em;
     margin-block-start: 0;
@@ -1835,13 +1873,13 @@ a {
     height: auto;
   }
 
-  .container-card > img {
+  .container-card>img {
     width: 75px;
     height: 75px;
     margin: 0.5rem;
   }
 
-  .container-card > p {
+  .container-card>p {
     text-align: center;
     margin: 0 1rem;
   }
@@ -1851,14 +1889,14 @@ a {
     margin: 0 1rem;
   }
 
-  .project > img {
+  .project>img {
     width: 75px;
     height: 37.5px;
     border-radius: 3px 3px;
     object-fit: cover;
   }
 
-  .projects > h3 {
+  .projects>h3 {
     margin-right: 3%;
     margin-top: 0;
     width: auto;
@@ -1867,7 +1905,7 @@ a {
     font-size: 3rem;
   }
 
-  .container-projects > a {
+  .container-projects>a {
     width: 7rem;
     font-size: 1rem;
     margin-top: 2rem;
@@ -1882,17 +1920,17 @@ a {
     height: auto;
   }
 
-  .container-projects > img {
+  .container-projects>img {
     width: 75px;
     height: 75px;
     margin: 0 1rem;
   }
 
-  .container-projects > p {
+  .container-projects>p {
     text-align: center;
   }
 
-  .container-projects > h4 {
+  .container-projects>h4 {
     font-size: 1rem;
     margin-block-start: 0;
     margin-block-end: 0;
