@@ -42,6 +42,7 @@
 </head>
 
 <body>
+  <canvas id="particle-canvas"></canvas>
   <header class="portfolio">
     <div class="container-nav">
       <h3 class="logo">Portfolio</h3>
@@ -54,6 +55,11 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </div>
     <div class="general-description">
       <div class="container-description">
@@ -390,8 +396,18 @@
       filterProjects('all');
     });
   </script>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+
+    if (menuToggle && menu) {
+      menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('active');
+      });
+    }
+  </script>
+
 </body>
-<canvas id="particle-canvas"></canvas>
 <script>
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas.getContext('2d');

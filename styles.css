@@ -96,10 +96,10 @@ header.portfolio {
   top: 0;
   width: 100%;
   padding: 20px 0;
+  background: rgba(10, 15, 27, 0.9); /* Fondo semitransparente para que el contenido sea visible */
+  background: url(img/GaonaDev.png) no-repeat center;
   backdrop-filter: blur(5px);
-  background: url(img/GaonaDev.png)no-repeat center center/cover;
   color: #FFFFFF;
-  text-align: center;
   z-index: 100;
   border-bottom: 2px solid #00FFD1;
   box-shadow: 0 0 15px rgba(0, 255, 209, 0.3);
@@ -112,6 +112,8 @@ header.portfolio {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  position: relative;
+  /* Para posicionar el toggle correctamente */
 }
 
 .logo {
@@ -128,6 +130,9 @@ header.portfolio {
   list-style: none;
   display: flex;
   gap: 20px;
+  opacity: 1;
+  /* Aseguramos que el menú sea visible por defecto */
+  transition: opacity 0.3s ease;
 }
 
 .menu a {
@@ -138,9 +143,8 @@ header.portfolio {
   text-decoration: none;
   padding-bottom: 5px;
   transition: color 0.3s ease, text-shadow 0.3s ease;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-  animation-delay: 0.2s;
+  opacity: 1;
+  /* Aseguramos que los enlaces sean visibles */
 }
 
 .menu a::after {
@@ -605,7 +609,8 @@ header.portfolio {
   height: 100px;
   object-fit: cover;
   margin-bottom: 10px;
-  opacity: 0;
+  opacity: 1;
+  /* Cambiado de 0 a 1 para que sea visible por defecto */
   transform: translateY(20px);
   animation: revealImage 1s ease forwards;
 }
@@ -1271,4 +1276,46 @@ button:hover {
 .filter-btn:focus {
   outline: 2px solid #FF007A;
   outline-offset: 2px;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #00FFD1;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #0A0F1B;
+    padding: 20px 0;
+    text-align: center;
+    z-index: 1000;
+  }
+
+  .menu.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .menu a {
+    padding: 10px 0;
+    font-size: 1.2rem;
+  }
 }
