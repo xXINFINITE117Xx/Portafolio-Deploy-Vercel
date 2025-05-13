@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, Paper, Scissors - GaonaDev</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #rps-game {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .choice-animation {
+            transition: transform 0.3s ease;
+        }
+
+        .win {
+            color: #00FFD1;
+            animation: glow 1s infinite;
+        }
+
+        .lose {
+            color: #FF007A;
+            animation: shake 0.5s;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #00FFD1;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #00FFD1;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        #history {
+            margin-top: 20px;
+            color: #E0E0E0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-home">
+        <h2>Rock, Paper, Scissors</h2>
+        <div id="rps-game">
+            <p>Wins: <span id="wins">0</span> | Losses: <span id="losses">0</span> | Ties: <span id="ties">0</span></p>
+            <p>Choose your move:</p>
+            <button onclick="play('rock')" class="choice-animation">Rock</button>
+            <button onclick="play('paper')" class="choice-animation">Paper</button>
+            <button onclick="play('scissors')" class="choice-animation">Scissors</button>
+            <p>Your Choice: <span id="player-choice"></span></p>
+            <p>Computer Choice: <span id="computer-choice"></span></p>
+            <p>Result: <span id="rps-result"></span></p>
+            <div id="history">Game History:</div>
+        </div>
+    </div>
+    <script>
+        let wins = 0, losses = 0, ties = 0;
+        const history = [];
+
+        function play(playerChoice) {
+            const choices = ['rock', 'paper', 'scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            document.getElementById('player-choice').textContent = playerChoice;
+            document.getElementById('computer-choice').textContent = computerChoice;
+
+            let result = '';
+            if (playerChoice === computerChoice) {
+                result = 'Tie!';
+                ties++;
+                document.getElementById('rps-result').className = '';
+                document.getElementById('rps-result').style.color = '#E0E0E0';
+            } else if (
+                (playerChoice === 'rock' && computerChoice === 'scissors') ||
+                (playerChoice === 'paper' && computerChoice === 'rock') ||
+                (playerChoice === 'scissors' && computerChoice === 'paper')
+            ) {
+                result = 'You win!';
+                wins++;
+                document.getElementById('rps-result').className = 'win';
+            } else {
+                result = 'You lose!';
+                losses++;
+                document.getElementById('rps-result').className = 'lose';
+            }
+            document.getElementById('rps-result').textContent = result;
+            document.getElementById('wins').textContent = wins;
+            document.getElementById('losses').textContent = losses;
+            document.getElementById('ties').textContent = ties;
+
+            history.push(`You: ${playerChoice} vs Comp: ${computerChoice} - ${result}`);
+            document.getElementById('history').textContent = `Game History: ${history.slice(-3).join(', ')}`;
+        }
+    </script>
+</body>
+
+</html>

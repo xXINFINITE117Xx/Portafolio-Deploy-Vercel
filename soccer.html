@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soccer Penalty Simulator - GaonaDev</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #soccer-game {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .goal-animation {
+            color: #00FFD1;
+            animation: glow 1s ease-in-out infinite;
+        }
+
+        .miss-animation {
+            color: #FF007A;
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #00FFD1;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #00FFD1, 0 0 30px #00FFD1;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+
+            75% {
+                transform: translateX(-5px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .progress-bar {
+            width: 300px;
+            height: 20px;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #00FFD1, #FF007A);
+            width: 0;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-home">
+        <h2>Soccer Penalty Simulator</h2>
+        <div id="soccer-game">
+            <p>Score: <span id="soccer-score">0</span></p>
+            <p>Rounds Left: <span id="rounds-left">5</span></p>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+            <button onclick="shoot()">Shoot!</button>
+            <p id="soccer-result"></p>
+            <button id="restart" onclick="restart()" style="display: none;">Restart</button>
+        </div>
+    </div>
+    <script>
+        let score = 0;
+        let rounds = 5;
+        const totalRounds = 5;
+
+        function updateProgress() {
+            const progress = ((totalRounds - rounds) / totalRounds) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+        }
+
+        function shoot() {
+            if (rounds <= 0) return;
+            const difficulty = Math.random(); // Dificultad variable (0.2 a 0.5)
+            const successThreshold = 0.7 - (difficulty * 0.3);
+            const success = Math.random() < successThreshold;
+            rounds--;
+            updateProgress();
+
+            if (success) {
+                score += 1;
+                document.getElementById('soccer-result').innerHTML = 'Goal! <span class="goal-animation">Nice shot!</span>';
+            } else {
+                document.getElementById('soccer-result').innerHTML = 'Missed! <span class="miss-animation">Try again.</span>';
+            }
+            document.getElementById('soccer-score').textContent = score;
+            document.getElementById('rounds-left').textContent = rounds;
+
+            if (rounds === 0) {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            document.getElementById('soccer-result').textContent = `Game Over! Final Score: ${score}/5`;
+            document.querySelector('button[onclick="shoot()"]').disabled = true;
+            document.getElementById('restart').style.display = 'inline-block';
+        }
+
+        function restart() {
+            score = 0;
+            rounds = 5;
+            document.getElementById('soccer-score').textContent = score;
+            document.getElementById('rounds-left').textContent = rounds;
+            document.getElementById('soccer-result').textContent = '';
+            document.getElementById('progress').style.width = '0%';
+            document.querySelector('button[onclick="shoot()"]').disabled = false;
+            document.getElementById('restart').style.display = 'none';
+        }
+
+        window.onload = updateProgress;
+    </script>
+</body>
+
+</html>

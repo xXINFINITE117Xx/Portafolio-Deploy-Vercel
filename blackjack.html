@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack 21 - GaonaDev</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #blackjack-game {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .card {
+            display: inline-block;
+            width: 50px;
+            height: 70px;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
+            margin: 5px;
+            animation: deal 0.5s ease;
+        }
+
+        @keyframes deal {
+            from {
+                transform: translateY(-50px) rotate(10deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        .win {
+            color: #00FFD1;
+            animation: glow 1s infinite;
+        }
+
+        .lose {
+            color: #FF007A;
+            animation: shake 0.5s;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                text-shadow: 0 0 10px #00FFD1;
+            }
+
+            50% {
+                text-shadow: 0 0 20px #00FFD1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-home">
+        <h2>Blackjack 21</h2>
+        <div id="blackjack-game">
+            <p>Bet: $<span id="bet">10</span> | Chips: $<span id="chips">100</span></p>
+            <button onclick="placeBet(10)">+10</button>
+            <button onclick="startGame()">Deal</button>
+            <p>Your Cards: <span id="player-cards"></span> (Total: <span id="player-total">0</span>)</p>
+            <p>Dealer's Cards: <span id="dealer-cards"></span> (Total: <span id="dealer-total">0</span>)</p>
+            <button onclick="hit()" id="hit-btn" disabled>Hit</button>
+            <button onclick="stand()" id="stand-btn" disabled>Stand</button>
+            <p id="result"></p>
+        </div>
+    </div>
+    <script>
+        let deck = [];
+        let playerCards = [];
+        let dealerCards = [];
+        let playerTotal = 0, dealerTotal = 0;
+        let chips = 100;
+        let bet = 0;
+
+        function initDeck() {
+            const suits = ['♠', '♣', '♥', '♦'];
+            const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+            deck = [];
+            for (let suit of suits) for (let value of values) deck.push({ suit, value });
+            for (let i = deck.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [deck[i], deck[j]] = [deck[j], deck[i]];
+            }
+        }
+
+        function drawCard() {
+            return deck.pop();
+        }
+
+        function calculateTotal(cards) {
+            let total = 0, aces = 0;
+            for (let card of cards) {
+                if (card.value === 'A') { aces++; total += 11; }
+                else if (['K', 'Q', 'J'].includes(card.value)) total += 10;
+                else total += parseInt(card.value);
+            }
+            while (total > 21 && aces) { total -= 10; aces--; }
+            return total;
+        }
+
+        function placeBet(amount) {
+            if (chips >= amount) {
+                bet += amount;
+                chips -= amount;
+                document.getElementById('bet').textContent = bet;
+                document.getElementById('chips').textContent = chips;
+            }
+        }
+
+        function startGame() {
+            if (bet === 0) return;
+            initDeck();
+            playerCards = [drawCard(), drawCard()];
+            dealerCards = [drawCard(), drawCard()];
+            playerTotal = calculateTotal(playerCards);
+            dealerTotal = calculateTotal(dealerCards);
+            updateDisplay();
+            document.getElementById('hit-btn').disabled = false;
+            document.getElementById('stand-btn').disabled = false;
+            document.querySelector('button[onclick="startGame()"]').disabled = true;
+        }
+
+        function updateDisplay() {
+            document.getElementById('player-cards').innerHTML = playerCards.map(c => `<div class="card">${c.value}${c.suit}</div>`).join('');
+            document.getElementById('player-total').textContent = playerTotal;
+            document.getElementById('dealer-cards').innerHTML = dealerCards.map((c, i) => i === 0 ? `<div class="card">${c.value}${c.suit}</div>` : '<div class="card">?</div>').join('');
+            document.getElementById('dealer-total').textContent = dealerTotal > 0 ? dealerTotal : '?';
+            document.getElementById('result').textContent = '';
+        }
+
+        function hit() {
+            playerCards.push(drawCard());
+            playerTotal = calculateTotal(playerCards);
+            updateDisplay();
+            if (playerTotal > 21) {
+                document.getElementById('result').textContent = 'Bust! You lose!';
+                document.getElementById('result').className = 'lose';
+                endGame();
+            }
+        }
+
+        function stand() {
+            while (dealerTotal < 17) {
+                dealerCards.push(drawCard());
+                dealerTotal = calculateTotal(dealerCards);
+            }
+            updateDisplay();
+            if (dealerTotal > 21 || playerTotal > dealerTotal) {
+                document.getElementById('result').textContent = 'You win!';
+                document.getElementById('result').className = 'win';
+                chips += bet * 2;
+            } else if (playerTotal < dealerTotal) {
+                document.getElementById('result').textContent = 'Dealer wins!';
+                document.getElementById('result').className = 'lose';
+            } else {
+                document.getElementById('result').textContent = 'Push!';
+                chips += bet;
+            }
+            document.getElementById('chips').textContent = chips;
+            endGame();
+        }
+
+        function endGame() {
+            document.getElementById('hit-btn').disabled = true;
+            document.getElementById('stand-btn').disabled = true;
+            bet = 0;
+            document.getElementById('bet').textContent = bet;
+            document.querySelector('button[onclick="startGame()"]').disabled = false;
+        }
+
+        window.onload = () => {
+            document.getElementById('chips').textContent = chips;
+        };
+    </script>
+</body>
+
+</html>

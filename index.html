@@ -58,6 +58,11 @@
   <header class="portfolio">
     <div class="container-nav">
       <h3 class="logo">Portfolio</h3>
+      <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
       <nav aria-label="Main navigation">
         <ul class="menu">
           <li><a href="#home" aria-label="Go to Home section">Home</a></li>
@@ -93,7 +98,7 @@
         </div>
       </div>
       <section class="profile-picture">
-        <img src="img/Logo-Perfil.jpg" alt="David Gaona Profile Picture" />
+        <img src="img/Logo-Perfil.jpg" alt="David Gaona Profile Picture" loading="lazy" />
       </section>
     </div>
   </header>
@@ -147,11 +152,12 @@
     </section>
 
     <!-- Modals (mantener los modales existentes sin cambios) -->
+    <!-- Modal Soccer -->
     <div class="modal" id="modal-soccer">
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Soccer</h3>
-        <img src="img/futbol.jpg" alt="Soccer Project" />
+        <img src="img/futbol.jpg" alt="Soccer Project" loading="lazy" />
         <p>
           A dynamic web application for soccer enthusiasts, featuring live
           scores, player stats, and team updates.
@@ -170,18 +176,19 @@
           </p>
           <h4>Links:</h4>
           <p>
-            <a href="#" target="_blank">Live Demo</a> |
+            <a href="soccer.html" target="_blank">Live Demo</a> |
             <a href="#" target="_blank">GitHub Repository</a>
           </p>
         </div>
       </div>
     </div>
 
+    <!-- Modal Rock, Paper, Scissors -->
     <div class="modal" id="modal-rps">
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Rock, Paper, Scissors</h3>
-        <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project" />
+        <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project" loading="lazy" />
         <p>
           An interactive game built with JavaScript, featuring smooth
           animations and a user-friendly interface.
@@ -199,18 +206,19 @@
           </p>
           <h4>Links:</h4>
           <p>
-            <a href="#" target="_blank">Live Demo</a> |
+            <a href="rps.html" target="_blank">Live Demo</a> |
             <a href="#" target="_blank">GitHub Repository</a>
           </p>
         </div>
       </div>
     </div>
 
+    <!-- Modal Blackjack 21 -->
     <div class="modal" id="modal-blackjack">
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Blackjack 21</h3>
-        <img src="img/image-21.png" alt="Blackjack 21 Project" />
+        <img src="img/image-21.png" alt="Blackjack 21 Project" loading="lazy" />
         <p>
           A classic card game developed with HTML, CSS, and JavaScript,
           offering an engaging gameplay experience.
@@ -228,7 +236,7 @@
           </p>
           <h4>Links:</h4>
           <p>
-            <a href="#" target="_blank">Live Demo</a> |
+            <a href="blackjack.html" target="_blank">Live Demo</a> |
             <a href="#" target="_blank">GitHub Repository</a>
           </p>
         </div>
@@ -238,7 +246,7 @@
       <h2>My <span>Skills</span></h2>
       <div class="skills-container">
         <div class="skill">
-          <img src="img/html.gif" alt="HTML Icon" />
+          <img src="img/html.gif" alt="HTML Icon" loading="lazy" />
           <h4>HTML</h4>
           <p>
             Experiencia en creación de estructuras semánticas y accesibles.
@@ -250,17 +258,17 @@
           <p>Diseño de interfaces responsivas con animaciones avanzadas.</p>
         </div>
         <div class="skill">
-          <img src="img/secuencia-de-comandos-de-java.png" alt="JavaScript Icon" />
+          <img src="img/secuencia-de-comandos-de-java.png" alt="JavaScript Icon" loading="lazy" />
           <h4>JavaScript</h4>
           <p>Desarrollo de aplicaciones interactivas y dinámicas.</p>
         </div>
         <div class="skill">
-          <img src="img/grafico-de-barras.gif" alt="Graphic Design Icon" />
+          <img src="img/grafico-de-barras.gif" alt="Graphic Design Icon" loading="lazy" />
           <h4>Graphic Design</h4>
           <p>Creación de diseños visuales para branding y marketing.</p>
         </div>
         <div class="skill">
-          <img src="img/java.gif" alt="Graphic Design Icon" />
+          <img src="img/java.gif" alt="Graphic Design Icon" loading="lazy" />
           <h4>JAVA</h4>
           <p>
             Experiencia en desarrollo backend robusto y orientado a objetos
@@ -268,7 +276,7 @@
           </p>
         </div>
         <div class="skill">
-          <img src="img/React.gif" alt="Graphic Design Icon" />
+          <img src="img/React.gif" alt="Graphic Design Icon" loading="lazy" />
           <h4>REACT</h4>
           <p>
             Dominio en creación de interfaces dinámicas y reutilizables con
@@ -276,7 +284,7 @@
           </p>
         </div>
         <div class="skill">
-          <img src="img/Mongo DB.gif" alt="Graphic Design Icon" />
+          <img src="img/Mongo DB.gif" alt="Graphic Design Icon" loading="lazy" />
           <h4>MONGO DB</h4>
           <p>
             Manejo de bases de datos NoSQL con MongoDB, ideal para estructuras
@@ -284,7 +292,7 @@
           </p>
         </div>
         <div class="skill">
-          <img src="img/Base De Datos.gif" alt="Graphic Design Icon" />
+          <img src="img/Base De Datos.gif" alt="Graphic Design Icon" loading="lazy" />
           <h4>MySQL</h4>
           <p>
             Conocimiento sólido en diseño y consultas de bases de datos
@@ -292,7 +300,7 @@
           </p>
         </div>
         <div class="skill">
-          <img src="img/api.gif" alt="Graphic Design Icon" />
+          <img src="img/api.gif" alt="Graphic Design Icon" loading="lazy" />
           <h4>POSTMAN</h4>
           <p>
             Uso de Postman para pruebas de APIs REST, validación de endpoints
@@ -331,7 +339,8 @@
       <h2>My <span>Blog</span></h2>
       <div class="blog-container">
         <div class="blog-post">
-          <img src="img/blog-post1.jpg" alt="Blog post about web development" loading="lazy" width="300" height="200">
+          <img src="img/Mastering Responsive.png" alt="Blog post about web development" loading="lazy" width="300"
+            height="200">
           <h4>Mastering Responsive Design</h4>
           <p class="blog-date">May 10, 2025</p>
           <p class="blog-excerpt">Learn how to create responsive websites that work seamlessly across all devices using
@@ -339,7 +348,8 @@
           <a href="blog/mastering-responsive-design.html" class="read-more">Read More</a>
         </div>
         <div class="blog-post">
-          <img src="img/blog-post2.jpg" alt="Blog post about JavaScript games" loading="lazy" width="300" height="200">
+          <img src="img/Interactive Games.png" alt="Blog post about JavaScript games" loading="lazy" width="300"
+            height="200">
           <h4>Building Interactive Games with JavaScript</h4>
           <p class="blog-date">May 8, 2025</p>
           <p class="blog-excerpt">A deep dive into creating engaging games like Rock, Paper, Scissors using JavaScript
@@ -347,7 +357,8 @@
           <a href="blog/building-interactive-games.html" class="read-more">Read More</a>
         </div>
         <div class="blog-post">
-          <img src="img/blog-post3.jpg" alt="Blog post about graphic design" loading="lazy" width="300" height="200">
+          <img src="img/Grafipc Design.png" alt="Blog post about graphic design" loading="lazy" width="300"
+            height="200">
           <h4>Top Graphic Design Trends for 2025</h4>
           <p class="blog-date">May 5, 2025</p>
           <p class="blog-excerpt">Explore the latest trends in graphic design that will shape the industry this year.
@@ -373,7 +384,7 @@
       <h2>Our <span>Services</span></h2>
       <div class="project">
         <div class="container-projects">
-          <img src="img/web-designing-icon-22 (1).jpg" alt="Web Development Icon" />
+          <img src="img/web-designing-icon-22 (1).jpg" alt="Web Development Icon" loading="lazy" />
           <h4>Web Development</h4>
           <p>
             Building responsive and modern websites tailored to your needs
@@ -382,7 +393,7 @@
           <a href="#services">Read More</a>
         </div>
         <div class="container-projects">
-          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" />
+          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" loading="lazy" />
           <h4>Graphic Design</h4>
           <p>
             Creating visually appealing designs for branding, marketing, and
@@ -391,7 +402,7 @@
           <a href="#services">Read More</a>
         </div>
         <div class="container-projects">
-          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" />
+          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" loading="lazy" />
           <h4>Digital Marketing</h4>
           <p>
             Strategizing and executing campaigns to boost your online presence
@@ -504,10 +515,10 @@
     <div class="footer-text">
       <p>© 2025 Portfolio | David Gaona</p>
     </div>
-    <div class="footer-icontop">
-      <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
-    </div>
   </footer>
+  <button class="back-to-top" aria-label="Back to Top">
+    <span class="back-to-top-icon">↑</span>
+  </button>
   <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     const viewDetailsButtons = document.querySelectorAll(".view-details");
@@ -703,15 +714,25 @@
 
       menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-          e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
-          const targetId = link.getAttribute('href').substring(1); // Obtener el ID del destino (sin el #)
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
           const targetElement = document.getElementById(targetId);
 
           if (targetElement) {
             window.scrollTo({
-              top: targetElement.offsetTop - 80, // Ajustar por el header fijo (80px es la altura aproximada del header)
-              behavior: 'smooth' // Desplazamiento suave
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
             });
+            // Cerrar el menú hamburguesa después del scroll en rangos específicos
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.querySelector('.menu');
+            const body = document.body;
+            const screenWidth = window.innerWidth;
+            if (hamburger && menu && screenWidth >= 352 && screenWidth <= 768) {
+              hamburger.classList.remove('active');
+              menu.classList.remove('active');
+              body.classList.remove('menu-active');
+            }
           }
         });
       });
@@ -760,6 +781,75 @@
       setTimeout(() => {
         document.querySelector('.loader').remove(); // Opcional: eliminar el loader del DOM
       }, 500); // Esperar 0.5s para que la transición de opacidad termine
+    });
+  </script>
+  <script>
+    // Controlar el botón de "Volver Arriba"
+    document.addEventListener('DOMContentLoaded', () => {
+      const backToTopButton = document.querySelector('.back-to-top');
+
+      // Mostrar u ocultar el botón según el scroll
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) { // Mostrar después de 300px de scroll
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+
+      // Desplazamiento suave al hacer clic
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const menu = document.querySelector('.menu');
+      const body = document.body;
+
+      hamburger.addEventListener('click', () => {
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        hamburger.classList.toggle('active');
+        menu.classList.toggle('active');
+        body.classList.toggle('menu-active');
+      });
+
+      document.querySelectorAll('.menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            const screenWidth = window.innerWidth;
+            if (screenWidth >= 352 && screenWidth <= 768) {
+              hamburger.setAttribute('aria-expanded', 'false');
+              hamburger.classList.remove('active');
+              menu.classList.remove('active');
+              body.classList.remove('menu-active');
+            }
+          }
+        });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !hamburger.contains(e.target) && menu.classList.contains('active')) {
+          hamburger.setAttribute('aria-expanded', 'false');
+          hamburger.classList.remove('active');
+          menu.classList.remove('active');
+          body.classList.remove('menu-active');
+        }
+      });
     });
   </script>
 </body>
