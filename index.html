@@ -2,47 +2,59 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Gaona - Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
   <!-- Metaetiquetas SEO -->
   <meta name="description"
-    content="Portafolio de David Gaona, desarrollador web y diseñador gráfico especializado en soluciones digitales innovadoras con un toque gamer.">
+    content="Portafolio de David Gaona, desarrollador web y diseñador gráfico especializado en soluciones digitales innovadoras con un toque gamer." />
   <meta name="keywords"
-    content="David Gaona, desarrollador web, diseño gráfico, portafolio, tecnología, juegos, web apps">
-  <meta name="author" content="David Gaona">
-  <meta name="robots" content="index, follow">
+    content="David Gaona, desarrollador web, diseño gráfico, portafolio, tecnología, juegos, web apps" />
+  <meta name="author" content="David Gaona" />
+  <meta name="robots" content="index, follow" />
 
   <!-- Open Graph para redes sociales -->
-  <meta property="og:title" content="David Gaona - Portfolio">
+  <meta property="og:title" content="David Gaona - Portfolio" />
   <meta property="og:description"
-    content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores.">
-  <meta property="og:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg">
+    content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores." />
+  <meta property="og:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg" />
   <!-- Reemplaza con la URL de tu imagen de perfil -->
-  <meta property="og:url" content="https://tu-dominio.com"> <!-- Reemplaza con la URL de tu portafolio -->
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="es_MX"> <!-- Ajusta según tu idioma y región -->
+  <meta property="og:url" content="https://tu-dominio.com" />
+  <!-- Reemplaza con la URL de tu portafolio -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_MX" />
+  <!-- Ajusta según tu idioma y región -->
 
   <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="David Gaona - Portfolio">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="David Gaona - Portfolio" />
   <meta name="twitter:description"
-    content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores.">
-  <meta name="twitter:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg">
+    content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores." />
+  <meta name="twitter:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg" />
   <!-- Reemplaza con la URL de tu imagen de perfil -->
-  <meta name="twitter:creator" content="@TuUsuarioTwitter"> <!-- Opcional, reemplaza con tu handle de Twitter -->
+  <meta name="twitter:creator" content="@TuUsuarioTwitter" />
+  <!-- Opcional, reemplaza con tu handle de Twitter -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+  <meta http-equiv="Expires" content="Wed, 12 May 2025 12:00:00 GMT">
 </head>
 
 <body>
-  <canvas id="particle-canvas"></canvas>
+  <div class="loader">
+    <div class="loader-content">
+      <h1 class="loader-text">GaonaDev</h1>
+      <div class="loader-bar">
+        <div class="loader-progress"></div>
+      </div>
+    </div>
+  </div>
   <header class="portfolio">
     <div class="container-nav">
       <h3 class="logo">Portfolio</h3>
@@ -52,21 +64,21 @@
           <li><a href="#portfolio" aria-label="Go to Projects section">Projects</a></li>
           <li><a href="#skills" aria-label="Go to Skills section">Skills</a></li>
           <li><a href="#services" aria-label="Go to Services section">Services</a></li>
+          <li><a href="#stats" aria-label="Go to Stats section">Stats</a></li>
+          <li><a href="#faq" aria-label="Go to FAQ section">FAQ</a></li>
           <li><a href="#contact" aria-label="Go to Contact section">Contact</a></li>
         </ul>
       </nav>
-      <div class="menu-toggle" aria-label="Toggle navigation menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </div>
     <div class="general-description">
       <div class="container-description">
         <section class="home" id="home">
           <h1>Hello! I'm David Gaona</h1>
-          <p>I’m a passionate tech enthusiast specializing in web development, graphic design, and digital solutions. I
-            love learning new technologies and applying my skills to create innovative projects.</p>
+          <p>
+            I’m a passionate tech enthusiast specializing in web development,
+            graphic design, and digital solutions. I love learning new
+            technologies and applying my skills to create innovative projects.
+          </p>
         </section>
         <div class="icons-socials">
           <div class="icons">
@@ -81,7 +93,7 @@
         </div>
       </div>
       <section class="profile-picture">
-        <img src="img/Logo-Perfil.jpg" alt="David Gaona Profile Picture">
+        <img src="img/Logo-Perfil.jpg" alt="David Gaona Profile Picture" />
       </section>
     </div>
   </header>
@@ -97,22 +109,36 @@
       <div class="card">
         <!-- Proyecto 1: Soccer -->
         <div class="container-card" data-category="web-apps" data-modal="modal-soccer">
-          <img src="img/futbol.jpg" alt="Soccer Project" loading="lazy">
+          <picture>
+            <source srcset="img/futbol.webp" type="image/webp" />
+            <img src="img/futbol.jpg" alt="Soccer web app screenshot showing live scores and player stats"
+              loading="lazy" width="100" height="100" />
+          </picture>
           <h3>Soccer</h3>
-          <p>A dynamic web application for soccer enthusiasts, featuring live scores, player stats, and team updates.
+          <p>
+            A dynamic web application for soccer enthusiasts, featuring live
+            scores, player stats, and team updates.
           </p>
           <button class="view-details">View Details</button>
         </div>
         <!-- Proyecto 2: Rock, Paper, Scissors -->
         <div class="container-card" data-category="games" data-modal="modal-rps">
-          <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project">
+          <picture>
+            <source srcset="img/image-tijera_piedra_papel.png" type="image/webp">
+            <img src="img/image-tijera_piedra_papel.png"
+              alt="Rock Paper Scissors game interface with interactive buttons" loading="lazy" width="100" height="100">
+          </picture>
           <h3>Rock, Paper, Scissors</h3>
           <p>An interactive game built with JavaScript, featuring smooth animations and a user-friendly interface.</p>
           <button class="view-details">View Details</button>
         </div>
         <!-- Proyecto 3: Blackjack 21 -->
         <div class="container-card" data-category="games" data-modal="modal-blackjack">
-          <img src="img/image-21.png" alt="Blackjack 21 Project">
+          <picture>
+            <source srcset="img/image-21.png" type="image/webp">
+            <img src="img/image-21.png" alt="Blackjack 21 card game interface with virtual cards and scoring"
+              loading="lazy" width="100" height="100">
+          </picture>
           <h3>Blackjack 21</h3>
           <p>A classic card game developed with HTML, CSS, and JavaScript, offering an engaging gameplay experience.</p>
           <button class="view-details">View Details</button>
@@ -125,8 +151,11 @@
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Soccer</h3>
-        <img src="img/futbol.jpg" alt="Soccer Project">
-        <p>A dynamic web application for soccer enthusiasts, featuring live scores, player stats, and team updates.</p>
+        <img src="img/futbol.jpg" alt="Soccer Project" />
+        <p>
+          A dynamic web application for soccer enthusiasts, featuring live
+          scores, player stats, and team updates.
+        </p>
         <div class="modal-details">
           <h4>Technologies Used:</h4>
           <ul>
@@ -135,8 +164,10 @@
             <li>Bootstrap for responsive design</li>
           </ul>
           <h4>Challenges:</h4>
-          <p>Integrating real-time data from a third-party API and ensuring the app remains responsive during high
-            traffic.</p>
+          <p>
+            Integrating real-time data from a third-party API and ensuring the
+            app remains responsive during high traffic.
+          </p>
           <h4>Links:</h4>
           <p>
             <a href="#" target="_blank">Live Demo</a> |
@@ -150,8 +181,11 @@
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Rock, Paper, Scissors</h3>
-        <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project">
-        <p>An interactive game built with JavaScript, featuring smooth animations and a user-friendly interface.</p>
+        <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project" />
+        <p>
+          An interactive game built with JavaScript, featuring smooth
+          animations and a user-friendly interface.
+        </p>
         <div class="modal-details">
           <h4>Technologies Used:</h4>
           <ul>
@@ -159,7 +193,10 @@
             <li>Custom animations with CSS keyframes</li>
           </ul>
           <h4>Challenges:</h4>
-          <p>Ensuring the game logic was fair and handling edge cases like ties.</p>
+          <p>
+            Ensuring the game logic was fair and handling edge cases like
+            ties.
+          </p>
           <h4>Links:</h4>
           <p>
             <a href="#" target="_blank">Live Demo</a> |
@@ -173,8 +210,11 @@
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Blackjack 21</h3>
-        <img src="img/image-21.png" alt="Blackjack 21 Project">
-        <p>A classic card game developed with HTML, CSS, and JavaScript, offering an engaging gameplay experience.</p>
+        <img src="img/image-21.png" alt="Blackjack 21 Project" />
+        <p>
+          A classic card game developed with HTML, CSS, and JavaScript,
+          offering an engaging gameplay experience.
+        </p>
         <div class="modal-details">
           <h4>Technologies Used:</h4>
           <ul>
@@ -182,7 +222,10 @@
             <li>LocalStorage for saving game state</li>
           </ul>
           <h4>Challenges:</h4>
-          <p>Implementing the game logic for card dealing and scoring while keeping the UI intuitive.</p>
+          <p>
+            Implementing the game logic for card dealing and scoring while
+            keeping the UI intuitive.
+          </p>
           <h4>Links:</h4>
           <p>
             <a href="#" target="_blank">Live Demo</a> |
@@ -195,74 +238,165 @@
       <h2>My <span>Skills</span></h2>
       <div class="skills-container">
         <div class="skill">
-          <img src="img/html.gif" alt="HTML Icon">
+          <img src="img/html.gif" alt="HTML Icon" />
           <h4>HTML</h4>
-          <p>Experiencia en creación de estructuras semánticas y accesibles.</p>
+          <p>
+            Experiencia en creación de estructuras semánticas y accesibles.
+          </p>
         </div>
         <div class="skill">
-          <img src="img/css.gif" alt="CSS Icon">
+          <img src="img/css.gif" alt="CSS Icon" />
           <h4>CSS</h4>
           <p>Diseño de interfaces responsivas con animaciones avanzadas.</p>
         </div>
         <div class="skill">
-          <img src="img/secuencia-de-comandos-de-java.png" alt="JavaScript Icon">
+          <img src="img/secuencia-de-comandos-de-java.png" alt="JavaScript Icon" />
           <h4>JavaScript</h4>
           <p>Desarrollo de aplicaciones interactivas y dinámicas.</p>
         </div>
         <div class="skill">
-          <img src="img/grafico-de-barras.gif" alt="Graphic Design Icon">
+          <img src="img/grafico-de-barras.gif" alt="Graphic Design Icon" />
           <h4>Graphic Design</h4>
           <p>Creación de diseños visuales para branding y marketing.</p>
         </div>
         <div class="skill">
-          <img src="img/java.gif" alt="Graphic Design Icon">
+          <img src="img/java.gif" alt="Graphic Design Icon" />
           <h4>JAVA</h4>
-          <p>Experiencia en desarrollo backend robusto y orientado a objetos con Java, aplicando buenas prácticas y
-            patrones de diseño.</p>
+          <p>
+            Experiencia en desarrollo backend robusto y orientado a objetos
+            con Java, aplicando buenas prácticas y patrones de diseño.
+          </p>
         </div>
         <div class="skill">
-          <img src="img/React.gif" alt="Graphic Design Icon">
+          <img src="img/React.gif" alt="Graphic Design Icon" />
           <h4>REACT</h4>
-          <p>Dominio en creación de interfaces dinámicas y reutilizables con React, garantizando una experiencia de
-            usuario fluida.</p>
+          <p>
+            Dominio en creación de interfaces dinámicas y reutilizables con
+            React, garantizando una experiencia de usuario fluida.
+          </p>
         </div>
         <div class="skill">
-          <img src="img/Mongo DB.gif" alt="Graphic Design Icon">
+          <img src="img/Mongo DB.gif" alt="Graphic Design Icon" />
           <h4>MONGO DB</h4>
-          <p>Manejo de bases de datos NoSQL con MongoDB, ideal para estructuras de datos flexibles y escalables.</p>
+          <p>
+            Manejo de bases de datos NoSQL con MongoDB, ideal para estructuras
+            de datos flexibles y escalables.
+          </p>
         </div>
         <div class="skill">
-          <img src="img/Base De Datos.gif" alt="Graphic Design Icon">
+          <img src="img/Base De Datos.gif" alt="Graphic Design Icon" />
           <h4>MySQL</h4>
-          <p>Conocimiento sólido en diseño y consultas de bases de datos relacionales con MySQL, garantizando integridad
-            y rendimiento.</p>
+          <p>
+            Conocimiento sólido en diseño y consultas de bases de datos
+            relacionales con MySQL, garantizando integridad y rendimiento.
+          </p>
         </div>
         <div class="skill">
-          <img src="img/api.gif" alt="Graphic Design Icon">
+          <img src="img/api.gif" alt="Graphic Design Icon" />
           <h4>POSTMAN</h4>
-          <p>Uso de Postman para pruebas de APIs REST, validación de endpoints y automatización de flujos de prueba.</p>
+          <p>
+            Uso de Postman para pruebas de APIs REST, validación de endpoints
+            y automatización de flujos de prueba.
+          </p>
         </div>
+      </div>
+    </section>
+    <section class="testimonials" id="testimonials">
+      <h2>My <span>Testimonials</span></h2>
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <img src="img/Profile testimonial.png" alt="Client 1 Photo" loading="lazy" width="80" height="80">
+          <h4>Juan Pérez</h4>
+          <p class="testimonial-text">"David creó una web increíble para mi negocio. Su enfoque en el diseño y la
+            funcionalidad fue excepcional. ¡Altamente recomendado!"</p>
+          <p class="testimonial-role">CEO, Tech Solutions</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="img/Profile testimonial 2.png" alt="Client 2 Photo" loading="lazy" width="80" height="80">
+          <h4>María Gómez</h4>
+          <p class="testimonial-text">"Trabajar con David fue una experiencia increíble. Entendió perfectamente lo que
+            necesitaba y entregó un proyecto a tiempo."</p>
+          <p class="testimonial-role">Freelance Designer</p>
+        </div>
+        <div class="testimonial-card">
+          <img src="img/Profile testimonial 3.png" alt="Client 3 Photo" loading="lazy" width="80" height="80">
+          <h4>Carlos Rodríguez</h4>
+          <p class="testimonial-text">"El juego que desarrolló David superó mis expectativas. La atención al detalle y
+            las animaciones son impresionantes."</p>
+          <p class="testimonial-role">Game Enthusiast</p>
+        </div>
+      </div>
+    </section>
+    <section class="blog" id="blog">
+      <h2>My <span>Blog</span></h2>
+      <div class="blog-container">
+        <div class="blog-post">
+          <img src="img/blog-post1.jpg" alt="Blog post about web development" loading="lazy" width="300" height="200">
+          <h4>Mastering Responsive Design</h4>
+          <p class="blog-date">May 10, 2025</p>
+          <p class="blog-excerpt">Learn how to create responsive websites that work seamlessly across all devices using
+            modern CSS techniques.</p>
+          <a href="blog/mastering-responsive-design.html" class="read-more">Read More</a>
+        </div>
+        <div class="blog-post">
+          <img src="img/blog-post2.jpg" alt="Blog post about JavaScript games" loading="lazy" width="300" height="200">
+          <h4>Building Interactive Games with JavaScript</h4>
+          <p class="blog-date">May 8, 2025</p>
+          <p class="blog-excerpt">A deep dive into creating engaging games like Rock, Paper, Scissors using JavaScript
+            and animations.</p>
+          <a href="blog/building-interactive-games.html" class="read-more">Read More</a>
+        </div>
+        <div class="blog-post">
+          <img src="img/blog-post3.jpg" alt="Blog post about graphic design" loading="lazy" width="300" height="200">
+          <h4>Top Graphic Design Trends for 2025</h4>
+          <p class="blog-date">May 5, 2025</p>
+          <p class="blog-excerpt">Explore the latest trends in graphic design that will shape the industry this year.
+          </p>
+          <a href="blog/graphic-design-trends-2025.html" class="read-more">Read More</a>
+        </div>
+      </div>
+    </section>
+    <section class="subscription" id="subscription">
+      <h2>Subscribe to My <span>Newsletter</span></h2>
+      <p class="subscription-text">Stay updated with my latest projects, tutorials, and tech insights!</p>
+      <div class="subscription-container">
+        <form class="subscription-form">
+          <div class="form-group">
+            <label for="subscription-email">Email Address</label>
+            <input type="email" id="subscription-email" placeholder="Your Email" required>
+          </div>
+          <button type="submit">Subscribe</button>
+        </form>
       </div>
     </section>
     <section class="projects" id="services">
       <h2>Our <span>Services</span></h2>
       <div class="project">
         <div class="container-projects">
-          <img src="img/web-designing-icon-22 (1).jpg" alt="Web Development Icon">
+          <img src="img/web-designing-icon-22 (1).jpg" alt="Web Development Icon" />
           <h4>Web Development</h4>
-          <p>Building responsive and modern websites tailored to your needs using the latest technologies.</p>
+          <p>
+            Building responsive and modern websites tailored to your needs
+            using the latest technologies.
+          </p>
           <a href="#services">Read More</a>
         </div>
         <div class="container-projects">
-          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon">
+          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" />
           <h4>Graphic Design</h4>
-          <p>Creating visually appealing designs for branding, marketing, and digital media.</p>
+          <p>
+            Creating visually appealing designs for branding, marketing, and
+            digital media.
+          </p>
           <a href="#services">Read More</a>
         </div>
         <div class="container-projects">
-          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon">
+          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" />
           <h4>Digital Marketing</h4>
-          <p>Strategizing and executing campaigns to boost your online presence and engagement.</p>
+          <p>
+            Strategizing and executing campaigns to boost your online presence
+            and engagement.
+          </p>
           <a href="#services">Read More</a>
         </div>
       </div>
@@ -274,19 +408,19 @@
           <div class="form-grid">
             <div class="form-group">
               <label for="full-name">Full Name</label>
-              <input type="text" id="full-name" placeholder="Your Name" required>
+              <input type="text" id="full-name" placeholder="Your Name" required />
             </div>
             <div class="form-group">
               <label for="email-address">Email Address</label>
-              <input type="email" id="email-address" placeholder="Your Email" required>
+              <input type="email" id="email-address" placeholder="Your Email" required />
             </div>
             <div class="form-group">
               <label for="mobile-number">Mobile Number</label>
-              <input type="tel" id="mobile-number" placeholder="Your Number">
+              <input type="tel" id="mobile-number" placeholder="Your Number" />
             </div>
             <div class="form-group">
               <label for="email-subject">Subject</label>
-              <input type="text" id="email-subject" placeholder="Subject">
+              <input type="text" id="email-subject" placeholder="Subject" />
             </div>
           </div>
           <div class="form-group textarea-group">
@@ -298,6 +432,74 @@
       </div>
     </section>
   </main>
+  <section class="stats" id="stats">
+    <h2>My <span>Stats</span></h2>
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3 class="stat-number" data-target="2">0</h3>
+        <p>Years of Experience</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="stat-number" data-target="5">0</h3>
+        <p>Projects Completed</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="stat-number" data-target="0">0</h3>
+        <p>Happy Clients</p>
+      </div>
+      <div class="stat-card">
+        <h3 class="stat-number" data-target="10000">0</h3>
+        <p>Hours of Coding</p>
+      </div>
+    </div>
+  </section>
+  <section class="faq" id="faq">
+    <h2>Frequently Asked <span>Questions</span></h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+          What services do you offer?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" id="faq-answer-1">
+          <p>I offer a range of services including web development, UI/UX design, and custom software solutions. Whether
+            you need a stunning portfolio, a dynamic website, or a tailored application, I can help bring your vision to
+            life.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+          How long does a project typically take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" id="faq-answer-2">
+          <p>The timeline for a project depends on its complexity. A simple website might take 2-4 weeks, while a more
+            complex application could take 2-3 months. I’ll provide a detailed timeline after discussing your
+            requirements.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+          What is your pricing structure?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" id="faq-answer-3">
+          <p>My pricing is project-based and depends on the scope of work. I offer competitive rates and will provide a
+            detailed quote after understanding your needs. Contact me for more details!</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+          Do you provide ongoing support after project completion?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" id="faq-answer-4">
+          <p>Yes, I offer ongoing support and maintenance to ensure your project runs smoothly. This includes updates,
+            bug fixes, and any additional features you might need in the future.</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <footer class="footer">
     <div class="footer-text">
       <p>© 2025 Portfolio | David Gaona</p>
@@ -306,44 +508,45 @@
       <a href="#home"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>
     </div>
   </footer>
+  <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    const viewDetailsButtons = document.querySelectorAll('.view-details');
-    const modals = document.querySelectorAll('.modal');
-    const closeModalButtons = document.querySelectorAll('.close-modal');
+    const viewDetailsButtons = document.querySelectorAll(".view-details");
+    const modals = document.querySelectorAll(".modal");
+    const closeModalButtons = document.querySelectorAll(".close-modal");
 
     // Función para cerrar todos los modals
     function closeAllModals() {
-      modals.forEach(modal => {
-        modal.style.display = 'none';
+      modals.forEach((modal) => {
+        modal.style.display = "none";
       });
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
 
     // Abrir modal
-    viewDetailsButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const modalId = button.parentElement.getAttribute('data-modal');
+    viewDetailsButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const modalId = button.parentElement.getAttribute("data-modal");
         const modal = document.getElementById(modalId);
         if (modal) {
-          modal.style.display = 'block';
-          document.body.style.overflow = 'hidden';
+          modal.style.display = "block";
+          document.body.style.overflow = "hidden";
           // Enfocar el botón de cierre para accesibilidad
-          const closeButton = modal.querySelector('.close-modal');
+          const closeButton = modal.querySelector(".close-modal");
           if (closeButton) closeButton.focus();
         }
       });
     });
 
     // Cerrar modal con botón
-    closeModalButtons.forEach(button => {
-      button.addEventListener('click', () => {
+    closeModalButtons.forEach((button) => {
+      button.addEventListener("click", () => {
         closeAllModals();
       });
     });
 
     // Cerrar modal al hacer clic fuera
-    modals.forEach(modal => {
-      modal.addEventListener('click', (e) => {
+    modals.forEach((modal) => {
+      modal.addEventListener("click", (e) => {
         if (e.target === modal) {
           closeAllModals();
         }
@@ -351,40 +554,40 @@
     });
 
     // Cerrar modal con tecla Esc
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
         closeAllModals();
       }
     });
   </script>
   <script>
     // Seleccionar botones de filtro y tarjetas de proyecto
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.container-card');
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".container-card");
 
     // Función para filtrar proyectos
     function filterProjects(category) {
-      projectCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (category === 'all' || cardCategory === category) {
-          card.style.display = 'block';
+      projectCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block";
         } else {
-          card.style.display = 'none';
+          card.style.display = "none";
         }
       });
     }
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        const category = button.getAttribute('data-filter');
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+        const category = button.getAttribute("data-filter");
         filterProjects(category);
       });
       // Añadir accesibilidad con teclado
-      button.setAttribute('tabindex', '0');
-      button.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+      button.setAttribute("tabindex", "0");
+      button.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           button.click();
         }
@@ -392,111 +595,310 @@
     });
 
     // Mostrar todos los proyectos al cargar la página
-    window.addEventListener('load', () => {
-      filterProjects('all');
+    window.addEventListener("load", () => {
+      filterProjects("all");
     });
   </script>
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu');
-
-    if (menuToggle && menu) {
-      menuToggle.addEventListener('click', () => {
-        menu.classList.toggle('active');
+    const blogPosts = document.querySelectorAll('.blog-post');
+    blogPosts.forEach(post => {
+      post.addEventListener('click', () => {
+        alert('This would open the full blog post: ' + post.querySelector('h4').textContent);
       });
-    }
-  </script>
-
-</body>
-<script>
-  const canvas = document.getElementById('particle-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const particles = [];
-  const particleCount = 100;
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 3 + 1;
-      this.speedX = Math.random() * 2 - 1;
-      this.speedY = Math.random() * 2 - 1;
-      this.color = ['#00F7FF', '#D81B60', '#7B1FA2'][Math.floor(Math.random() * 3)];
-    }
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-      if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-      if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
-      ctx.fill();
-    }
-  }
-
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(particle => {
-      particle.update();
-      particle.draw();
     });
-    requestAnimationFrame(animate);
-  }
-  animate();
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const subscriptionForm = document.querySelector('.subscription-form');
+      if (subscriptionForm) {
+        subscriptionForm.addEventListener('submit', function (e) {
+          e.preventDefault();
 
-  window.addEventListener('resize', () => {
+          const email = document.getElementById('subscription-email').value.trim();
+
+          if (!email) {
+            showNotification('Por favor, ingresa tu correo electrónico.', true);
+            return;
+          }
+
+          emailjs.send('service_9afijun', 'template_pe3ta9h', { email: email })
+            .then(() => {
+              showNotification('¡Suscripción exitosa! Revisa tu correo.');
+              subscriptionForm.reset();
+            }, (error) => {
+              showNotification('Error al suscribirse: ' + error.text, true);
+              console.log('Error detallado:', error);
+            });
+        });
+      }
+    });
+  </script>
+  <script>
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      document.body.style.setProperty('--scroll', scrollPosition + 'px');
+      document.body.style.setProperty('--scroll-slow', scrollPosition * 0.5 + 'px');
+    });
+  </script>
+  <script>
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      console.log('Target ID:', targetId); // Agrega esta línea
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const headerOffset = document.querySelector('header.portfolio').offsetHeight;
+        const elementPosition = targetElement.offsetTop; // Usamos offsetTop para una posición absoluta
+        const offsetPosition = elementPosition - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition >= 0 ? offsetPosition : 0, // Evita desplazamientos negativos
+          behavior: 'smooth'
+        });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const statsSection = document.querySelector('.stats');
+      const statNumbers = document.querySelectorAll('.stat-number');
+
+      const animateNumber = (element, target) => {
+        let start = 0;
+        const duration = 2000; // Duración de la animación en milisegundos
+        const increment = target / (duration / 60); // Incremento por frame (60 FPS)
+
+        const updateNumber = () => {
+          start += increment;
+          if (start >= target) {
+            element.textContent = target;
+            return;
+          }
+          element.textContent = Math.ceil(start);
+          requestAnimationFrame(updateNumber);
+        };
+
+        updateNumber();
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            statNumbers.forEach(number => {
+              const target = parseInt(number.getAttribute('data-target'));
+              animateNumber(number, target);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(statsSection);
+    });
+  </script>
+  <script>
+    // Scroll suave para los enlaces del menú
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuLinks = document.querySelectorAll('.menu a');
+
+      menuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+          const targetId = link.getAttribute('href').substring(1); // Obtener el ID del destino (sin el #)
+          const targetElement = document.getElementById(targetId);
+
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80, // Ajustar por el header fijo (80px es la altura aproximada del header)
+              behavior: 'smooth' // Desplazamiento suave
+            });
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    // Funcionalidad del acordeón para la sección FAQ
+    document.addEventListener('DOMContentLoaded', () => {
+      const faqQuestions = document.querySelectorAll('.faq-question');
+
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const faqItem = question.parentElement;
+          const answer = question.nextElementSibling;
+          const isOpen = faqItem.classList.contains('active');
+
+          // Cerrar todas las otras preguntas abiertas
+          document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+              item.classList.remove('active');
+              const otherAnswer = item.querySelector('.faq-answer');
+              const otherQuestion = item.querySelector('.faq-question');
+              otherAnswer.style.maxHeight = null;
+              otherQuestion.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          // Abrir o cerrar la pregunta actual
+          if (!isOpen) {
+            faqItem.classList.add('active');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            question.setAttribute('aria-expanded', 'true');
+          } else {
+            faqItem.classList.remove('active');
+            answer.style.maxHeight = null;
+            question.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    });
+  </script>
+  <script>
+    // Controlar el loader
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+      setTimeout(() => {
+        document.querySelector('.loader').remove(); // Opcional: eliminar el loader del DOM
+      }, 500); // Esperar 0.5s para que la transición de opacidad termine
+    });
+  </script>
+</body>
+<canvas id="particle-canvas"></canvas>
+<script>
+  // Efecto de partículas en el fondo
+  document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Ajustar el tamaño del canvas al tamaño de la ventana
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    // Redimensionar el canvas cuando la ventana cambie de tamaño
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Configuración de partículas
+    const particlesArray = [];
+    const numberOfParticles = 100; // Ajusta según el rendimiento
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 1; // Tamaño entre 1 y 4
+        this.speedX = Math.random() * 1 - 0.5; // Velocidad horizontal
+        this.speedY = Math.random() * 1 - 0.5; // Velocidad vertical
+        this.color = Math.random() > 0.5 ? '#00FFD1' : '#FF007A'; // Cian o rosa
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        // Rebotar en los bordes
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Crear las partículas
+    for (let i = 0; i < numberOfParticles; i++) {
+      particlesArray.push(new Particle());
+    }
+
+    // Función para conectar partículas cercanas con líneas
+    function connectParticles() {
+      const maxDistance = 100; // Distancia máxima para conectar partículas
+      for (let a = 0; a < particlesArray.length; a++) {
+        for (let b = a + 1; b < particlesArray.length; b++) {
+          const dx = particlesArray[a].x - particlesArray[b].x;
+          const dy = particlesArray[a].y - particlesArray[b].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < maxDistance) {
+            ctx.strokeStyle = `rgba(${particlesArray[a].color === '#00FFD1' ? '0, 255, 209' : '255, 0, 122'}, ${1 - distance / maxDistance})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // Animar las partículas
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+
+      connectParticles();
+      requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
   });
 </script>
 <!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener("DOMContentLoaded", function () {
     // Inicializar EmailJS con el Public Key
     emailjs.init("2huM6p7GTbcU0piHC"); // Reemplaza con el Public Key correcto
 
-    const form = document.querySelector('.contact-form');
+    const form = document.querySelector(".contact-form");
     if (form) {
-      form.addEventListener('submit', function (e) {
+      form.addEventListener("submit", function (e) {
         e.preventDefault();
 
-        const fullName = document.getElementById('full-name').value.trim();
-        const email = document.getElementById('email-address').value.trim();
-        const message = document.getElementById('message').value.trim();
+        const fullName = document.getElementById("full-name").value.trim();
+        const email = document.getElementById("email-address").value.trim();
+        const message = document.getElementById("message").value.trim();
 
         if (!fullName || !email || !message) {
-          showNotification('Por favor, completa los campos obligatorios: Nombre, Email y Mensaje.', true);
+          showNotification(
+            "Por favor, completa los campos obligatorios: Nombre, Email y Mensaje.",
+            true
+          );
           return;
         }
 
-        emailjs.sendForm('service_9afijun', 'template_5qs75zl', this)
-          .then(() => {
-            showNotification('¡Mensaje enviado con éxito!');
+        emailjs.sendForm("service_9afijun", "template_5qs75zl", this).then(
+          () => {
+            showNotification("¡Mensaje enviado con éxito!");
             this.reset();
-          }, (error) => {
-            showNotification('Error al enviar el mensaje: ' + error.text, true);
-            console.log('Error detallado:', error);
-          });
+          },
+          (error) => {
+            showNotification(
+              "Error al enviar el mensaje: " + error.text,
+              true
+            );
+            console.log("Error detallado:", error);
+          }
+        );
       });
     } else {
-      console.error('No se encontró el formulario con clase .contact-form');
+      console.error("No se encontró el formulario con clase .contact-form");
     }
   });
 
   function showNotification(message, isError = false) {
-    const notification = document.createElement('div');
-    notification.className = `notification ${isError ? 'error' : ''}`;
+    const notification = document.createElement("div");
+    notification.className = `notification ${isError ? "error" : ""}`;
     notification.textContent = message;
     document.body.appendChild(notification);
     setTimeout(() => notification.remove(), 5000);
