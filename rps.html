@@ -7,13 +7,50 @@
     <title>Rock, Paper, Scissors - GaonaDev</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        #rps-game {
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: #0A0F1B;
+            color: #E0E0E0;
+        }
+
+        .main-home {
             text-align: center;
             padding: 20px;
         }
 
-        .choice-animation {
-            transition: transform 0.3s ease;
+        h2 {
+            font-size: 2.5em;
+            color: #00FFD1;
+            text-transform: uppercase;
+            animation: bounceTitle 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceTitle {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+                text-shadow: 0 0 20px #FF007A;
+            }
+        }
+
+        #rps-game {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #choice-canvas {
+            border: 2px solid #00FFD1;
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 100%;
+            height: auto;
         }
 
         .win {
@@ -26,15 +63,27 @@
             animation: shake 0.5s;
         }
 
+        .streak {
+            color: #FF007A;
+            font-weight: bold;
+        }
+
+        .particle {
+            position: absolute;
+            background: #00FFD1;
+            border-radius: 50%;
+            animation: curveFloat 2s ease-out;
+        }
+
         @keyframes glow {
 
             0%,
             100% {
-                text-shadow: 0 0 10px #00FFD1;
+                text-shadow: 0 0 15px #00FFD1, 0 0 5px #00FFD1;
             }
 
             50% {
-                text-shadow: 0 0 20px #00FFD1;
+                text-shadow: 0 0 30px #00FFD1, 0 0 10px #00FFD1;
             }
         }
 
@@ -52,9 +101,78 @@
             }
         }
 
-        #history {
-            margin-top: 20px;
+        @keyframes curveFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(50px, -50px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes combatMove {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .rules-btn {
+            padding: 10px 20px;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
             color: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .stats-bar {
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button[onclick^="play"] {
+            margin: 5px;
+            padding: 10px;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.8em;
+            }
+
+            #choice-canvas {
+                width: 100%;
+                height: auto;
+            }
+
+            button[onclick^="play"] {
+                display: block;
+                width: 80%;
+                margin: 5px auto;
+                font-size: 0.9em;
+            }
+
+            .stats-bar {
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
@@ -63,54 +181,224 @@
     <div class="main-home">
         <h2>Rock, Paper, Scissors</h2>
         <div id="rps-game">
-            <p>Wins: <span id="wins">0</span> | Losses: <span id="losses">0</span> | Ties: <span id="ties">0</span></p>
+            <button class="rules-btn" onclick="showRules()">Game Rules</button>
+            <div class="stats-bar">
+                Total Wins: <span id="total-wins">0</span> | Total Losses: <span id="total-losses">0</span> | Max
+                Streak: <span id="max-streak">0</span> | Win Rate: <span id="win-rate">0%</span>
+            </div>
+            <p>Current Streak: <span id="streak">0</span> | Round: <span id="round">1</span>/5</p>
+            <canvas id="choice-canvas" width="400" height="200"></canvas>
             <p>Choose your move:</p>
-            <button onclick="play('rock')" class="choice-animation">Rock</button>
-            <button onclick="play('paper')" class="choice-animation">Paper</button>
-            <button onclick="play('scissors')" class="choice-animation">Scissors</button>
+            <button onclick="play('rock')">Rock</button>
+            <button onclick="play('paper')">Paper</button>
+            <button onclick="play('scissors')">Scissors</button>
             <p>Your Choice: <span id="player-choice"></span></p>
             <p>Computer Choice: <span id="computer-choice"></span></p>
             <p>Result: <span id="rps-result"></span></p>
-            <div id="history">Game History:</div>
+            <button id="next-tournament" onclick="nextTournament()" style="display: none;">Next Tournament</button>
+            <button id="switch-player" onclick="switchPlayer()" style="display: none;">Switch to Player 2</button>
+        </div>
+        <div id="rules-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="hideRules()">×</span>
+                <h3>Rock, Paper, Scissors Rules & Instructions</h3>
+                <h4>Objective</h4>
+                <p>Win a tournament by defeating the computer or another player in a best-of-5 rounds match.</p>
+                <h4>How to Play</h4>
+                <ul>
+                    <li>Choose your move: Rock, Paper, or Scissors.</li>
+                    <li>The computer or second player will also choose a move:
+                        <ul>
+                            <li>Rock crushes Scissors</li>
+                            <li>Scissors cuts Paper</li>
+                            <li>Paper covers Rock</li>
+                        </ul>
+                    </li>
+                    <li>Each tournament consists of 5 rounds.</li>
+                    <li>The computer adapts its strategy based on your previous moves.</li>
+                    <li>Switch to multiplayer mode with the "Switch to Player 2" button after a tournament.</li>
+                </ul>
+                <h4>Winning</h4>
+                <ul>
+                    <li>Win a round by choosing a move that beats the opponent's move.</li>
+                    <li>Win the tournament by winning more rounds than the opponent (at least 3 out of 5).</li>
+                    <li>If the tournament ends in a tie, neither wins nor loses.</li>
+                </ul>
+                <h4>Strategy Tips</h4>
+                <ul>
+                    <li>Avoid predictable patterns; the computer learns from your previous moves.</li>
+                    <li>If you win with a move, consider switching to another to throw off the opponent's prediction.
+                    </li>
+                    <li>Start with Paper, as it statistically wins more often against novice players.</li>
+                    <li>Watch for the opponent's tendencies; if they repeat moves, counter accordingly.</li>
+                </ul>
+            </div>
         </div>
     </div>
     <script>
-        let wins = 0, losses = 0, ties = 0;
-        const history = [];
+        let wins = 0, losses = 0, round = 1, choiceCtx, playerHistory = [], aiWins = 0, playerWins = 0, streak = 0, maxStreak = 0;
+        let isPlayer1 = true, player1Score = 0, player2Score = 0;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function showRules() { document.getElementById('rules-modal').style.display = 'flex'; }
+        function hideRules() { document.getElementById('rules-modal').style.display = 'none'; }
+
+        function initCanvas() {
+            choiceCtx = document.getElementById('choice-canvas').getContext('2d');
+            choiceCtx.fillStyle = '#1A1F2E';
+            choiceCtx.fillRect(0, 0, 400, 200);
+        }
+
+        function drawChoice(choice, x, y, color) {
+            choiceCtx.clearRect(0, 0, 400, 200);
+            choiceCtx.save();
+            choiceCtx.translate(x, y);
+            choiceCtx.rotate(Math.random() * 0.2 - 0.1);
+            choiceCtx.scale(1 + Math.random() * 0.2, 1 + Math.random() * 0.2);
+            choiceCtx.fillStyle = color;
+            choiceCtx.font = '40px Orbitron';
+            choiceCtx.fillText(choice, 0, 0);
+            choiceCtx.restore();
+            choiceCtx.shadowBlur = 20;
+            choiceCtx.shadowColor = color;
+            setTimeout(() => {
+                choiceCtx.shadowBlur = 0;
+                choiceCtx.clearRect(0, 0, 400, 200);
+            }, 1000);
+            createParticles(10, color, x, y);
+        }
+
+        function getAIChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            if (playerHistory.length < 2) return choices[Math.floor(Math.random() * 3)];
+            const weights = { rock: 0, paper: 0, scissors: 0 };
+            const lastChoice = playerHistory[playerHistory.length - 1];
+            if (lastChoice === 'rock') weights.paper += 0.6;
+            else if (lastChoice === 'paper') weights.scissors += 0.6;
+            else if (lastChoice === 'scissors') weights.rock += 0.6;
+            const total = Object.values(weights).reduce((a, b) => a + b, 1);
+            const rand = Math.random() * total;
+            let sum = 0;
+            for (let choice of choices) {
+                sum += weights[choice] || 1;
+                if (rand <= sum) return choice;
+            }
+            return choices[Math.floor(Math.random() * 3)];
+        }
+
+        function playSound(data) {
+            const audioBuffer = audioCtx.createBuffer(1, data.length, 44100);
+            audioBuffer.copyToChannel(new Float32Array(data), 0);
+            const source = audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(audioCtx.destination);
+            source.start();
+        }
 
         function play(playerChoice) {
-            const choices = ['rock', 'paper', 'scissors'];
-            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            let computerChoice = isPlayer1 ? getAIChoice() : prompt('Player 2, enter your choice (rock/paper/scissors):').toLowerCase();
+            if (!['rock', 'paper', 'scissors'].includes(computerChoice)) computerChoice = 'rock';
+            drawChoice(playerChoice, 100, 100, '#00FFD1');
+            drawChoice(computerChoice, 250, 100, '#FF007A');
             document.getElementById('player-choice').textContent = playerChoice;
             document.getElementById('computer-choice').textContent = computerChoice;
+            playerHistory.push(playerChoice);
 
             let result = '';
             if (playerChoice === computerChoice) {
                 result = 'Tie!';
-                ties++;
-                document.getElementById('rps-result').className = '';
-                document.getElementById('rps-result').style.color = '#E0E0E0';
+                playSound([0, 0.5, 0, 0.5, 0]);
             } else if (
                 (playerChoice === 'rock' && computerChoice === 'scissors') ||
                 (playerChoice === 'paper' && computerChoice === 'rock') ||
                 (playerChoice === 'scissors' && computerChoice === 'paper')
             ) {
-                result = 'You win!';
-                wins++;
+                result = 'You win this round!';
+                if (isPlayer1) player1Score++; else player2Score++;
+                streak++;
+                maxStreak = Math.max(maxStreak, streak);
                 document.getElementById('rps-result').className = 'win';
+                playSound([0, 1, 0.5, 1, 0]);
+                createParticles(50, '#00FFD1', 100, 100);
             } else {
-                result = 'You lose!';
-                losses++;
+                result = 'Opponent wins this round!';
+                if (isPlayer1) player2Score++; else player1Score++;
+                streak = 0;
                 document.getElementById('rps-result').className = 'lose';
+                playSound([0.7, 0, 0.7, 0, 0]);
+                createParticles(30, '#FF007A', 250, 100);
             }
             document.getElementById('rps-result').textContent = result;
-            document.getElementById('wins').textContent = wins;
-            document.getElementById('losses').textContent = losses;
-            document.getElementById('ties').textContent = ties;
+            round++;
+            document.getElementById('round').textContent = round;
+            document.getElementById('streak').textContent = streak;
 
-            history.push(`You: ${playerChoice} vs Comp: ${computerChoice} - ${result}`);
-            document.getElementById('history').textContent = `Game History: ${history.slice(-3).join(', ')}`;
+            if (round > 5) endTournament();
         }
+
+        function endTournament() {
+            document.querySelectorAll('button[onclick^="play"]').forEach(btn => btn.disabled = true);
+            if (player1Score > player2Score) {
+                wins++;
+                document.getElementById('rps-result').textContent = `Tournament Over! Player 1 Wins ${player1Score}-${player2Score}!`;
+                document.getElementById('rps-result').className = 'win';
+            } else if (player2Score > player1Score) {
+                losses++;
+                document.getElementById('rps-result').textContent = `Tournament Over! Player 2 Wins ${player2Score}-${player1Score}!`;
+                document.getElementById('rps-result').className = 'lose';
+            } else {
+                document.getElementById('rps-result').textContent = `Tournament Over! Tie ${player1Score}-${player2Score}!`;
+            }
+            document.getElementById('total-wins').textContent = wins;
+            document.getElementById('total-losses').textContent = losses;
+            document.getElementById('max-streak').textContent = maxStreak;
+            const winRate = wins + losses > 0 ? ((wins / (wins + losses)) * 100).toFixed(1) : 0;
+            document.getElementById('win-rate').textContent = `${winRate}%`;
+            document.getElementById('next-tournament').style.display = 'inline-block';
+            if (isPlayer1) document.getElementById('switch-player').style.display = 'inline-block';
+        }
+
+        function nextTournament() {
+            round = 1;
+            player1Score = 0;
+            player2Score = 0;
+            streak = 0;
+            playerHistory = [];
+            document.getElementById('round').textContent = round;
+            document.getElementById('player-choice').textContent = '';
+            document.getElementById('computer-choice').textContent = '';
+            document.getElementById('rps-result').textContent = '';
+            document.querySelectorAll('button[onclick^="play"]').forEach(btn => btn.disabled = false);
+            document.getElementById('next-tournament').style.display = 'none';
+            document.getElementById('switch-player').style.display = 'none';
+            initCanvas();
+            document.querySelectorAll('.particle').forEach(p => p.remove());
+            isPlayer1 = true;
+        }
+
+        function switchPlayer() {
+            isPlayer1 = false;
+            document.getElementById('switch-player').style.display = 'none';
+            document.getElementById('next-tournament').style.display = 'none';
+            document.querySelectorAll('button[onclick^="play"]').forEach(btn => btn.disabled = false);
+        }
+
+        function createParticles(count, color, x, y) {
+            const canvas = document.getElementById('rps-game');
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = (x || Math.random() * 400) + 'px';
+                particle.style.top = (y || Math.random() * 200) + 'px';
+                particle.style.width = Math.random() * 5 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = color;
+                canvas.appendChild(particle);
+                setTimeout(() => particle.remove(), 2000);
+            }
+        }
+
+        window.onload = initCanvas;
     </script>
 </body>
 

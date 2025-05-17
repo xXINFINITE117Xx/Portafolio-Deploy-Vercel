@@ -7,32 +7,68 @@
     <title>Blackjack 21 - GaonaDev</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        #blackjack-game {
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: #0A0F1B;
+            color: #E0E0E0;
+        }
+
+        .main-home {
             text-align: center;
             padding: 20px;
         }
 
-        .card {
-            display: inline-block;
-            width: 50px;
-            height: 70px;
-            background: #1A1F2E;
-            border: 2px solid #00FFD1;
-            border-radius: 5px;
-            margin: 5px;
-            animation: deal 0.5s ease;
+        h2 {
+            font-size: 2.5em;
+            color: #00FFD1;
+            text-transform: uppercase;
+            animation: neonTitle 2s ease-in-out infinite alternate;
         }
 
-        @keyframes deal {
+        @keyframes neonTitle {
             from {
-                transform: translateY(-50px) rotate(10deg);
-                opacity: 0;
+                text-shadow: 0 0 10px #00FFD1, 0 0 20px #00FFD1, 0 0 30px #FF007A;
             }
 
             to {
-                transform: translateY(0) rotate(0);
-                opacity: 1;
+                text-shadow: 0 0 20px #00FFD1, 0 0 40px #00FFD1, 0 0 50px #FF007A;
             }
+        }
+
+        #blackjack-game {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        #card-canvas {
+            border: 2px solid #00FFD1;
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 100%;
+        }
+
+        #roulette {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #00FFD1;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .roulette-segment {
+            position: absolute;
+            transform-origin: 100px 100px;
+        }
+
+        .roulette-label {
+            position: absolute;
+            color: #FFF;
+            font-size: 14px;
+            transform-origin: 100px 100px;
         }
 
         .win {
@@ -45,15 +81,152 @@
             animation: shake 0.5s;
         }
 
+        .particle {
+            position: absolute;
+            background: #00FFD1;
+            border-radius: 50%;
+            animation: float 2s linear;
+        }
+
         @keyframes glow {
 
             0%,
             100% {
-                text-shadow: 0 0 10px #00FFD1;
+                text-shadow: 0 0 15px #00FFD1;
             }
 
             50% {
-                text-shadow: 0 0 20px #00FFD1;
+                text-shadow: 0 0 30px #00FFD1;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            50% {
+                transform: translateX(5px);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-50px) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideCard {
+            from {
+                transform: translateX(100%) rotate(10deg);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0) rotate(0);
+                opacity: 1;
+            }
+        }
+
+        .option-btn {
+            margin: 5px;
+            padding: 8px;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .option-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .rules-btn {
+            padding: 10px 20px;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
+            color: #E0E0E0;
+            cursor: pointer;
+        }
+
+        .stats-bar {
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #0A0F1B;
+            border: 2px solid #00FFD1;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 90%;
+            color: #E0E0E0;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #FF007A;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.8em;
+            }
+
+            #card-canvas {
+                width: 100%;
+                height: auto;
+            }
+
+            #roulette {
+                width: 150px;
+                height: 150px;
+            }
+
+            .option-btn {
+                padding: 6px;
+                font-size: 0.9em;
+            }
+
+            .stats-bar {
+                font-size: 0.9em;
+            }
+
+            .modal-content {
+                padding: 15px;
             }
         }
     </style>
@@ -63,29 +236,87 @@
     <div class="main-home">
         <h2>Blackjack 21</h2>
         <div id="blackjack-game">
-            <p>Bet: $<span id="bet">10</span> | Chips: $<span id="chips">100</span></p>
-            <button onclick="placeBet(10)">+10</button>
-            <button onclick="startGame()">Deal</button>
-            <p>Your Cards: <span id="player-cards"></span> (Total: <span id="player-total">0</span>)</p>
-            <p>Dealer's Cards: <span id="dealer-cards"></span> (Total: <span id="dealer-total">0</span>)</p>
-            <button onclick="hit()" id="hit-btn" disabled>Hit</button>
-            <button onclick="stand()" id="stand-btn" disabled>Stand</button>
+            <button class="rules-btn" onclick="showRules()">Game Rules</button>
+            <div class="stats-bar">
+                Games Played: <span id="games-played">0</span> | Wins: <span id="wins">0</span> | Losses: <span
+                    id="losses">0</span> | Win %: <span id="win-rate">0%</span>
+            </div>
+            <p>Level: <span id="level">1</span> | Chips: $<span id="chips">1000</span> | Bet: $<span id="bet">0</span>
+                (Suggested: <span id="suggested-bet">10</span>)</p>
+            <canvas id="roulette" width="200" height="200"></canvas>
+            <canvas id="card-canvas" width="800" height="300"></canvas>
+            <p>Your Total: <span id="player-total">0</span></p>
+            <p>Dealer Total: <span id="dealer-total">0</span></p>
+            <div id="options">
+                <button class="option-btn" onclick="hit()" id="hit-btn" disabled>Hit</button>
+                <button class="option-btn" onclick="stand()" id="stand-btn" disabled>Stand</button>
+                <button class="option-btn" onclick="double()" id="double-btn" disabled>Double</button>
+                <button class="option-btn" onclick="split()" id="split-btn" disabled>Split</button>
+                <button class="option-btn" onclick="surrender()" id="surrender-btn" disabled>Surrender</button>
+                <button class="option-btn" onclick="insurance()" id="insurance-btn" disabled>Insurance</button>
+            </div>
             <p id="result"></p>
+            <button id="restart" onclick="restart()" style="display: none;">New Game</button>
+        </div>
+        <div id="rules-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="hideRules()">×</span>
+                <h3>Blackjack 21 Rules & Instructions</h3>
+                <h4>Objective</h4>
+                <p>Beat the dealer by getting a hand total closer to 21 without going over (busting).</p>
+                <h4>How to Play</h4>
+                <ul>
+                    <li>Click the roulette to select your bet (minimum $10, maximum $500).</li>
+                    <li>You and the dealer are dealt two cards. Your cards are visible; one of the dealer's cards is
+                        hidden.</li>
+                    <li>Choose an action:
+                        <ul>
+                            <li><b>Hit:</b> Take another card.</li>
+                            <li><b>Stand:</b> Keep your current hand.</li>
+                            <li><b>Double:</b> Double your bet and take one more card, then stand.</li>
+                            <li><b>Split:</b> If your first two cards have the same value, split them into two hands.
+                            </li>
+                            <li><b>Surrender:</b> Forfeit the round and recover half your bet.</li>
+                            <li><b>Insurance:</b> If the dealer's visible card is an Ace, bet half your original bet to
+                                protect against a dealer Blackjack.</li>
+                        </ul>
+                    </li>
+                    <li>The dealer must hit until their total is 17 or higher.</li>
+                </ul>
+                <h4>Winning</h4>
+                <ul>
+                    <li>Win by having a higher total than the dealer without busting (over 21).</li>
+                    <li>A Blackjack (Ace + 10/J/Q/K) pays 3:2 if the dealer doesn't also have Blackjack.</li>
+                    <li>If the dealer busts and you don't, you win.</li>
+                    <li>A tie (push) returns your bet.</li>
+                </ul>
+                <h4>Strategy Tips</h4>
+                <ul>
+                    <li>Always hit on a total of 8 or less.</li>
+                    <li>Stand on 17 or higher, unless the dealer shows a 10 or Ace (consider hitting on a soft 17).</li>
+                    <li>Double down on 11, especially if the dealer shows a 6 or lower.</li>
+                    <li>Split Aces and 8s always; never split 10s or 5s.</li>
+                    <li>Take insurance only if you have a strong hand and suspect a dealer Blackjack.</li>
+                </ul>
+            </div>
         </div>
     </div>
     <script>
-        let deck = [];
-        let playerCards = [];
-        let dealerCards = [];
-        let playerTotal = 0, dealerTotal = 0;
-        let chips = 100;
-        let bet = 0;
+        let deck = [], playerHands = [[]], dealerCards = [], playerTotals = [0], dealerTotal = 0, chips = 1000, bet = 0, cardCtx, rouletteCtx, gameOver = false;
+        let gamesPlayed = 0, wins = 0, losses = 0, level = 1;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const bets = [10, 25, 50, 100];
+        const minBet = 10, maxBet = 500;
+        let rouletteAngle = 0, selectedBet = 0;
 
-        function initDeck() {
+        function showRules() { document.getElementById('rules-modal').style.display = 'flex'; }
+        function hideRules() { document.getElementById('rules-modal').style.display = 'none'; }
+
+        function initDeck(numDecks = 6) {
             const suits = ['♠', '♣', '♥', '♦'];
             const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
             deck = [];
-            for (let suit of suits) for (let value of values) deck.push({ suit, value });
+            for (let i = 0; i < numDecks; i++) for (let suit of suits) for (let value of values) deck.push({ suit, value });
             for (let i = deck.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -93,6 +324,7 @@
         }
 
         function drawCard() {
+            if (deck.length < 15) initDeck();
             return deck.pop();
         }
 
@@ -107,78 +339,328 @@
             return total;
         }
 
-        function placeBet(amount) {
-            if (chips >= amount) {
-                bet += amount;
-                chips -= amount;
-                document.getElementById('bet').textContent = bet;
-                document.getElementById('chips').textContent = chips;
-            }
+        function isBlackjack(cards) {
+            return cards.length === 2 && calculateTotal(cards) === 21;
         }
 
-        function startGame() {
-            if (bet === 0) return;
-            initDeck();
-            playerCards = [drawCard(), drawCard()];
-            dealerCards = [drawCard(), drawCard()];
-            playerTotal = calculateTotal(playerCards);
-            dealerTotal = calculateTotal(dealerCards);
-            updateDisplay();
-            document.getElementById('hit-btn').disabled = false;
-            document.getElementById('stand-btn').disabled = false;
-            document.querySelector('button[onclick="startGame()"]').disabled = true;
+        function drawCardOnCanvas(card, x, y, hidden = false, delay = 0) {
+            setTimeout(() => {
+                cardCtx.fillStyle = '#1A1F2E';
+                cardCtx.fillRect(x, y, 50, 70);
+                cardCtx.strokeStyle = '#00FFD1';
+                cardCtx.lineWidth = 2;
+                cardCtx.strokeRect(x, y, 50, 70);
+                if (!hidden) {
+                    cardCtx.save();
+                    cardCtx.translate(x + 25, y + 35);
+                    cardCtx.rotate(Math.random() * 0.2 - 0.1);
+                    cardCtx.fillStyle = card.suit === '♥' || card.suit === '♦' ? '#FF007A' : '#FFF';
+                    cardCtx.font = '16px Orbitron';
+                    cardCtx.fillText(card.value + card.suit, -20, -10);
+                    cardCtx.restore();
+                    cardCtx.shadowBlur = 10;
+                    cardCtx.shadowColor = '#00FFD1';
+                }
+                cardCtx.beginPath();
+                cardCtx.moveTo(x, y);
+                cardCtx.lineTo(x + 50, y + 70);
+                cardCtx.stroke();
+                cardCtx.shadowBlur = 0;
+                createParticles(5, '#00FFD1', x, y);
+            }, delay);
+        }
+
+        function drawRoulette() {
+            rouletteCtx.clearRect(0, 0, 200, 200);
+            for (let i = 0; i < bets.length; i++) {
+                rouletteCtx.beginPath();
+                rouletteCtx.moveTo(100, 100);
+                rouletteCtx.arc(100, 100, 100, i * 2 * Math.PI / bets.length, (i + 1) * 2 * Math.PI / bets.length);
+                rouletteCtx.fillStyle = i % 2 ? '#00FFD1' : '#FF007A';
+                rouletteCtx.fill();
+                rouletteCtx.strokeStyle = '#1A1F2E';
+                rouletteCtx.lineWidth = 2;
+                rouletteCtx.stroke();
+
+                rouletteCtx.save();
+                rouletteCtx.translate(100, 100);
+                rouletteCtx.rotate(i * 2 * Math.PI / bets.length + Math.PI / bets.length);
+                rouletteCtx.fillStyle = '#FFF';
+                rouletteCtx.font = '14px Orbitron';
+                rouletteCtx.fillText(bets[i], 60, 0);
+                rouletteCtx.restore();
+            }
+            rouletteCtx.save();
+            rouletteCtx.translate(100, 100);
+            rouletteCtx.rotate(rouletteAngle * Math.PI / 180);
+            rouletteCtx.fillStyle = '#FFF';
+            rouletteCtx.beginPath();
+            rouletteCtx.moveTo(0, 0);
+            rouletteCtx.lineTo(0, -90);
+            rouletteCtx.strokeStyle = '#FFF';
+            rouletteCtx.stroke();
+            rouletteCtx.restore();
+        }
+
+        function spinRoulette(x, y) {
+            if (chips < minBet) {
+                document.getElementById('result').textContent = 'Not enough chips!';
+                return;
+            }
+            const angle = Math.atan2(y - 100, x - 100) * 180 / Math.PI + 90;
+            const segment = Math.floor((angle % 360) / (360 / bets.length));
+            selectedBet = bets[segment];
+            if (selectedBet > chips) {
+                document.getElementById('result').textContent = 'Bet exceeds chips!';
+                return;
+            }
+            rouletteAngle += 360 * 3 + Math.random() * 360;
+            let spin = setInterval(() => {
+                rouletteAngle += 10;
+                drawRoulette();
+                if (rouletteAngle % 360 < 10) {
+                    clearInterval(spin);
+                    bet = selectedBet;
+                    chips -= bet;
+                    document.getElementById('bet').textContent = bet;
+                    document.getElementById('chips').textContent = chips;
+                    document.getElementById('suggested-bet').textContent = Math.min(chips * 0.1, maxBet);
+                    startGame();
+                }
+            }, 20);
         }
 
         function updateDisplay() {
-            document.getElementById('player-cards').innerHTML = playerCards.map(c => `<div class="card">${c.value}${c.suit}</div>`).join('');
-            document.getElementById('player-total').textContent = playerTotal;
-            document.getElementById('dealer-cards').innerHTML = dealerCards.map((c, i) => i === 0 ? `<div class="card">${c.value}${c.suit}</div>` : '<div class="card">?</div>').join('');
-            document.getElementById('dealer-total').textContent = dealerTotal > 0 ? dealerTotal : '?';
-            document.getElementById('result').textContent = '';
+            cardCtx.clearRect(0, 0, 800, 300);
+            playerHands.forEach((hand, i) => hand.forEach((card, j) => drawCardOnCanvas(card, 50 + j * 60 + i * 120, 100, false, j * 100)));
+            dealerCards.forEach((card, j) => drawCardOnCanvas(card, 50 + j * 60, 20, j === 1 && !gameOver, j * 100));
+            playerTotals = playerHands.map(calculateTotal);
+            document.getElementById('player-total').textContent = playerTotals.join(' / ');
+            document.getElementById('dealer-total').textContent = gameOver ? dealerTotal : (dealerCards.length > 0 ? calculateTotal([dealerCards[0]]) : 0);
+            updateLevel();
+            updateStats();
+        }
+
+        function startGame() {
+            if (bet < minBet || bet > maxBet) {
+                document.getElementById('result').textContent = `Bet must be between $${minBet} and $${maxBet}!`;
+                bet = 0;
+                document.getElementById('bet').textContent = bet;
+                return;
+            }
+            initDeck();
+            playerHands = [[drawCard(), drawCard()]];
+            dealerCards = [drawCard(), drawCard()];
+            playerTotals = [calculateTotal(playerHands[0])];
+            dealerTotal = calculateTotal(dealerCards);
+            gameOver = false;
+            gamesPlayed++;
+
+            if (isBlackjack(playerHands[0])) {
+                if (isBlackjack(dealerCards)) {
+                    document.getElementById('result').textContent = 'Push! Both have Blackjack.';
+                    chips += bet;
+                } else {
+                    document.getElementById('result').textContent = 'Blackjack! You win 3:2!';
+                    chips += bet * 2.5;
+                    wins++;
+                    createParticles(50, '#00FFD1');
+                }
+                endGame();
+                return;
+            }
+
+            updateDisplay();
+            document.getElementById('hit-btn').disabled = false;
+            document.getElementById('stand-btn').disabled = false;
+            document.getElementById('double-btn').disabled = playerHands[0].length !== 2 || chips < bet;
+            document.getElementById('split-btn').disabled = !(playerHands[0][0].value === playerHands[0][1].value && chips >= bet);
+            document.getElementById('surrender-btn').disabled = false;
+            document.getElementById('insurance-btn').disabled = !(dealerCards[0].value === 'A' && chips >= bet / 2);
+            playSound([0, 0.5, 1, 0.5, 0]);
         }
 
         function hit() {
-            playerCards.push(drawCard());
-            playerTotal = calculateTotal(playerCards);
+            playerHands[0].push(drawCard());
+            playerTotals[0] = calculateTotal(playerHands[0]);
             updateDisplay();
-            if (playerTotal > 21) {
+            if (playerTotals[0] > 21) {
                 document.getElementById('result').textContent = 'Bust! You lose!';
                 document.getElementById('result').className = 'lose';
+                losses++;
+                createParticles(30, '#FF007A');
                 endGame();
             }
+            updateButtonStates();
         }
 
         function stand() {
-            while (dealerTotal < 17) {
+            while (dealerTotal < (level > 3 ? 17 : 16)) { // Dealer más predecible en modo práctica (nivel bajo)
                 dealerCards.push(drawCard());
                 dealerTotal = calculateTotal(dealerCards);
             }
             updateDisplay();
-            if (dealerTotal > 21 || playerTotal > dealerTotal) {
+            checkWinner();
+            endGame();
+        }
+
+        function double() {
+            if (chips >= bet) {
+                chips -= bet;
+                bet *= 2;
+                document.getElementById('bet').textContent = bet;
+                document.getElementById('chips').textContent = chips;
+                hit();
+                if (playerTotals[0] <= 21) stand();
+            }
+        }
+
+        function split() {
+            if (chips >= bet && playerHands[0][0].value === playerHands[0][1].value) {
+                playerHands.push([playerHands[0].pop()]);
+                playerHands[0].push(drawCard());
+                playerHands[1].push(drawCard());
+                chips -= bet;
+                bet *= 2;
+                document.getElementById('bet').textContent = bet;
+                document.getElementById('chips').textContent = chips;
+                updateDisplay();
+            }
+            updateButtonStates();
+        }
+
+        function surrender() {
+            chips += bet / 2;
+            document.getElementById('result').textContent = 'You surrendered! Half bet returned.';
+            losses++;
+            document.getElementById('chips').textContent = chips;
+            endGame();
+        }
+
+        function insurance() {
+            if (chips >= bet / 2) {
+                chips -= bet / 2;
+                if (isBlackjack(dealerCards)) {
+                    chips += bet * 1.5;
+                    document.getElementById('result').textContent = 'Insurance paid! Dealer had Blackjack.';
+                    wins++;
+                } else {
+                    document.getElementById('result').textContent = 'Insurance lost! Dealer didn\'t have Blackjack.';
+                    losses++;
+                }
+                document.getElementById('chips').textContent = chips;
+                endGame();
+            }
+        }
+
+        function updateButtonStates() {
+            document.getElementById('double-btn').disabled = playerHands[0].length !== 2 || chips < bet;
+            document.getElementById('split-btn').disabled = !(playerHands[0][0].value === playerHands[0][1].value && chips >= bet);
+            document.getElementById('surrender-btn').disabled = true;
+            document.getElementById('insurance-btn').disabled = true;
+        }
+
+        function checkWinner() {
+            const playerBest = Math.max(...playerTotals.filter(t => t <= 21));
+            if (playerBest > dealerTotal || dealerTotal > 21) {
                 document.getElementById('result').textContent = 'You win!';
                 document.getElementById('result').className = 'win';
                 chips += bet * 2;
-            } else if (playerTotal < dealerTotal) {
+                wins++;
+                createParticles(50, '#00FFD1');
+                playSound([0, 1, 0.5, 1, 0]);
+            } else if (playerBest < dealerTotal) {
                 document.getElementById('result').textContent = 'Dealer wins!';
                 document.getElementById('result').className = 'lose';
+                losses++;
+                createParticles(30, '#FF007A');
+                playSound([0.7, 0, 0.7, 0, 0]);
             } else {
                 document.getElementById('result').textContent = 'Push!';
                 chips += bet;
             }
             document.getElementById('chips').textContent = chips;
-            endGame();
+        }
+
+        function createParticles(count, color, x, y) {
+            const canvas = document.getElementById('blackjack-game');
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = (x || Math.random() * 800) + 'px';
+                particle.style.top = (y || Math.random() * 300) + 'px';
+                particle.style.width = Math.random() * 5 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = color;
+                canvas.appendChild(particle);
+                setTimeout(() => particle.remove(), 2000);
+            }
         }
 
         function endGame() {
+            gameOver = true;
             document.getElementById('hit-btn').disabled = true;
             document.getElementById('stand-btn').disabled = true;
+            document.getElementById('double-btn').disabled = true;
+            document.getElementById('split-btn').disabled = true;
+            document.getElementById('surrender-btn').disabled = true;
+            document.getElementById('insurance-btn').disabled = true;
+            document.getElementById('restart').style.display = 'inline-block';
             bet = 0;
             document.getElementById('bet').textContent = bet;
-            document.querySelector('button[onclick="startGame()"]').disabled = false;
+            updateStats();
+        }
+
+        function restart() {
+            playerHands = [[]];
+            dealerCards = [];
+            playerTotals = [0];
+            dealerTotal = 0;
+            gameOver = false;
+            document.getElementById('player-total').textContent = '0';
+            document.getElementById('dealer-total').textContent = '0';
+            document.getElementById('result').textContent = '';
+            cardCtx.clearRect(0, 0, 800, 300);
+            document.querySelectorAll('.particle').forEach(p => p.remove());
+            document.getElementById('restart').style.display = 'none';
+            rouletteAngle = 0;
+            drawRoulette();
+        }
+
+        function playSound(data) {
+            const audioBuffer = audioCtx.createBuffer(1, data.length, 44100);
+            audioBuffer.copyToChannel(new Float32Array(data), 0);
+            const source = audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(audioCtx.destination);
+            source.start();
+        }
+
+        function updateLevel() {
+            level = Math.floor(chips / 5000) + 1;
+            document.getElementById('level').textContent = level;
+        }
+
+        function updateStats() {
+            document.getElementById('games-played').textContent = gamesPlayed;
+            document.getElementById('wins').textContent = wins;
+            document.getElementById('losses').textContent = losses;
+            const winRate = gamesPlayed > 0 ? ((wins / gamesPlayed) * 100).toFixed(1) : 0;
+            document.getElementById('win-rate').textContent = `${winRate}%`;
         }
 
         window.onload = () => {
+            cardCtx = document.getElementById('card-canvas').getContext('2d');
+            rouletteCtx = document.getElementById('roulette').getContext('2d');
+            drawRoulette();
+            document.getElementById('roulette').addEventListener('click', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                spinRoulette(x, y);
+            });
             document.getElementById('chips').textContent = chips;
+            updateStats();
         };
     </script>
 </body>
