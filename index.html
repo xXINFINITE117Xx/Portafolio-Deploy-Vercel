@@ -116,7 +116,7 @@
         <div class="container-card" data-category="web-apps" data-modal="modal-soccer">
           <picture>
             <source srcset="img/futbol.webp" type="image/webp" />
-            <img src="img/futbol.jpg" alt="Soccer web app screenshot showing live scores and player stats"
+            <img src="img/futbol.webp" alt="Soccer web app screenshot showing live scores and player stats"
               loading="lazy" width="100" height="100" />
           </picture>
           <h3>Soccer</h3>
@@ -148,6 +148,17 @@
           <p>A classic card game developed with HTML, CSS, and JavaScript, offering an engaging gameplay experience.</p>
           <button class="view-details">View Details</button>
         </div>
+        <div class="container-card" data-category="games" data-modal="modal-pong">
+          <picture>
+            <source srcset="img/Pong.jpg" type="image/webp">
+            <img src="img/Pong.jpg" alt="Blackjack 21 card game interface with virtual cards and scoring" loading="lazy"
+              width="100" height="100">
+          </picture>
+          <h3>Pong</h3>
+          <p>A classic Pong game built with HTML5 Canvas and JavaScript, featuring smooth gameplay and a simple AI
+            opponent.</p>
+          <button class="view-details">View Details</button>
+        </div>
       </div>
     </section>
 
@@ -157,7 +168,7 @@
       <div class="modal-content">
         <span class="close-modal">×</span>
         <h3>Soccer</h3>
-        <img src="img/futbol.jpg" alt="Soccer Project" loading="lazy" />
+        <img src="img/futbol.webp" alt="Soccer Project" loading="lazy" />
         <p>
           A dynamic web application for soccer enthusiasts, featuring live
           scores, player stats, and team updates.
@@ -242,6 +253,36 @@
         </div>
       </div>
     </div>
+    <!-- Pong Modal -->
+    <div class="modal" id="modal-pong">
+      <div class="modal-content">
+        <span class="close-modal">×</span>
+        <h3>Pong: Cyber Edition</h3>
+        <img src="img/Pong.jpg" alt="Pong Game" loading="lazy" />
+        <p>
+          A futuristic take on the classic Pong game, built with HTML5 Canvas and JavaScript, featuring neon visuals,
+          particle effects, power-ups, and a dynamic AI opponent.
+        </p>
+        <div class="modal-details">
+          <h4>Technologies Used:</h4>
+          <ul>
+            <li>HTML5 Canvas for rendering</li>
+            <li>JavaScript for game logic and animations</li>
+            <li>CSS with neon animations and Orbitron font</li>
+          </ul>
+          <h4>Challenges:</h4>
+          <p>
+            Implementing smooth particle effects, dynamic power-ups, and a responsive AI while maintaining high
+            performance in the browser.
+          </p>
+          <h4>Links:</h4>
+          <p>
+            <a href="pong.html" target="_blank">Live Demo</a> |
+            <a href="#" target="_blank">GitHub Repository</a>
+          </p>
+        </div>
+      </div>
+    </div>
     <section class="skills" id="skills">
       <h2>My <span>Skills</span></h2>
       <div class="skills-container">
@@ -315,22 +356,22 @@
         <div class="testimonial-card">
           <img src="img/Profile testimonial.png" alt="Client 1 Photo" loading="lazy" width="80" height="80">
           <h4>Juan Pérez</h4>
-          <p class="testimonial-text">"David creó una web increíble para mi negocio. Su enfoque en el diseño y la
-            funcionalidad fue excepcional. ¡Altamente recomendado!"</p>
+          <p class="testimonial-text">"David created an incredible website for my business. His approach to design and
+            functionality was exceptional. Highly recommended!"</p>
           <p class="testimonial-role">CEO, Tech Solutions</p>
         </div>
         <div class="testimonial-card">
           <img src="img/Profile testimonial 2.png" alt="Client 2 Photo" loading="lazy" width="80" height="80">
           <h4>María Gómez</h4>
-          <p class="testimonial-text">"Trabajar con David fue una experiencia increíble. Entendió perfectamente lo que
-            necesitaba y entregó un proyecto a tiempo."</p>
+          <p class="testimonial-text">"Working with David was an incredible experience. He perfectly understood what I
+            needed and delivered the project on time."</p>
           <p class="testimonial-role">Freelance Designer</p>
         </div>
         <div class="testimonial-card">
           <img src="img/Profile testimonial 3.png" alt="Client 3 Photo" loading="lazy" width="80" height="80">
           <h4>Carlos Rodríguez</h4>
-          <p class="testimonial-text">"El juego que desarrolló David superó mis expectativas. La atención al detalle y
-            las animaciones son impresionantes."</p>
+          <p class="testimonial-text">"The game David developed exceeded my expectations. The attention to detail and
+            animations are breathtaking."</p>
           <p class="testimonial-role">Game Enthusiast</p>
         </div>
       </div>
@@ -384,7 +425,7 @@
       <h2>Our <span>Services</span></h2>
       <div class="project">
         <div class="container-projects">
-          <img src="img/web-designing-icon-22 (1).jpg" alt="Web Development Icon" loading="lazy" />
+          <img src="img/web-designing-icon-22 (1).png" alt="Web Development Icon" loading="lazy" />
           <h4>Web Development</h4>
           <p>
             Building responsive and modern websites tailored to your needs
@@ -455,7 +496,7 @@
         <p>Projects Completed</p>
       </div>
       <div class="stat-card">
-        <h3 class="stat-number" data-target="0">0</h3>
+        <h3 class="stat-number" data-target="10">0</h3>
         <p>Happy Clients</p>
       </div>
       <div class="stat-card">

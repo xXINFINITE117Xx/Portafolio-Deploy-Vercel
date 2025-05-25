@@ -5,181 +5,202 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer Penalty Simulator - GaonaDev</title>
-    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
     <style>
         body {
             margin: 0;
             font-family: 'Orbitron', sans-serif;
-            background: #0A0F1B;
+            background: linear-gradient(135deg, #0A0F1B, #1A1F2E);
             color: #E0E0E0;
+            overflow-x: hidden;
+            position: relative;
         }
 
         .main-home {
             text-align: center;
             padding: 20px;
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         h2 {
             font-size: 2.5em;
             color: #00FFD1;
             text-transform: uppercase;
-            animation: pulseTitle 2s ease-in-out infinite;
+            animation: neonTitle 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00FFD1;
         }
 
-        @keyframes pulseTitle {
-
-            0%,
-            100% {
-                text-shadow: 0 0 10px #00FFD1;
+        @keyframes neonTitle {
+            from {
+                text-shadow: 0 0 10px #00FFD1, 0 0 20px #00FFD1, 0 0 30px #FF007A;
             }
 
-            50% {
-                text-shadow: 0 0 20px #00FFD1, 0 0 30px #FF007A;
+            to {
+                text-shadow: 0 0 20px #00FFD1, 0 0 40px #00FFD1, 0 0 50px #FF007A;
             }
         }
 
-        #soccer-game {
+        #game-area {
             position: relative;
-            max-width: 500px;
-            margin: 0 auto;
+            margin: 20px auto;
         }
 
         #goal-canvas {
-            border: 2px solid #00FFD1;
+            border: 4px solid #00FFD1;
             border-radius: 10px;
-            margin: 10px auto;
-            max-width: 100%;
-            height: auto;
+            background: #0D1B2E;
+            box-shadow: 0 0 20px rgba(0, 255, 209, 0.5);
         }
 
-        .goal-animation {
-            color: #00FFD1;
-            animation: glow 1s infinite;
-        }
-
-        .miss-animation {
-            color: #FF007A;
-            animation: shake 0.5s;
-        }
-
-        .timer {
-            font-size: 1.5rem;
-            color: #E0E0E0;
-            margin: 10px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
+        .stats-bar {
             background: #1A1F2E;
             border: 2px solid #00FFD1;
             border-radius: 10px;
-            margin: 20px auto;
-            overflow: hidden;
-        }
-
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #00FFD1, #FF007A);
-            transition: width 0.5s ease;
-        }
-
-        .particle {
-            position: absolute;
-            background: #00FFD1;
-            border-radius: 50%;
-            animation: curveFloat 2s ease-out;
-        }
-
-        .rain {
-            position: absolute;
-            background: #00FFD1;
-            width: 2px;
-            height: 10px;
-            opacity: 0.7;
-            animation: fall 1s linear infinite;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                text-shadow: 0 0 15px #00FFD1;
-            }
-
-            50% {
-                text-shadow: 0 0 30px #00FFD1;
-            }
-        }
-
-        @keyframes shake {
-            0% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-5px);
-            }
-
-            50% {
-                transform: translateX(5px);
-            }
-        }
-
-        @keyframes curveFloat {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(50px, -50px) scale(0.5);
-                opacity: 0;
-            }
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-20px);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(300px);
-                opacity: 0;
-            }
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 0 10px rgba(0, 255, 209, 0.3);
         }
 
         .difficulty-btn {
-            padding: 8px 15px;
+            padding: 10px 20px;
             margin: 5px;
             background: #1A1F2E;
             border: 2px solid #00FFD1;
             border-radius: 5px;
             color: #E0E0E0;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .difficulty-btn:hover {
+            background: linear-gradient(45deg, #00FFD1, #FF007A);
+            color: #0A0F1B;
         }
 
         .difficulty-btn.active {
             background: linear-gradient(90deg, #00FFD1, #FF007A);
             color: #0A0F1B;
+            pointer-events: none;
         }
 
-        .rules-btn {
-            padding: 10px 20px;
-            background: #1A1F2E;
-            border: 2px solid #00FFD1;
-            border-radius: 5px;
-            color: #E0E0E0;
-            cursor: pointer;
-        }
-
-        .stats-bar {
-            background: #1A1F2E;
-            border: 2px solid #00FFD1;
-            border-radius: 5px;
-            padding: 10px;
+        /* Restricción de cambio */
+        #controls {
             margin: 10px 0;
+        }
+
+        #angle-slider,
+        #power-slider {
+            width: 200px;
+            margin: 10px;
+        }
+
+        #shoot-btn {
+            padding: 10px 20px;
+            background: #00FFD1;
+            border: none;
+            border-radius: 5px;
+            color: #0A0F1B;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #shoot-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #shoot-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        #result {
+            font-size: 1.2em;
+            margin: 10px;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #final-stats {
+            display: none;
+            background: #1A1F2E;
+            border: 2px solid #00FFD1;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 209, 0.5);
+        }
+
+        .particle {
+            position: absolute;
+            background: #00FFD1;
+            border-radius: 50%;
+            animation: float 2s ease-out forwards;
+        }
+
+        @keyframes float {
+            0% {
+                transform: scale(0);
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1) translateY(-50px);
+                opacity: 0;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #0A0F1B, #1A1F2E);
+            border: 2px solid #00FFD1;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 90%;
+            color: #E0E0E0;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 255, 209, 0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #FF007A;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+            color: #FF4D88;
         }
 
         @media (max-width: 600px) {
@@ -193,16 +214,17 @@
             }
 
             .difficulty-btn {
-                padding: 6px;
+                padding: 8px 15px;
                 font-size: 0.9em;
             }
 
-            .stats-bar {
-                font-size: 0.9em;
+            #controls {
+                flex-direction: column;
             }
 
-            .progress-bar {
-                width: 90%;
+            #angle-slider,
+            #power-slider {
+                width: 150px;
             }
         }
     </style>
@@ -211,291 +233,221 @@
 <body>
     <div class="main-home">
         <h2>Soccer Penalty Simulator</h2>
-        <div id="soccer-game">
-            <button class="rules-btn" onclick="showRules()">Game Rules</button>
-            <div class="stats-bar">
-                Total Goals: <span id="total-goals">0</span> | Tournament Wins: <span id="tournament-wins">0</span> |
-                Avg Accuracy: <span id="avg-accuracy">0%</span>
-            </div>
-            <p>XP: <span id="xp">0</span> | Score: <span id="soccer-score">0</span></p>
-            <p>Rounds Left: <span id="rounds-left">5</span></p>
-            <div class="progress-bar">
-                <div id="progress" class="progress"></div>
-            </div>
-            <p class="timer">Time: <span id="timer">3</span>s</p>
-            <p>Weather: <span id="weather">Clear</span></p>
-            <canvas id="goal-canvas" width="400" height="300"></canvas>
-            <div>
-                <button class="difficulty-btn active" onclick="setDifficulty('easy')">Easy</button>
-                <button class="difficulty-btn" onclick="setDifficulty('medium')">Medium</button>
-                <button class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
-            </div>
-            <input type="range" id="angle" min="0" max="90" value="45" oninput="updateAngle()">
-            <p>Angle: <span id="angle-value">45°</span></p>
-            <button onclick="shoot()" id="shoot-btn">Shoot!</button>
-            <p id="soccer-result"></p>
-            <button id="restart" onclick="restart()" style="display: none;">Restart</button>
+        <div id="game-area">
+            <canvas id="goal-canvas" width="600" height="400"></canvas>
+        </div>
+        <div class="stats-bar">
+            Score: <span id="score">0</span> | Rounds Left: <span id="rounds">5</span> | XP: <span id="xp">0</span>
+        </div>
+        <div id="controls">
+            <button class="difficulty-btn active" onclick="setDifficulty('easy')">Easy</button>
+            <button class="difficulty-btn" onclick="setDifficulty('medium')">Medium</button>
+            <button class="difficulty-btn" onclick="setDifficulty('hard')">Hard</button>
+            <input type="range" id="angle-slider" min="0" max="90" value="45" oninput="updateAngle()">
+            <span>Angle: <span id="angle-value">45°</span></span>
+            <input type="range" id="power-slider" min="1" max="10" value="5" oninput="updatePower()">
+            <span>Power: <span id="power-value">5</span></span>
+            <button id="shoot-btn" onclick="shoot()" disabled>Shoot!</button>
+        </div>
+        <button class="rules-btn" onclick="showRules()">Game Rules</button>
+        <div id="result"></div>
+        <div id="final-stats">
+            <h2>Match Statistics</h2>
+            <p>Total Score: <span id="final-score">0</span></p>
+            <p>Total Goals: <span id="total-goals">0</span></p>
+            <p>Shots Taken: <span id="shots-taken">0</span></p>
+            <p>Accuracy: <span id="accuracy">0%</span></p>
+            <p>Tournament Wins: <span id="tournament-wins">0</span></p>
+            <button onclick="restart()">Play Again</button>
         </div>
         <div id="rules-modal" class="modal">
             <div class="modal-content">
                 <span class="close-btn" onclick="hideRules()">×</span>
                 <h3>Soccer Penalty Simulator Rules & Instructions</h3>
                 <h4>Objective</h4>
-                <p>Score as many goals as possible in 5 rounds by shooting past the goalkeeper.</p>
+                <p>The goal is to score as many penalties as possible in 5 rounds by shooting past the goalkeeper into a
+                    large goal.</p>
                 <h4>How to Play</h4>
                 <ul>
-                    <li>Select a difficulty level (Easy, Medium, Hard).</li>
-                    <li>Adjust the shooting angle using the slider (0° to 90°).</li>
-                    <li>You have 3 seconds to shoot by clicking the "Shoot!" button.</li>
-                    <li>The goalkeeper moves randomly to block your shot.</li>
-                    <li>Weather conditions (wind, rain) may affect your shot:
-                        <ul>
-                            <li><b>Wind:</b> Alters the ball's trajectory.</li>
-                            <li><b>Rain:</b> Makes the ball harder to control.</li>
-                        </ul>
+                    <li>Select a difficulty level (Easy, Medium, Hard) to start. This choice cannot be changed once set.
                     </li>
+                    <li>Adjust the shooting angle (0° to 90°) and power (1 to 10) using the sliders.</li>
+                    <li>Click "Shoot!" to kick the ball. You have one attempt per round.</li>
+                    <li>The goalkeeper moves randomly to block your shot, with difficulty affecting its speed and
+                        position.</li>
+                    <li>Weather effects (wind) may slightly alter the ball's trajectory.</li>
                 </ul>
                 <h4>Winning</h4>
                 <ul>
                     <li>Score a goal by shooting the ball past the goalkeeper into the net.</li>
-                    <li>Aim to score in all 5 rounds for a perfect score.</li>
-                    <li>The game ends after 5 rounds; your final score is the number of goals scored.</li>
+                    <li>Achieve a perfect score by scoring in all 5 rounds, earning a tournament win if you score 3 or
+                        more.</li>
+                    <li>The game ends after 5 rounds, displaying your final statistics.</li>
                 </ul>
                 <h4>Strategy Tips</h4>
                 <ul>
-                    <li>Aim for angles between 30° and 60° to target the corners of the goal, where the goalkeeper is
-                        less likely to reach.</li>
-                    <li>Watch the goalkeeper's movement and time your shot when they're out of position.</li>
-                    <li>In windy conditions, adjust your angle to compensate for the wind's effect.</li>
-                    <li>On Hard difficulty, vary your angles to keep the goalkeeper guessing.</li>
+                    <li>Aim for the corners (30°-60°) to avoid the goalkeeper.</li>
+                    <li>Time your shot when the goalkeeper is out of position.</li>
+                    <li>Adjust power for distance; higher power reaches the goal faster but may reduce accuracy.</li>
+                    <li>Compensate for wind by adjusting the angle slightly opposite to its direction.</li>
                 </ul>
             </div>
         </div>
     </div>
     <script>
-        let score = 0, rounds = 5, totalRounds = 5, timeLeft = 3, difficulty = 'easy', goalCtx, angle = 45, wind = 0, keeperPos = 0, weather = 'clear';
-        let totalGoals = 0, tournamentWins = 0, shots = 0, xp = 0;
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        let animationFrame, keeperFrame;
+        const canvas = document.getElementById('goal-canvas');
+        const ctx = canvas.getContext('2d');
+        let score = 0, rounds = 5, difficulty = '', angle = 45, power = 5, keeperX = 250, wind = 0;
+        let totalGoals = 0, shots = 0, tournamentWins = 0, xp = 0, gameStarted = false;
 
-        function showRules() { document.getElementById('rules-modal').style.display = 'flex'; }
-        function hideRules() { document.getElementById('rules-modal').style.display = 'none'; }
-
-        function initCanvas() {
-            const canvas = document.getElementById('goal-canvas');
-            goalCtx = canvas.getContext('2d');
-            goalCtx.fillStyle = '#1A1F2E';
-            goalCtx.fillRect(0, 0, canvas.width, canvas.height);
-            goalCtx.strokeStyle = '#00FFD1';
-            goalCtx.lineWidth = 2;
-            goalCtx.strokeRect(100, 50, 200, 150);
-            drawBall(150, 200);
+        function initGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0D1B2E';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = '#00FFD1';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(100, 50, 400, 250); // Large goal
             drawKeeper();
-            updateWeather();
+            drawBall(250, 350);
         }
 
-        function drawBall(x, y, curve = 0) {
-            goalCtx.beginPath();
-            goalCtx.arc(x + Math.sin(curve) * 20, y, 10, 0, Math.PI * 2);
-            goalCtx.fillStyle = '#FFF';
-            goalCtx.fill();
-            goalCtx.stroke();
-            goalCtx.shadowBlur = 10;
-            goalCtx.shadowColor = '#FFF';
-            goalCtx.shadowBlur = 0;
+        function drawBall(x, y) {
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fill();
+            ctx.stroke();
         }
 
         function drawKeeper() {
-            goalCtx.fillStyle = '#FF007A';
-            goalCtx.fillRect(100 + keeperPos, 50, 50, 150);
+            ctx.fillStyle = '#FF007A';
+            ctx.fillRect(keeperX, 150, 50, 150); // Larger keeper
         }
 
-        function updateWeather() {
-            const weathers = ['clear', 'windy', 'rainy'];
-            weather = weathers[Math.floor(Math.random() * weathers.length)];
-            wind = weather === 'windy' ? (Math.random() - 0.5) * 0.3 : 0;
-            document.getElementById('weather').textContent = weather.charAt(0).toUpperCase() + weather.slice(1);
-            if (weather === 'rainy') {
-                for (let i = 0; i < 50; i++) {
-                    const rain = document.createElement('div');
-                    rain.className = 'rain';
-                    rain.style.left = Math.random() * 400 + 'px';
-                    rain.style.top = Math.random() * 300 + 'px';
-                    rain.style.animationDelay = Math.random() * 1 + 's';
-                    document.getElementById('soccer-game').appendChild(rain);
-                }
-            }
-        }
-
-        function animateKeeper() {
-            clearInterval(keeperFrame);
-            keeperFrame = setInterval(() => {
-                keeperPos = Math.random() * (150 - (rounds * 10));
-                goalCtx.clearRect(0, 0, 400, 300);
-                goalCtx.fillStyle = '#1A1F2E';
-                goalCtx.fillRect(0, 0, 400, 300);
-                goalCtx.strokeStyle = '#00FFD1';
-                goalCtx.strokeRect(100, 50, 200, 150);
-                drawKeeper();
-                drawBall(150, 200);
-            }, 1000 - (rounds * 100)); // Dificultad creciente
+        function updateKeeper() {
+            keeperX = 100 + Math.random() * 350; // Random within goal
+            drawKeeper();
         }
 
         function setDifficulty(level) {
-            difficulty = level;
-            document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            wind = { easy: 0, medium: 0.1, hard: 0.2 }[level];
-            animateKeeper();
-        }
-
-        function updateProgress() {
-            const progress = ((totalRounds - rounds) / totalRounds) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
+            if (!gameStarted) {
+                difficulty = level;
+                document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+                wind = { easy: 0, medium: 0.1, hard: 0.2 }[level];
+                document.getElementById('shoot-btn').disabled = false;
+                gameStarted = true;
+                updateKeeper();
+            }
         }
 
         function updateAngle() {
-            angle = parseInt(document.getElementById('angle').value);
+            angle = parseInt(document.getElementById('angle-slider').value);
             document.getElementById('angle-value').textContent = `${angle}°`;
         }
 
-        function startTimer() {
-            timeLeft = 3;
-            document.getElementById('timer').textContent = timeLeft;
-            clearInterval(animationFrame);
-            animationFrame = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').textContent = timeLeft;
-                if (timeLeft <= 0) {
-                    missShot();
-                    clearInterval(animationFrame);
-                }
-            }, 1000);
+        function updatePower() {
+            power = parseInt(document.getElementById('power-slider').value);
+            document.getElementById('power-value').textContent = power;
         }
 
         function shoot() {
-            if (rounds <= 0 || timeLeft <= 0) return;
-            startTimer();
+            if (rounds <= 0 || !difficulty || document.getElementById('shoot-btn').disabled) return;
             shots++;
             const adjustedAngle = angle + (Math.random() - 0.5) * wind * 100;
-            const targetX = 200 + Math.sin(adjustedAngle * Math.PI / 180) * 100;
-            const keeperRange = keeperPos + 25;
-            const success = Math.abs(targetX - (100 + keeperRange)) > 25;
+            const targetX = 250 + Math.sin(adjustedAngle * Math.PI / 180) * (100 * (power / 10));
+            const targetY = 50 + (10 - power) * 20;
+            animateBall(250, 350, targetX, targetY);
             rounds--;
-            updateProgress();
-            animateBall(150, 200, targetX, 50, success, adjustedAngle);
+            document.getElementById('rounds').textContent = rounds;
 
+            const success = Math.abs(targetX - keeperX) > 50;
             if (success) {
-                score += 1;
+                score++;
                 totalGoals++;
                 xp += 10;
-                document.getElementById('soccer-result').innerHTML = 'Goal! <span class="goal-animation">Nice shot!</span>';
-                playSound([0, 0.7, 1, 0.7, 0]);
-                createParticles(50, '#00FFD1', targetX, 50);
+                document.getElementById('result').textContent = 'Goal! Great shot!';
+                document.getElementById('result').style.color = '#00FFD1';
+                createParticles(30, targetX, targetY);
                 if (rounds === 0 && score >= 3) tournamentWins++;
             } else {
-                missShot();
+                document.getElementById('result').textContent = 'Missed! Keeper saved it!';
+                document.getElementById('result').style.color = '#FF007A';
             }
-            document.getElementById('soccer-score').textContent = score;
-            document.getElementById('rounds-left').textContent = rounds;
+            document.getElementById('score').textContent = score;
             document.getElementById('xp').textContent = xp;
-            updateStats();
 
-            if (rounds === 0) endGame();
+            setTimeout(() => {
+                initGame(); // Recarga el balón
+            }, 1000);
+
+            if (rounds === 0) showStats();
         }
 
-        function animateBall(startX, startY, endX, endY, success, angle) {
-            let t = 0, duration = 1000;
-            const curve = angle * Math.PI / 180;
-            const animate = () => {
+        function animateBall(startX, startY, endX, endY) {
+            let t = 0, duration = 1000 / power, velocity = 0.5 * power, gravity = 0.02 * (11 - power);
+            function animate() {
                 t += 16;
                 const progress = Math.min(t / duration, 1);
-                const x = startX + (endX - startX) * progress + Math.sin(progress * curve) * 20;
-                const y = startY + (endY - startY) * progress * (1 - progress) * 4 - 50 * progress * (1 - progress);
-                goalCtx.clearRect(0, 0, 400, 300);
-                goalCtx.fillStyle = '#1A1F2E';
-                goalCtx.fillRect(0, 0, 400, 300);
-                goalCtx.strokeStyle = '#00FFD1';
-                goalCtx.strokeRect(100, 50, 200, 150);
+                const x = startX + (endX - startX) * progress;
+                const y = startY + velocity * t - 0.5 * gravity * t * t;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#0D1B2E';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = '#00FFD1';
+                ctx.lineWidth = 4;
+                ctx.strokeRect(100, 50, 400, 250);
                 drawKeeper();
-                drawBall(x, y, progress * curve);
-                if (t < duration) requestAnimationFrame(animate);
-                else if (!success) {
-                    const reboundX = endX + (Math.random() - 0.5) * 50;
-                    animateBall(endX, endY, reboundX, 150, false, angle);
-                }
-            };
+                drawBall(x, y);
+                if (t < duration && y < 400) requestAnimationFrame(animate);
+            }
             animate();
         }
 
-        function missShot() {
-            document.getElementById('soccer-result').innerHTML = 'Missed! <span class="miss-animation">Try again.</span>';
-            playSound([0.7, 0, 0.7, 0, 0]);
-            createParticles(30, '#FF007A', 150, 200);
-            clearInterval(animationFrame);
-        }
-
-        function createParticles(count, color, x, y) {
-            const canvas = document.getElementById('soccer-game');
+        function createParticles(count, x, y) {
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                particle.style.left = (x || Math.random() * 400) + 'px';
-                particle.style.top = (y || Math.random() * 300) + 'px';
-                particle.style.width = Math.random() * 5 + 5 + 'px';
+                particle.style.left = (x - 25 + Math.random() * 50) + 'px';
+                particle.style.top = (y - 25 + Math.random() * 50) + 'px';
+                particle.style.width = Math.random() * 10 + 5 + 'px';
                 particle.style.height = particle.style.width;
-                particle.style.background = color;
-                canvas.appendChild(particle);
+                document.getElementById('game-area').appendChild(particle);
                 setTimeout(() => particle.remove(), 2000);
             }
         }
 
-        function playSound(data) {
-            const audioBuffer = audioCtx.createBuffer(1, data.length, 44100);
-            audioBuffer.copyToChannel(new Float32Array(data), 0);
-            const source = audioCtx.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioCtx.destination);
-            source.start();
-        }
-
-        function endGame() {
-            document.getElementById('soccer-result').textContent = `Game Over! Final Score: ${score}/5`;
+        function showStats() {
             document.getElementById('shoot-btn').disabled = true;
-            document.getElementById('restart').style.display = 'inline-block';
-            clearInterval(animationFrame);
-            clearInterval(keeperFrame);
+            const accuracy = shots > 0 ? ((totalGoals / shots) * 100).toFixed(1) : 0;
+            document.getElementById('final-score').textContent = score;
+            document.getElementById('total-goals').textContent = totalGoals;
+            document.getElementById('shots-taken').textContent = shots;
+            document.getElementById('accuracy').textContent = `${accuracy}%`;
+            document.getElementById('tournament-wins').textContent = tournamentWins;
+            document.getElementById('final-stats').style.display = 'block';
         }
 
         function restart() {
             score = 0;
             rounds = 5;
-            document.getElementById('soccer-score').textContent = score;
-            document.getElementById('rounds-left').textContent = rounds;
-            document.getElementById('soccer-result').textContent = '';
-            document.getElementById('progress').style.width = '0%';
-            document.getElementById('timer').textContent = '3';
-            document.getElementById('shoot-btn').disabled = false;
-            document.getElementById('restart').style.display = 'none';
-            initCanvas();
-            document.querySelectorAll('.particle, .rain').forEach(p => p.remove());
-            animateKeeper();
+            gameStarted = false;
+            document.getElementById('score').textContent = score;
+            document.getElementById('rounds').textContent = rounds;
+            document.getElementById('result').textContent = '';
+            document.getElementById('shoot-btn').disabled = true;
+            document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('final-stats').style.display = 'none';
+            initGame();
         }
 
-        function updateStats() {
-            const accuracy = shots > 0 ? ((totalGoals / shots) * 100).toFixed(1) : 0;
-            document.getElementById('total-goals').textContent = totalGoals;
-            document.getElementById('tournament-wins').textContent = tournamentWins;
-            document.getElementById('avg-accuracy').textContent = `${accuracy}%`;
-        }
+        function showRules() { document.getElementById('rules-modal').style.display = 'flex'; }
+        function hideRules() { document.getElementById('rules-modal').style.display = 'none'; }
 
         window.onload = () => {
-            initCanvas();
-            updateProgress();
-            setDifficulty('easy');
+            initGame();
             updateAngle();
-            animateKeeper();
-            updateStats();
+            updatePower();
         };
     </script>
 </body>

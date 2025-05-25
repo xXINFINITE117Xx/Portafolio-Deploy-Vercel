@@ -10,13 +10,15 @@
         body {
             margin: 0;
             font-family: 'Orbitron', sans-serif;
-            background: #0A0F1B;
+            background: linear-gradient(135deg, #0A0F1B, #1A1F2E);
             color: #E0E0E0;
+            overflow-x: hidden;
         }
 
         .main-home {
             text-align: center;
             padding: 20px;
+            position: relative;
         }
 
         h2 {
@@ -24,6 +26,7 @@
             color: #00FFD1;
             text-transform: uppercase;
             animation: bounceTitle 2s ease-in-out infinite;
+            text-shadow: 0 0 10px #00FFD1;
         }
 
         @keyframes bounceTitle {
@@ -51,6 +54,7 @@
             margin: 10px auto;
             max-width: 100%;
             height: auto;
+            box-shadow: 0 0 15px rgba(0, 255, 209, 0.3);
         }
 
         .win {
@@ -113,13 +117,41 @@
             }
         }
 
-        @keyframes combatMove {
+        @keyframes handRock {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(-10deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes handPaper {
             0% {
                 transform: scale(1);
             }
 
             50% {
                 transform: scale(1.2) rotate(10deg);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes handScissors {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(20deg);
             }
 
             100% {
@@ -134,6 +166,12 @@
             border-radius: 5px;
             color: #E0E0E0;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rules-btn:hover {
+            background: linear-gradient(45deg, #00FFD1, #FF007A);
+            color: #0A0F1B;
         }
 
         .stats-bar {
@@ -142,6 +180,7 @@
             border-radius: 5px;
             padding: 10px;
             margin: 10px 0;
+            box-shadow: 0 0 10px rgba(0, 255, 209, 0.3);
         }
 
         button[onclick^="play"] {
@@ -151,6 +190,12 @@
             border: 2px solid #00FFD1;
             border-radius: 5px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button[onclick^="play"]:hover {
+            background: linear-gradient(45deg, #00FFD1, #FF007A);
+            color: #0A0F1B;
         }
 
         @media (max-width: 600px) {
@@ -203,34 +248,34 @@
                 <span class="close-btn" onclick="hideRules()">×</span>
                 <h3>Rock, Paper, Scissors Rules & Instructions</h3>
                 <h4>Objective</h4>
-                <p>Win a tournament by defeating the computer or another player in a best-of-5 rounds match.</p>
+                <p>The goal is to win a tournament by defeating the computer or another player in a best-of-5 rounds
+                    match.</p>
                 <h4>How to Play</h4>
                 <ul>
-                    <li>Choose your move: Rock, Paper, or Scissors.</li>
-                    <li>The computer or second player will also choose a move:
+                    <li>Select your move from Rock, Paper, or Scissors.</li>
+                    <li>The opponent (computer or player 2) chooses a move:
                         <ul>
-                            <li>Rock crushes Scissors</li>
-                            <li>Scissors cuts Paper</li>
-                            <li>Paper covers Rock</li>
+                            <li>Rock crushes Scissors.</li>
+                            <li>Scissors cuts Paper.</li>
+                            <li>Paper covers Rock.</li>
                         </ul>
                     </li>
                     <li>Each tournament consists of 5 rounds.</li>
-                    <li>The computer adapts its strategy based on your previous moves.</li>
-                    <li>Switch to multiplayer mode with the "Switch to Player 2" button after a tournament.</li>
+                    <li>The computer adapts based on your previous moves; switch to multiplayer with "Switch to Player
+                        2" after a tournament.</li>
                 </ul>
                 <h4>Winning</h4>
                 <ul>
-                    <li>Win a round by choosing a move that beats the opponent's move.</li>
-                    <li>Win the tournament by winning more rounds than the opponent (at least 3 out of 5).</li>
-                    <li>If the tournament ends in a tie, neither wins nor loses.</li>
+                    <li>Win a round by selecting a move that beats the opponent's choice.</li>
+                    <li>Win the tournament by winning at least 3 out of 5 rounds.</li>
+                    <li>A tie results in no winner or loser for the tournament.</li>
                 </ul>
                 <h4>Strategy Tips</h4>
                 <ul>
-                    <li>Avoid predictable patterns; the computer learns from your previous moves.</li>
-                    <li>If you win with a move, consider switching to another to throw off the opponent's prediction.
-                    </li>
-                    <li>Start with Paper, as it statistically wins more often against novice players.</li>
-                    <li>Watch for the opponent's tendencies; if they repeat moves, counter accordingly.</li>
+                    <li>Avoid patterns; the computer learns from your moves.</li>
+                    <li>Switch moves after a win to disrupt predictions.</li>
+                    <li>Start with Paper for a statistical edge against random choices.</li>
+                    <li>Observe opponent tendencies and counter repeated moves.</li>
                 </ul>
             </div>
         </div>
@@ -239,6 +284,7 @@
         let wins = 0, losses = 0, round = 1, choiceCtx, playerHistory = [], aiWins = 0, playerWins = 0, streak = 0, maxStreak = 0;
         let isPlayer1 = true, player1Score = 0, player2Score = 0;
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let impactSound;
 
         function showRules() { document.getElementById('rules-modal').style.display = 'flex'; }
         function hideRules() { document.getElementById('rules-modal').style.display = 'none'; }
@@ -253,11 +299,19 @@
             choiceCtx.clearRect(0, 0, 400, 200);
             choiceCtx.save();
             choiceCtx.translate(x, y);
-            choiceCtx.rotate(Math.random() * 0.2 - 0.1);
-            choiceCtx.scale(1 + Math.random() * 0.2, 1 + Math.random() * 0.2);
+            let animation = 'handRock';
+            if (choice === 'paper') animation = 'handPaper';
+            else if (choice === 'scissors') animation = 'handScissors';
+            choiceCtx.beginPath();
+            choiceCtx.moveTo(0, 0);
+            choiceCtx.lineTo(20, -20);
+            choiceCtx.lineTo(40, 0);
+            choiceCtx.lineTo(20, 20);
+            choiceCtx.closePath();
             choiceCtx.fillStyle = color;
-            choiceCtx.font = '40px Orbitron';
-            choiceCtx.fillText(choice, 0, 0);
+            choiceCtx.fill();
+            choiceCtx.strokeStyle = '#FFF';
+            choiceCtx.stroke();
             choiceCtx.restore();
             choiceCtx.shadowBlur = 20;
             choiceCtx.shadowColor = color;
@@ -266,6 +320,7 @@
                 choiceCtx.clearRect(0, 0, 400, 200);
             }, 1000);
             createParticles(10, color, x, y);
+            playSound(impactSound || [0, 0.3, 0.6, 0.3, 0], 0.5);
         }
 
         function getAIChoice() {
@@ -286,13 +341,14 @@
             return choices[Math.floor(Math.random() * 3)];
         }
 
-        function playSound(data) {
+        function playSound(data, volume = 1) {
             const audioBuffer = audioCtx.createBuffer(1, data.length, 44100);
             audioBuffer.copyToChannel(new Float32Array(data), 0);
             const source = audioCtx.createBufferSource();
             source.buffer = audioBuffer;
             source.connect(audioCtx.destination);
             source.start();
+            source.volume = volume;
         }
 
         function play(playerChoice) {
@@ -398,7 +454,10 @@
             }
         }
 
-        window.onload = initCanvas;
+        window.onload = () => {
+            initCanvas();
+            impactSound = [0, 0.3, 0.6, 0.3, 0];
+        };
     </script>
 </body>
 

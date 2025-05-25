@@ -10,13 +10,15 @@
         body {
             margin: 0;
             font-family: 'Orbitron', sans-serif;
-            background: #0A0F1B;
+            background: linear-gradient(135deg, #0A0F1B, #1A1F2E);
             color: #E0E0E0;
+            overflow-x: hidden;
         }
 
         .main-home {
             text-align: center;
             padding: 20px;
+            position: relative;
         }
 
         h2 {
@@ -24,6 +26,7 @@
             color: #00FFD1;
             text-transform: uppercase;
             animation: neonTitle 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 10px #00FFD1;
         }
 
         @keyframes neonTitle {
@@ -47,6 +50,7 @@
             border-radius: 10px;
             margin: 10px auto;
             max-width: 100%;
+            box-shadow: 0 0 15px rgba(0, 255, 209, 0.3);
         }
 
         #roulette {
@@ -57,6 +61,7 @@
             margin: 20px auto;
             position: relative;
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 209, 0.5);
         }
 
         .roulette-segment {
@@ -83,9 +88,9 @@
 
         .particle {
             position: absolute;
-            background: #00FFD1;
+            background: rgba(0, 255, 209, 0.5);
             border-radius: 50%;
-            animation: float 2s linear;
+            animation: float 4s linear infinite;
         }
 
         @keyframes glow {
@@ -116,24 +121,28 @@
 
         @keyframes float {
             0% {
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(0.5);
+                opacity: 0.5;
+            }
+
+            50% {
                 opacity: 1;
             }
 
             100% {
-                transform: translateY(-50px) scale(0.5);
-                opacity: 0;
+                transform: translateY(-100vh) scale(1);
+                opacity: 0.5;
             }
         }
 
         @keyframes slideCard {
             from {
-                transform: translateX(100%) rotate(10deg);
+                transform: translateX(100%) rotate(10deg) scale(0.8);
                 opacity: 0;
             }
 
             to {
-                transform: translateX(0) rotate(0);
+                transform: translateX(0) rotate(0) scale(1);
                 opacity: 1;
             }
         }
@@ -145,6 +154,12 @@
             border: 2px solid #00FFD1;
             border-radius: 5px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option-btn:hover {
+            background: linear-gradient(45deg, #00FFD1, #FF007A);
+            color: #0A0F1B;
         }
 
         .option-btn:disabled {
@@ -159,6 +174,12 @@
             border-radius: 5px;
             color: #E0E0E0;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rules-btn:hover {
+            background: #00FFD1;
+            color: #0A0F1B;
         }
 
         .stats-bar {
@@ -167,6 +188,7 @@
             border-radius: 5px;
             padding: 10px;
             margin: 10px 0;
+            box-shadow: 0 0 10px rgba(0, 255, 209, 0.3);
         }
 
         .modal {
@@ -183,13 +205,14 @@
         }
 
         .modal-content {
-            background: #0A0F1B;
+            background: linear-gradient(135deg, #0A0F1B, #1A1F2E);
             border: 2px solid #00FFD1;
             border-radius: 10px;
             padding: 20px;
             max-width: 90%;
             color: #E0E0E0;
             position: relative;
+            box-shadow: 0 0 20px rgba(0, 255, 209, 0.5);
         }
 
         .close-btn {
@@ -199,6 +222,12 @@
             color: #FF007A;
             font-size: 24px;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+            color: #FF4D88;
         }
 
         @media (max-width: 600px) {
@@ -263,40 +292,38 @@
                 <span class="close-btn" onclick="hideRules()">×</span>
                 <h3>Blackjack 21 Rules & Instructions</h3>
                 <h4>Objective</h4>
-                <p>Beat the dealer by getting a hand total closer to 21 without going over (busting).</p>
+                <p>The goal is to beat the dealer by achieving a hand value closer to 21 without exceeding it.</p>
                 <h4>How to Play</h4>
                 <ul>
-                    <li>Click the roulette to select your bet (minimum $10, maximum $500).</li>
-                    <li>You and the dealer are dealt two cards. Your cards are visible; one of the dealer's cards is
-                        hidden.</li>
-                    <li>Choose an action:
+                    <li>Place a bet by spinning the roulette (minimum $10, maximum $500).</li>
+                    <li>Both you and the dealer receive two cards; one of the dealer's cards is hidden initially.</li>
+                    <li>Select an action from the following options:
                         <ul>
-                            <li><b>Hit:</b> Take another card.</li>
-                            <li><b>Stand:</b> Keep your current hand.</li>
+                            <li><b>Hit:</b> Draw another card to increase your hand value.</li>
+                            <li><b>Stand:</b> Keep your current hand and end your turn.</li>
                             <li><b>Double:</b> Double your bet and take one more card, then stand.</li>
-                            <li><b>Split:</b> If your first two cards have the same value, split them into two hands.
-                            </li>
-                            <li><b>Surrender:</b> Forfeit the round and recover half your bet.</li>
-                            <li><b>Insurance:</b> If the dealer's visible card is an Ace, bet half your original bet to
-                                protect against a dealer Blackjack.</li>
+                            <li><b>Split:</b> If your initial two cards match, split them into two separate hands.</li>
+                            <li><b>Surrender:</b> Forfeit the round to recover half your bet.</li>
+                            <li><b>Insurance:</b> If the dealer's visible card is an Ace, bet half your stake to protect
+                                against a dealer Blackjack.</li>
                         </ul>
                     </li>
-                    <li>The dealer must hit until their total is 17 or higher.</li>
+                    <li>The dealer must draw cards until their total reaches 17 or higher.</li>
                 </ul>
                 <h4>Winning</h4>
                 <ul>
-                    <li>Win by having a higher total than the dealer without busting (over 21).</li>
-                    <li>A Blackjack (Ace + 10/J/Q/K) pays 3:2 if the dealer doesn't also have Blackjack.</li>
-                    <li>If the dealer busts and you don't, you win.</li>
-                    <li>A tie (push) returns your bet.</li>
+                    <li>Win if your hand exceeds the dealer's value without busting (over 21).</li>
+                    <li>A Blackjack (Ace + 10/J/Q/K) pays 3:2 unless the dealer also has Blackjack.</li>
+                    <li>Win if the dealer busts and you don't.</li>
+                    <li>A tie (push) returns your original bet.</li>
                 </ul>
                 <h4>Strategy Tips</h4>
                 <ul>
-                    <li>Always hit on a total of 8 or less.</li>
-                    <li>Stand on 17 or higher, unless the dealer shows a 10 or Ace (consider hitting on a soft 17).</li>
-                    <li>Double down on 11, especially if the dealer shows a 6 or lower.</li>
-                    <li>Split Aces and 8s always; never split 10s or 5s.</li>
-                    <li>Take insurance only if you have a strong hand and suspect a dealer Blackjack.</li>
+                    <li>Always hit when your total is 8 or less.</li>
+                    <li>Stand on 17 or higher, unless the dealer shows a 10 or Ace (consider hitting on soft 17).</li>
+                    <li>Double down on 11 when the dealer shows 6 or lower.</li>
+                    <li>Always split Aces and 8s; never split 10s or 5s.</li>
+                    <li>Take insurance only with a strong hand and suspicion of a dealer Blackjack.</li>
                 </ul>
             </div>
         </div>
@@ -307,7 +334,7 @@
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const bets = [10, 25, 50, 100];
         const minBet = 10, maxBet = 500;
-        let rouletteAngle = 0, selectedBet = 0;
+        let rouletteAngle = 0, selectedBet = 0, cardSound, shuffleSound;
 
         function showRules() { document.getElementById('rules-modal').style.display = 'flex'; }
         function hideRules() { document.getElementById('rules-modal').style.display = 'none'; }
@@ -321,11 +348,14 @@
                 const j = Math.floor(Math.random() * (i + 1));
                 [deck[i], deck[j]] = [deck[j], deck[i]];
             }
+            playSound(shuffleSound || [0, 0.2, 0.4, 0.2, 0], 0.5);
         }
 
         function drawCard() {
             if (deck.length < 15) initDeck();
-            return deck.pop();
+            const card = deck.pop();
+            playSound(cardSound || [0, 0.1, 0.2, 0.1, 0], 0.3);
+            return card;
         }
 
         function calculateTotal(cards) {
@@ -359,14 +389,16 @@
                     cardCtx.fillText(card.value + card.suit, -20, -10);
                     cardCtx.restore();
                     cardCtx.shadowBlur = 10;
-                    cardCtx.shadowColor = '#00FFD1';
+                    cardCtx.shadowColor = 'rgba(0, 255, 209, 0.7)';
+                    cardCtx.shadowOffsetX = 5;
+                    cardCtx.shadowOffsetY = 5;
                 }
                 cardCtx.beginPath();
                 cardCtx.moveTo(x, y);
                 cardCtx.lineTo(x + 50, y + 70);
                 cardCtx.stroke();
                 cardCtx.shadowBlur = 0;
-                createParticles(5, '#00FFD1', x, y);
+                createParticles(5, 'rgba(0, 255, 209, 0.5)', x, y);
             }, delay);
         }
 
@@ -495,7 +527,7 @@
         }
 
         function stand() {
-            while (dealerTotal < (level > 3 ? 17 : 16)) { // Dealer más predecible en modo práctica (nivel bajo)
+            while (dealerTotal < (level > 3 ? 17 : 16)) {
                 dealerCards.push(drawCard());
                 dealerTotal = calculateTotal(dealerCards);
             }
@@ -595,6 +627,15 @@
                 canvas.appendChild(particle);
                 setTimeout(() => particle.remove(), 2000);
             }
+            // Partículas de fondo constantes
+            if (Math.random() > 0.7) {
+                const bgParticle = document.createElement('div');
+                bgParticle.className = 'particle';
+                bgParticle.style.left = Math.random() * 100 + 'vw';
+                bgParticle.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(bgParticle);
+                setTimeout(() => bgParticle.remove(), 4000);
+            }
         }
 
         function endGame() {
@@ -627,13 +668,14 @@
             drawRoulette();
         }
 
-        function playSound(data) {
+        function playSound(data, volume = 1) {
             const audioBuffer = audioCtx.createBuffer(1, data.length, 44100);
             audioBuffer.copyToChannel(new Float32Array(data), 0);
             const source = audioCtx.createBufferSource();
             source.buffer = audioBuffer;
             source.connect(audioCtx.destination);
             source.start();
+            source.volume = volume;
         }
 
         function updateLevel() {
@@ -652,6 +694,8 @@
         window.onload = () => {
             cardCtx = document.getElementById('card-canvas').getContext('2d');
             rouletteCtx = document.getElementById('roulette').getContext('2d');
+            cardSound = [0, 0.1, 0.2, 0.1, 0];
+            shuffleSound = [0, 0.2, 0.4, 0.2, 0];
             drawRoulette();
             document.getElementById('roulette').addEventListener('click', (e) => {
                 const rect = e.target.getBoundingClientRect();
@@ -661,6 +705,8 @@
             });
             document.getElementById('chips').textContent = chips;
             updateStats();
+            // Iniciar partículas de fondo
+            setInterval(() => createParticles(1, 'rgba(0, 255, 209, 0.3)'), 500);
         };
     </script>
 </body>
