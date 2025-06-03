@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Calculator - Cyber Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="calculator.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.0.0/math.min.js"></script>
+</head>
+
+<body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="controls">
+            <label><input type="radio" name="angle" value="deg" checked> Deg</label>
+            <label><input type="radio" name="angle" value="rad"> Rad</label>
+        </div>
+        <div class="buttons">
+            <button class="btn memory" onclick="memoryClear()">MC</button>
+            <button class="btn memory" onclick="memoryRecall()">MR</button>
+            <button class="btn memory" onclick="memoryAdd()">M+</button>
+            <button class="btn memory" onclick="memorySubtract()">M-</button>
+            <button class="btn clear" onclick="clearDisplay()">C</button>
+            <button class="btn operator" onclick="appendOperator(')(')"></button>
+            <button class="btn operator" onclick="appendOperator(')(')" ()">()</button>
+            <button class="btn function" onclick="appendFunction('sin')">sin</button>
+            <button class="btn function" onclick="appendFunction('cos')">cos</button>
+            <button class="btn function" onclick="appendFunction('tan')">tan</button>
+            <button class="btn function" onclick="appendFunction('log')">log</button>
+            <button class="btn function" onclick="appendFunction('ln')">ln</button>
+            <button class="btn operator" onclick="appendOperator('/')">/</button>
+            <button class="btn operator" onclick="appendOperator('*')">×</button>
+            <button class="btn operator" onclick="appendOperator('^')">^</button>
+            <button class="btn number" onclick="appendNumber('7')">7</button>
+            <button class="btn number" onclick="appendNumber('8')">8</button>
+            <button class="btn number" onclick="appendNumber('9')">9</button>
+            <button class="btn operator" onclick="appendOperator('-')">-</button>
+            <button class="btn function" onclick="appendFunction('abs')">|x|</button>
+            <button class="btn number" onclick="appendNumber('4')">4</button>
+            <button class="btn number" onclick="appendNumber('5')">5</button>
+            <button class="btn number" onclick="appendNumber('6')">6</button>
+            <button class="btn operator" onclick="appendOperator('+')">+</button>
+            <button class="btn function" onclick="appendFunction('fact')">!</button>
+            <button class="btn number" onclick="appendNumber('1')">1</button>
+            <button class="btn number" onclick="appendNumber('2')">2</button>
+            <button class="btn number" onclick="appendNumber('3')">3</button>
+            <button class="btn constant" onclick="appendConstant('pi')">π</button>
+            <button class="btn constant" onclick="appendConstant('e')">e</button>
+            <button class="btn number zero" onclick="appendNumber('0')">0</button>
+            <button class="btn number" onclick="appendNumber('.')">.</button>
+            <button class="btn equals" onclick="calculate()">=</button>
+            <button class="btn operator" onclick="calculatePercentage()">%</button>
+            <button class="btn function" onclick="calculateSquareRoot()">√</button>
+        </div>
+        <div class="history" id="history">
+            <h3>Calculation History</h3>
+            <button class="btn clear-history" onclick="clearHistory()">Clear History</button>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+    <script>
+        const display = document.getElementById('display');
+        const historyList = document.getElementById('history-list');
+        let currentInput = '';
+        let memory = 0;
+        let history = JSON.parse(localStorage.getItem('calcHistory')) || [];
+
+        function updateDisplay() {
+            display.textContent = currentInput || '0';
+            display.scrollLeft = display.scrollWidth;
+        }
+
+        function appendNumber(number) {
+            if (number === '.' && currentInput.includes('.')) return;
+            if (currentInput === '0' && number !== '.') {
+                currentInput = number;
+            } else {
+                currentInput += number;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (currentInput || op === '(') {
+                currentInput += op;
+                updateDisplay();
+            }
+        }
+
+        function appendFunction(func) {
+            currentInput += `${func}(`;
+            updateDisplay();
+        }
+
+        function appendConstant(constant) {
+            currentInput += constant;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            updateDisplay();
+        }
+
+        function memoryClear() {
+            memory = 0;
+        }
+
+        function memoryRecall() {
+            currentInput += memory.toString();
+            updateDisplay();
+        }
+
+        function memoryAdd() {
+            if (currentInput) {
+                try {
+                    memory += parseFloat(currentInput);
+                    currentInput = '';
+                    updateDisplay();
+                } catch {
+                    showError('Invalid Memory Input');
+                }
+            }
+        }
+
+        function memorySubtract() {
+            if (currentInput) {
+                try {
+                    memory -= parseFloat(currentInput);
+                    currentInput = '';
+                    updateDisplay();
+                } catch {
+                    showError('Invalid Memory Input');
+                }
+            }
+        }
+
+        function calculatePercentage() {
+            if (currentInput) {
+                try {
+                    const result = parseFloat(currentInput) / 100;
+                    addToHistory(`${currentInput}%`, result, []);
+                    currentInput = result.toString();
+                    updateDisplay();
+                } catch {
+                    showError('Invalid Percentage');
+                }
+            }
+        }
+
+        function calculateSquareRoot() {
+            if (currentInput) {
+                try {
+                    const value = parseFloat(currentInput);
+                    if (value < 0) throw new Error('Negative Input');
+                    const result = Math.sqrt(value);
+                    addToHistory(`√(${currentInput})`, result, []);
+                    currentInput = result.toString();
+                    updateDisplay();
+                } catch {
+                    showError('Invalid Square Root');
+                }
+            }
+        }
+
+        function showError(message) {
+            display.textContent = message;
+            setTimeout(() => {
+                currentInput = '';
+                updateDisplay();
+            }, 1000);
+        }
+
+        function addToHistory(expression, result, steps) {
+            history.push({ expression, result: result.toFixed(6), steps });
+            if (history.length > 50) history.shift();
+            localStorage.setItem('calcHistory', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function clearHistory() {
+            history = [];
+            localStorage.removeItem('calcHistory');
+            renderHistory();
+        }
+
+        function renderHistory() {
+            historyList.innerHTML = '';
+            history.forEach(({ expression, result, steps }, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${expression} = ${result}</strong>`;
+                if (steps.length) {
+                    const ul = document.createElement('ul');
+                    steps.forEach((step, i) => {
+                        const stepLi = document.createElement('li');
+                        stepLi.textContent = `Paso ${i + 1}: ${step.description} = ${step.result.toFixed(6)}`;
+                        ul.appendChild(stepLi);
+                    });
+                    li.appendChild(ul);
+                }
+                historyList.appendChild(li);
+            });
+        }
+
+        function calculate() {
+            if (!currentInput) return;
+            try {
+                const angleMode = document.querySelector('input[name="angle"]:checked').value;
+                const scope = {
+                    pi: Math.PI,
+                    e: Math.E,
+                    sin: x => Math.sin(angleMode === 'deg' ? x * Math.PI / 180 : x),
+                    cos: x => Math.cos(angleMode === 'deg' ? x * Math.PI / 180 : x),
+                    tan: x => Math.tan(angleMode === 'deg' ? x * Math.PI / 180 : x),
+                    log: x => Math.log10(x),
+                    ln: x => Math.log(x),
+                    abs: x => Math.abs(x),
+                    fact: x => {
+                        if (!Number.isInteger(x) || x < 0) throw new Error('Invalid Factorial');
+                        return math.factorial(x);
+                    }
+                };
+
+                const steps = [];
+                const node = math.parse(currentInput);
+
+                function evaluateNode(n, scope) {
+                    if (n.isConstantNode) return n.value;
+                    if (n.isSymbolNode) {
+                        if (scope[n.name] !== undefined) return scope[n.name];
+                        throw new Error(`Undefined symbol: ${n.name}`);
+                    }
+                    if (n.isOperatorNode) {
+                        const left = evaluateNode(n.args[0], scope);
+                        const right = evaluateNode(n.args[1], scope);
+                        let subResult;
+                        switch (n.op) {
+                            case '+': subResult = left + right; break;
+                            case '-': subResult = left - right; break;
+                            case '*': subResult = left * right; break;
+                            case '/':
+                                if (right === 0) throw new Error('Division by Zero');
+                                subResult = left / right;
+                                break;
+                            case '^': subResult = Math.pow(left, right); break;
+                            default: throw new Error(`Unsupported operator: ${n.op}`);
+                        }
+                        steps.push({
+                            description: `${left} ${n.op} ${right}`,
+                            result: subResult
+                        });
+                        return subResult;
+                    }
+                    if (n.isFunctionNode) {
+                        const arg = evaluateNode(n.args[0], scope);
+                        if (!scope[n.fn.name]) throw new Error(`Unknown function: ${n.fn.name}`);
+                        const result = scope[n.fn.name](arg);
+                        steps.push({
+                            description: `${n.fn.name}(${arg})`,
+                            result
+                        });
+                        return result;
+                    }
+                    if (n.isParenthesisNode) {
+                        const result = evaluateNode(n.content, scope);
+                        steps.push({
+                            description: `Evaluando paréntesis: (${n.content.toString()})`,
+                            result
+                        });
+                        return result;
+                    }
+                    return n.evaluate(scope);
+                }
+
+                const result = evaluateNode(node, scope);
+                if (isNaN(result) || !isFinite(result)) {
+                    throw new Error('Invalid Result');
+                }
+                addToHistory(currentInput, result, steps);
+                currentInput = result.toString();
+                updateDisplay();
+            } catch (error) {
+                showError(error.message || 'Invalid Expression');
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            e.preventDefault();
+            if (e.key >= '0' && e.key <= '9') appendNumber(e.key);
+            if (e.key === '.') appendNumber('.');
+            if (e.key === '+') appendOperator('+');
+            if (e.key === '-') appendOperator('-');
+            if (e.key === '*') appendOperator('*');
+            if (e.key === '/') appendOperator('/');
+            if (e.key === '^') appendOperator('^');
+            if (e.key === '(') appendOperator('(');
+            if (e.key === ')') appendOperator(')');
+            if (e.key === '%') calculatePercentage();
+            if (e.key === 'Enter') calculate();
+            if (e.key === 'Escape') clearDisplay();
+            if (e.key === 'r') calculateSquareRoot();
+            if (e.key === 's') appendFunction('sin');
+            if (e.key === 'c') appendFunction('cos');
+            if (e.key === 't') appendFunction('tan');
+            if (e.key === 'l') appendFunction('log');
+            if (e.key === 'n') appendFunction('ln');
+            if (e.key === 'a') appendFunction('abs');
+            if (e.key === '!') appendFunction('fact');
+            if (e.key === 'p') appendConstant('pi');
+            if (e.key === 'e') appendConstant('e');
+        });
+
+        // Particle background
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.min(Math.floor(canvas.width * canvas.height / 10000), 100);
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2,
+                    radius: Math.random() * 3 + 1,
+                    color: Math.random() < 0.5 ? '#00ffcc' : '#ff00ff'
+                });
+            }
+        }
+
+        function updateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+            });
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(${particles[i].color === '#00ffcc' ? '0,255,204' : '255,0,255'}, ${1 - distance / 100})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(updateParticles);
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+        updateParticles();
+
+        // Initialize
+        updateDisplay();
+        renderHistory();
+    </script>
+</body>
+
+</html>

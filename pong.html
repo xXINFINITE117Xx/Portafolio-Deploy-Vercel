@@ -10,17 +10,20 @@
 </head>
 
 <body>
-    <div id="ui">Player: 0 | Computer: 0 | Level: Easy</div>
+    <div id="ui">
+        <span>Player: 0 | Computer: 0 | Level: Easy</span>
+        <button id="pause-button" class="hidden">Pause</button>
+    </div>
     <canvas id="pongCanvas"></canvas>
     <div id="start-screen">
         <h1>PONG: Cyber Edition</h1>
         <input type="text" id="player-name" placeholder="Enter your name" maxlength="20">
         <h2>Game Rules</h2>
         <ul>
-            <li>Use mouse or arrow keys to move your paddle.</li>
+            <li>Use mouse, arrow keys, or touch to move your paddle.</li>
             <li>First to 10 points wins the game.</li>
             <li>Hit power-ups (pink or cyan circles) to grow or shrink your paddle.</li>
-            <li>Press Space, Esc, or P to pause/resume.</li>
+            <li>Press Space, Esc, P, or the Pause button to pause/resume.</li>
             <li>Choose difficulty: Easy, Medium, or Hard.</li>
         </ul>
         <button onclick="startGame('easy')">Easy</button>
@@ -29,7 +32,7 @@
     </div>
     <div id="pause-screen" class="hidden">
         <h1>Paused</h1>
-        <p>Press Space, Esc, or P to resume</p>
+        <p>Press Space, Esc, P, or the Pause button to resume</p>
     </div>
     <div id="game-over-screen" class="hidden">
         <h1>Game Over</h1>
@@ -47,6 +50,7 @@
         const canvas = document.getElementById('pongCanvas');
         const ctx = canvas.getContext('2d');
         const ui = document.getElementById('ui');
+        const pauseButton = document.getElementById('pause-button');
         const startScreen = document.getElementById('start-screen');
         const pauseScreen = document.getElementById('pause-screen');
         const gameOverScreen = document.getElementById('game-over-screen');
@@ -160,6 +164,13 @@
             }
         }
 
+        // Toggle pause
+        function togglePause() {
+            gameState = gameState === 'playing' ? 'paused' : 'playing';
+            pauseScreen.classList.toggle('hidden', gameState !== 'paused');
+            pauseButton.textContent = gameState === 'paused' ? 'Resume' : 'Pause';
+        }
+
         // Game loop
         function gameLoop() {
             if (gameState === 'playing') {
@@ -185,8 +196,12 @@
 
             // Ball collision with paddles
             if (
-                (ball.x - ball.radius < player.x + paddleWidth * scale && ball.y > player.y && ball.y < player.y + player.height) ||
-                (ball.x + ball.radius > computer.x && ball.y > computer.y && ball.y < computer.y + computer.height)
+                (ball.x - ball.radius < player.x + paddleWidth * scale &&
+                    ball.y > player.y &&
+                    ball.y < player.y + player.height) ||
+                (ball.x + ball.radius > computer.x &&
+                    ball.y > computer.y &&
+                    ball.y < computer.y + computer.height)
             ) {
                 ball.speedX = -ball.speedX;
                 ball.speedX *= 1.1;
@@ -220,14 +235,19 @@
             if (!powerUp && Math.random() < 0.01) {
                 powerUp = new PowerUp();
             }
-            if (powerUp && ball.x > powerUp.x - powerUp.radius && ball.x < powerUp.x + powerUp.radius &&
-                ball.y > powerUp.y - powerUp.radius && ball.y < powerUp.y + powerUp.radius) {
+            if (
+                powerUp &&
+                ball.x > powerUp.x - powerUp.radius &&
+                ball.x < powerUp.x + powerUp.radius &&
+                ball.y > powerUp.y - powerUp.radius &&
+                ball.y < powerUp.y + powerUp.radius
+            ) {
                 if (powerUp.type === 'bigPaddle') {
                     player.height = paddleHeight * 1.5 * scale;
-                    setTimeout(() => player.height = paddleHeight * scale, 5000);
+                    setTimeout(() => (player.height = paddleHeight * scale), 5000);
                 } else {
                     player.height = paddleHeight * 0.5 * scale;
-                    setTimeout(() => player.height = paddleHeight * scale, 5000);
+                    setTimeout(() => (player.height = paddleHeight * scale), 5000);
                 }
                 powerUp = null;
             }
@@ -239,14 +259,16 @@
                 if (player.score >= maxScore) stats.wins++;
                 saveStats();
                 updateStatsDisplay();
-                gameOverMessage.textContent = player.score >= maxScore ? `${playerName} Wins!` : 'Computer Wins!';
+                gameOverMessage.textContent =
+                    player.score >= maxScore ? `${playerName} Wins!` : 'Computer Wins!';
                 gameOverScreen.classList.remove('hidden');
                 startScreen.classList.add('hidden');
                 pauseScreen.classList.add('hidden');
+                pauseButton.classList.add('hidden');
             }
 
             // Update UI
-            ui.textContent = `${playerName}: ${player.score} | Computer: ${computer.score} | Level: ${difficulty}`;
+            ui.firstChild.textContent = `${playerName}: ${player.score} | Computer: ${computer.score} | Level: ${difficulty}`;
         }
 
         // Draw game
@@ -314,8 +336,9 @@
             totalHitsDisplay.textContent = stats.totalHits;
             gamesPlayedDisplay.textContent = stats.gamesPlayed;
             winsDisplay.textContent = stats.wins;
-            winRateDisplay.textContent = stats.gamesPlayed > 0 ?
-                `${((stats.wins / stats.gamesPlayed) * 100).toFixed(1)}%` : '0%';
+            winRateDisplay.textContent = stats.gamesPlayed > 0
+                ? `${((stats.wins / stats.gamesPlayed) * 100).toFixed(1)}%`
+                : '0%';
         }
 
         // Reset ball
@@ -336,6 +359,8 @@
             startScreen.classList.add('hidden');
             gameOverScreen.classList.add('hidden');
             pauseScreen.classList.add('hidden');
+            pauseButton.classList.remove('hidden');
+            pauseButton.textContent = 'Pause';
             resetBall();
         }
 
@@ -349,6 +374,7 @@
             gameOverScreen.classList.add('hidden');
             startScreen.classList.remove('hidden');
             pauseScreen.classList.add('hidden');
+            pauseButton.classList.add('hidden');
             playerNameInput.value = '';
             resetBall();
         }
@@ -359,7 +385,24 @@
                 const rect = canvas.getBoundingClientRect();
                 player.y = e.clientY - rect.top - player.height / 2;
                 if (player.y < 0) player.y = 0;
-                if (player.y > canvas.height - player.height) player.y = canvas.height - player.height;
+                if (player.y > canvas.height - player.height)
+                    player.y = canvas.height - player.height;
+            }
+        });
+
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            if (gameState === 'playing') {
+                e.preventDefault();
+                const rect = canvas.getBoundingClientRect();
+                const touch = e.touches[0];
+                player.y = touch.clientY - rect.top - player.height / 2;
+                if (player.y < 0) player.y = 0;
+                if (player.y > canvas.height - player.height)
+                    player.y = canvas.height - player.height;
             }
         });
 
@@ -370,15 +413,26 @@
                     if (player.y < 0) player.y = 0;
                 } else if (e.key === 'ArrowDown') {
                     player.y += 20 * scale;
-                    if (player.y > canvas.height - player.height) player.y = canvas.height - player.height;
-                } else if (e.key === ' ' || e.key === 'Escape' || e.key === 'p' || e.key === 'P') {
-                    gameState = gameState === 'playing' ? 'paused' : 'playing';
-                    pauseScreen.classList.toggle('hidden', gameState !== 'paused');
+                    if (player.y > canvas.height - player.height)
+                        player.y = canvas.height - player.height;
+                } else if (
+                    e.key === ' ' ||
+                    e.key === 'Escape' ||
+                    e.key === 'p' ||
+                    e.key === 'P'
+                ) {
+                    togglePause();
                 }
-            } else if (gameState === 'start' && e.key === 'Enter' && playerNameInput.value.trim()) {
+            } else if (
+                gameState === 'start' &&
+                e.key === 'Enter' &&
+                playerNameInput.value.trim()
+            ) {
                 startGame(difficulty);
             }
         });
+
+        pauseButton.addEventListener('click', togglePause);
 
         // Ensure game-over and pause screens are hidden on load
         gameOverScreen.classList.add('hidden');

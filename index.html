@@ -27,7 +27,7 @@
     content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores." />
   <meta property="og:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg" />
   <!-- Reemplaza con la URL de tu imagen de perfil -->
-  <meta property="og:url" content="https://tu-dominio.com" />
+  <meta property="og:url" content="https://deploy-vercel-completed.vercel.app/" />
   <!-- Reemplaza con la URL de tu portafolio -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_MX" />
@@ -159,7 +159,19 @@
             opponent.</p>
           <button class="view-details">View Details</button>
         </div>
-      </div>
+        <div class="container-card" data-category="web-apps" data-modal="modal-calculator">
+          <picture>
+            <source srcset="img/calculator.webp" type="image/webp" />
+            <img src="img/calculator.webp" alt="Calculator web app screenshot showing live operations and results"
+              loading="lazy" width="100" height="100" />
+          </picture>
+          <h3>Calculator</h3>
+          <p>
+            A sleek, responsive calculator web app with a cyberpunk neon design, supporting basic arithmetic,
+            percentage, and square root operations
+          </p>
+          <button class="view-details">View Details</button>
+        </div>
     </section>
 
     <!-- Modals (mantener los modales existentes sin cambios) -->
@@ -278,6 +290,33 @@
           <h4>Links:</h4>
           <p>
             <a href="pong.html" target="_blank">Live Demo</a> |
+            <a href="#" target="_blank">GitHub Repository</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Calculator Modal -->
+    <div class="modal" id="modal-calculator">
+      <div class="modal-content">
+        <span class="close-modal">×</span>
+        <h3>Calculator: Cyber Edition</h3>
+        <img src="img/calculator.webp" alt="Calculator App">
+        <p>A sleek, responsive calculator web app built with HTML, CSS, and JavaScript, featuring a cyberpunk-inspired
+          neon design, support for basic arithmetic operations, percentage, square root, keyboard input, and
+          touch-friendly controls for mobile devices.</p>
+        <div class="modal-details">
+          <h4>Technologies Used:</h4>
+          <ul>
+            <li>HTML5 for structure</li>
+            <li>CSS with neon animations and Orbitron font</li>
+            <li>JavaScript for calculator logic and event handling</li>
+          </ul>
+          <h4>Challenges:</h4>
+          <p>Implementing robust arithmetic logic, error handling for invalid inputs, responsive design across multiple
+            breakpoints, and ensuring smooth touch and keyboard interactions in a cyberpunk-themed UI.</p>
+          <h4>Links:</h4>
+          <p>
+            <a href="calculator.html" target="_blank">Live Demo</a> |
             <a href="#" target="_blank">GitHub Repository</a>
           </p>
         </div>
@@ -421,38 +460,7 @@
         </form>
       </div>
     </section>
-    <section class="projects" id="services">
-      <h2>Our <span>Services</span></h2>
-      <div class="project">
-        <div class="container-projects">
-          <img src="img/web-designing-icon-22 (1).png" alt="Web Development Icon" loading="lazy" />
-          <h4>Web Development</h4>
-          <p>
-            Building responsive and modern websites tailored to your needs
-            using the latest technologies.
-          </p>
-          <a href="#services">Read More</a>
-        </div>
-        <div class="container-projects">
-          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" loading="lazy" />
-          <h4>Graphic Design</h4>
-          <p>
-            Creating visually appealing designs for branding, marketing, and
-            digital media.
-          </p>
-          <a href="#services">Read More</a>
-        </div>
-        <div class="container-projects">
-          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" loading="lazy" />
-          <h4>Digital Marketing</h4>
-          <p>
-            Strategizing and executing campaigns to boost your online presence
-            and engagement.
-          </p>
-          <a href="#services">Read More</a>
-        </div>
-      </div>
-    </section>
+    c
     <section class="contact" id="contact">
       <h2>Contact <span>Me</span></h2>
       <div class="contact-container">

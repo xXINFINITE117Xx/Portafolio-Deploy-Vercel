@@ -23,10 +23,32 @@ canvas {
     position: absolute;
     top: 20px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
     color: #00ffcc;
     text-shadow: 0 0 10px #ff00ff;
     font-size: 24px;
+}
+
+#pause-button {
+    background: #ff00ff;
+    border: none;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #ff00ff;
+    transition: all 0.3s;
+}
+
+#pause-button:hover {
+    background: #00ffcc;
+    color: #000;
+    box-shadow: 0 0 20px #00ffcc;
 }
 
 #start-screen,
@@ -64,13 +86,13 @@ canvas {
 #start-screen ul {
     list-style: none;
     padding: 0;
-    margin: 10px 0;
+    margin: 10px 20px;
     color: #fff;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 #start-screen ul li {
-    margin: 5px 0;
+    margin: 8px 0;
 }
 
 #player-name {
@@ -138,6 +160,12 @@ canvas {
     #ui {
         font-size: 14px;
         top: 10px;
+        padding: 0 10px;
+    }
+
+    #pause-button {
+        font-size: 12px;
+        padding: 6px 12px;
     }
 
     #start-screen h1,
@@ -153,7 +181,7 @@ canvas {
     }
 
     #start-screen ul {
-        font-size: 12px;
+        font-size: 14px;
         margin: 5px 10px;
     }
 
@@ -187,6 +215,12 @@ canvas {
     #ui {
         font-size: 16px;
         top: 12px;
+        padding: 0 12px;
+    }
+
+    #pause-button {
+        font-size: 14px;
+        padding: 8px 16px;
     }
 
     #start-screen h1,
@@ -202,7 +236,7 @@ canvas {
     }
 
     #start-screen ul {
-        font-size: 14px;
+        font-size: 16px;
         margin: 8px 15px;
     }
 
@@ -236,6 +270,12 @@ canvas {
     #ui {
         font-size: 18px;
         top: 15px;
+        padding: 0 15px;
+    }
+
+    #pause-button {
+        font-size: 16px;
+        padding: 9px 18px;
     }
 
     #start-screen h1,
@@ -251,7 +291,7 @@ canvas {
     }
 
     #start-screen ul {
-        font-size: 15px;
+        font-size: 17px;
         margin: 10px 20px;
     }
 
@@ -285,6 +325,12 @@ canvas {
     #ui {
         font-size: 20px;
         top: 18px;
+        padding: 0 18px;
+    }
+
+    #pause-button {
+        font-size: 17px;
+        padding: 10px 20px;
     }
 
     #start-screen h1,
@@ -300,7 +346,7 @@ canvas {
     }
 
     #start-screen ul {
-        font-size: 16px;
+        font-size: 18px;
         margin: 10px 20px;
     }
 
@@ -334,6 +380,12 @@ canvas {
     #ui {
         font-size: 24px;
         top: 20px;
+        padding: 0 20px;
+    }
+
+    #pause-button {
+        font-size: 18px;
+        padding: 10px 20px;
     }
 
     #start-screen h1,
@@ -349,7 +401,7 @@ canvas {
     }
 
     #start-screen ul {
-        font-size: 16px;
+        font-size: 18px;
         margin: 10px 20px;
     }
 

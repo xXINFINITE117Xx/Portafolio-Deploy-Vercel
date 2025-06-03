@@ -1,0 +1,428 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a2e);
+    font-family: 'Orbitron', sans-serif;
+    overflow: hidden;
+}
+
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.calculator {
+    background: rgba(26, 26, 46, 0.9);
+    border: 3px solid #00ffcc;
+    box-shadow: 0 0 20px #00ffcc, 0 0 40px #ff00ff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    position: relative;
+    z-index: 1;
+}
+
+.display {
+    background: #000;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+    font-size: 36px;
+    text-align: right;
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 2px solid #ff00ff;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #00ffcc;
+    font-size: 16px;
+}
+
+.controls label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.controls input[type="radio"] {
+    accent-color: #ff00ff;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+.btn {
+    background: #2a2a4e;
+    border: 2px solid #00ffcc;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #00ffcc;
+    color: #000;
+    box-shadow: 0 0 15px #00ffcc;
+}
+
+.btn:active {
+    background: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+.btn.operator {
+    background: #3a3a5e;
+    color: #ff00ff;
+}
+
+.btn.operator:hover {
+    background: #ff00ff;
+    color: #000;
+}
+
+.btn.function {
+    background: #3a3a5e;
+    color: #00ffcc;
+}
+
+.btn.function:hover {
+    background: #00ffcc;
+    color: #000;
+}
+
+.btn.memory {
+    background: #4a2a4e;
+    color: #ff00ff;
+}
+
+.btn.memory:hover {
+    background: #ff00ff;
+    color: #000;
+}
+
+.btn.constant {
+    background: #2a4a4e;
+    color: #00ffcc;
+}
+
+.btn.constant:hover {
+    background: #00ffcc;
+    color: #000;
+}
+
+.btn.clear {
+    background: #4a2a4e;
+    color: #ff00ff;
+}
+
+.btn.clear:hover {
+    background: #ff00ff;
+    color: #000;
+}
+
+.btn.equals {
+    background: #2a4a4e;
+    color: #00ffcc;
+}
+
+.btn.equals:hover {
+    background: #00ffcc;
+    color: #000;
+}
+
+.btn.zero {
+    grid-column: span 2;
+}
+
+.history {
+    margin-top: 20px;
+    background: #000;
+    border: 2px solid #ff00ff;
+    border-radius: 5px;
+    padding: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.history h3 {
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.clear-history {
+    background: #4a2a4e;
+    color: #ff00ff;
+    font-size: 14px;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.clear-history:hover {
+    background: #ff00ff;
+    color: #000;
+}
+
+.history ul {
+    list-style: none;
+    padding: 0;
+    color: #fff;
+    font-size: 14px;
+}
+
+.history li {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #00ffcc;
+}
+
+.history li strong {
+    color: #00ffcc;
+}
+
+.history li ul {
+    margin-top: 5px;
+    padding-left: 20px;
+}
+
+.history li ul li {
+    color: #e0e0e0;
+    font-size: 13px;
+    border: none;
+}
+
+/* Media Queries */
+
+/* 352-480px (Small Mobile) */
+@media screen and (min-width: 352px) and (max-width: 480px) {
+    body {
+        padding-top: 10px;
+    }
+
+    .calculator {
+        width: 90%;
+        max-width: 320px;
+        padding: 8px;
+        margin: 5px auto;
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+
+    .display {
+        font-size: 20px;
+        padding: 8px;
+        margin-bottom: 5px;
+    }
+
+    .controls {
+        font-size: 10px;
+        gap: 5px;
+    }
+
+    .buttons {
+        gap: 4px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .history {
+        max-height: 120px;
+        padding: 8px;
+    }
+
+    .history h3 {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .clear-history {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .history li {
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+
+    .history li ul li {
+        font-size: 9px;
+    }
+}
+
+/* 481-768px (Large Mobile) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .calculator {
+        width: 360px;
+        padding: 12px;
+    }
+
+    .display {
+        font-size: 28px;
+        padding: 12px;
+    }
+
+    .controls {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .history {
+        max-height: 180px;
+    }
+
+    .history h3 {
+        font-size: 16px;
+    }
+
+    .history li {
+        font-size: 13px;
+    }
+
+    .history li ul li {
+        font-size: 12px;
+    }
+}
+
+/* 769-920px (Tablet) */
+@media screen and (min-width: 769px) and (max-width: 920px) {
+    .calculator {
+        width: 400px;
+        padding: 15px;
+    }
+
+    .display {
+        font-size: 30px;
+        padding: 15px;
+    }
+
+    .controls {
+        font-size: 15px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .history {
+        max-height: 200px;
+    }
+
+    .history h3 {
+        font-size: 16px;
+    }
+
+    .history li {
+        font-size: 14px;
+    }
+
+    .history li ul li {
+        font-size: 13px;
+    }
+}
+
+/* 921-1279px (Small Desktop) */
+@media screen and (min-width: 921px) and (max-width: 1279px) {
+    .calculator {
+        width: 450px;
+        padding: 18px;
+    }
+
+    .display {
+        font-size: 32px;
+        padding: 18px;
+    }
+
+    .controls {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    .history {
+        max-height: 220px;
+    }
+
+    .history h3 {
+        font-size: 18px;
+    }
+
+    .history li {
+        font-size: 14px;
+    }
+
+    .history li ul li {
+        font-size: 13px;
+    }
+}
+
+/* 1280px+ (Large Desktop) */
+@media screen and (min-width: 1280px) {
+    .calculator {
+        width: 500px;
+        padding: 20px;
+    }
+
+    .display {
+        font-size: 36px;
+        padding: 20px;
+    }
+
+    .controls {
+        font-size: 16px;
+    }
+
+    .btn {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .history {
+        max-height: 250px;
+    }
+
+    .history h3 {
+        font-size: 18px;
+    }
+
+    .history li {
+        font-size: 14px;
+    }
+
+    .history li ul li {
+        font-size: 13px;
+    }
+}
