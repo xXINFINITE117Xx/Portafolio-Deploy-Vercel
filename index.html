@@ -460,7 +460,38 @@
         </form>
       </div>
     </section>
-    c
+    <section class="projects" id="services">
+      <h2>Our <span>Services</span></h2>
+      <div class="project">
+        <div class="container-projects">
+          <img src="img/web-designing-icon-22 (1).png" alt="Web Development Icon" loading="lazy" />
+          <h4>Web Development</h4>
+          <p>
+            Building responsive and modern websites tailored to your needs
+            using the latest technologies.
+          </p>
+          <a href="#services">Read More</a>
+        </div>
+        <div class="container-projects">
+          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" loading="lazy" />
+          <h4>Graphic Design</h4>
+          <p>
+            Creating visually appealing designs for branding, marketing, and
+            digital media.
+          </p>
+          <a href="#services">Read More</a>
+        </div>
+        <div class="container-projects">
+          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" loading="lazy" />
+          <h4>Digital Marketing</h4>
+          <p>
+            Strategizing and executing campaigns to boost your online presence
+            and engagement.
+          </p>
+          <a href="#services">Read More</a>
+        </div>
+      </div>
+    </section>
     <section class="contact" id="contact">
       <h2>Contact <span>Me</span></h2>
       <div class="contact-container">
@@ -563,6 +594,17 @@
   <footer class="footer">
     <div class="footer-text">
       <p>© 2025 Portfolio | David Gaona</p>
+    </div>
+    <div class="icons-socials">
+      <div class="icons">
+        <a href="https://www.facebook.com/profile.php?id=100012821021744" target="_blank"><i
+            class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/davidgaonahenao/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@xxinfinite_117xx" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://discord.com/channels/@me" target="_blank"><i class="fab fa-discord"></i></a>
+        <a href="https://github.com/xXINFINITE117Xx" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
     </div>
   </footer>
   <button class="back-to-top" aria-label="Back to Top">
@@ -824,12 +866,14 @@
     });
   </script>
   <script>
-    // Controlar el loader
     window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
       setTimeout(() => {
-        document.querySelector('.loader').remove(); // Opcional: eliminar el loader del DOM
-      }, 500); // Esperar 0.5s para que la transición de opacidad termine
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+          const loader = document.querySelector('.loader');
+          if (loader) loader.remove();
+        }, 800); // Match transition duration
+      }, 3000); // Ensure animation completes (matches progress animation duration)
     });
   </script>
   <script>
