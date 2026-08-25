@@ -1,0 +1,12 @@
+/* =========================================================
+   ESTILOS COMPARTIDOS PARA TARJETAS DE JUEGOS EN PORTAFOLIO
+   ========================================================= */
+
+.project-card[data-category="juegos"] .project-img {
+  background: linear-gradient(135deg, rgba(0, 255, 209, 0.2), rgba(255, 0, 122, 0.25));
+}
+
+.project-card[data-category="juegos"] .project-img i {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 12px var(--shadow-cyan));
+}

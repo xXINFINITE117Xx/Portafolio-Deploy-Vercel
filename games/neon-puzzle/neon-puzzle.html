@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neon Puzzle | Portafolio Gamer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="neon-puzzle.css" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png" />
+  <link rel="shortcut icon" href="../../assets/favicon.ico" />
+</head>
+
+<body>
+  <div id="app">
+    <h1 class="title">NEON PUZZLE</h1>
+    <div class="controls">
+      <label>Dificultad:
+        <select id="difficulty">
+          <option value="3">3x3 Facil</option>
+          <option value="4" selected>4x4 Normal</option>
+          <option value="5">5x5 Dificil</option>
+        </select>
+      </label>
+      <button id="shuffle-btn" class="btn">MEZCLAR</button>
+      <button id="pause-btn" class="btn btn-outline" title="P / Esc">PAUSA</button>
+    </div>
+    <div class="stats">
+      <span>Movimientos: <strong id="moves">0</strong></span>
+      <span>Tiempo: <strong id="timer">00:00</strong></span>
+    </div>
+    <div id="board" class="board"></div>
+    <p class="hint">Pausa: tecla P o ESC</p>
+
+    <div id="pause-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>PAUSA</h2>
+        <p>El juego está en pausa</p>
+        <button id="resume-btn" class="btn">CONTINUAR</button>
+        <button id="pause-shuffle-btn" class="btn btn-outline">MEZCLAR</button>
+      </div>
+    </div>
+
+    <div id="win-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>VICTORIA!</h2>
+        <p>Movimientos: <span id="win-moves">0</span></p>
+        <p>Tiempo: <span id="win-time">00:00</span></p>
+        <p class="hi">Mejor: <span id="win-hi">-</span></p>
+        <button id="play-again" class="btn">JUGAR DE NUEVO</button>
+      </div>
+    </div>
+    <a href="../../index.html" class="back-link">Volver al portafolio</a>
+  </div>
+  <canvas id="confetti"></canvas>
+  <script src="neon-puzzle.js"></script>
+</body>
+
+</html>

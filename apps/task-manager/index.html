@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Task Manager Pro — Gestor de tareas con LocalStorage" />
+  <title>Task Manager Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="task-manager.css" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png" />
+  <link rel="shortcut icon" href="../../assets/favicon.ico" />
+</head>
+
+<body>
+  <div class="app">
+    <header class="app-header">
+      <a href="../../index.html" class="brand">
+        <span class="brand-icon"><i class="fas fa-tasks"></i></span>
+        <span class="brand-text">TASK MANAGER <em>PRO</em></span>
+      </a>
+      <div class="header-stats">
+        <span class="stat"><strong id="stat-total">0</strong> total</span>
+        <span class="stat done"><strong id="stat-done">0</strong> hechas</span>
+        <span class="stat pending"><strong id="stat-pending">0</strong> pendientes</span>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- Formulario nueva tarea -->
+      <section class="composer card">
+        <form id="task-form" autocomplete="off">
+          <div class="composer-row">
+            <input type="text" id="task-title" placeholder="¿Qué hay que hacer?" maxlength="120" required />
+            <button type="submit" class="btn-add" title="Añadir tarea">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <div class="composer-meta">
+            <select id="task-category" aria-label="Categoría">
+              <option value="personal">Personal</option>
+              <option value="trabajo">Trabajo</option>
+              <option value="estudio">Estudio</option>
+              <option value="salud">Salud</option>
+              <option value="otro">Otro</option>
+            </select>
+            <select id="task-priority" aria-label="Prioridad">
+              <option value="low">Baja</option>
+              <option value="medium" selected>Media</option>
+              <option value="high">Alta</option>
+            </select>
+            <input type="date" id="task-due" aria-label="Fecha límite" />
+          </div>
+        </form>
+      </section>
+
+      <!-- Filtros -->
+      <section class="toolbar">
+        <div class="filter-tabs" id="status-filters">
+          <button class="tab active" data-status="all">Todas</button>
+          <button class="tab" data-status="pending">Pendientes</button>
+          <button class="tab" data-status="done">Completadas</button>
+        </div>
+        <div class="toolbar-right">
+          <select id="filter-category" aria-label="Filtrar categoría">
+            <option value="all">Todas las categorías</option>
+            <option value="personal">Personal</option>
+            <option value="trabajo">Trabajo</option>
+            <option value="estudio">Estudio</option>
+            <option value="salud">Salud</option>
+            <option value="otro">Otro</option>
+          </select>
+          <select id="filter-priority" aria-label="Filtrar prioridad">
+            <option value="all">Toda prioridad</option>
+            <option value="high">Alta</option>
+            <option value="medium">Media</option>
+            <option value="low">Baja</option>
+          </select>
+          <input type="search" id="search-tasks" placeholder="Buscar..." />
+        </div>
+      </section>
+
+      <!-- Lista -->
+      <section class="task-list card" id="task-list"></section>
+      <div class="empty-state hidden" id="empty-state">
+        <i class="fas fa-clipboard-list"></i>
+        <p>No hay tareas por aquí</p>
+        <span>Crea una arriba para empezar</span>
+      </div>
+
+      <div class="bulk-actions">
+        <button class="btn-ghost" id="clear-done" title="Eliminar completadas">
+          <i class="fas fa-broom"></i> Limpiar completadas
+        </button>
+        <button class="btn-ghost danger" id="clear-all" title="Eliminar todas">
+          <i class="fas fa-trash"></i> Vaciar todo
+        </button>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <a href="../../index.html">← Volver al portafolio</a>
+      <span>Datos guardados en LocalStorage</span>
+    </footer>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="task-manager.js"></script>
+</body>
+
+</html>

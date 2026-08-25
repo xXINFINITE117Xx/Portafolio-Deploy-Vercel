@@ -1,622 +1,480 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>David Gaona - Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="description"
+    content="Portafolio profesional de David Gaona — Desarrollador Web, Diseño Gráfico y Soluciones Digitales. Estética Cyberpunk / Gamer." />
+  <meta name="author" content="David Gaona" />
+  <meta name="keywords"
+    content="desarrollador web, diseño gráfico, portafolio gamer, cyberpunk, JavaScript, HTML, CSS" />
+  <title>David Gaona | Dev & Designer</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="shortcut icon" href="assets/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-  <!-- Metaetiquetas SEO -->
-  <meta name="description"
-    content="Portafolio de David Gaona, desarrollador web y diseñador gráfico especializado en soluciones digitales innovadoras con un toque gamer." />
-  <meta name="keywords"
-    content="David Gaona, desarrollador web, diseño gráfico, portafolio, tecnología, juegos, web apps" />
-  <meta name="author" content="David Gaona" />
-  <meta name="robots" content="index, follow" />
-
-  <!-- Open Graph para redes sociales -->
-  <meta property="og:title" content="David Gaona - Portfolio" />
-  <meta property="og:description"
-    content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores." />
-  <meta property="og:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg" />
-  <!-- Reemplaza con la URL de tu imagen de perfil -->
-  <meta property="og:url" content="https://deploy-vercel-completed.vercel.app/" />
-  <!-- Reemplaza con la URL de tu portafolio -->
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_MX" />
-  <!-- Ajusta según tu idioma y región -->
-
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="David Gaona - Portfolio" />
-  <meta name="twitter:description"
-    content="Explora el portafolio de David Gaona, donde combino desarrollo web, diseño gráfico y pasión por los juegos en proyectos innovadores." />
-  <meta name="twitter:image" content="https://tu-dominio.com/img/Logo-Perfil.jpg" />
-  <!-- Reemplaza con la URL de tu imagen de perfil -->
-  <meta name="twitter:creator" content="@TuUsuarioTwitter" />
-  <!-- Opcional, reemplaza con tu handle de Twitter -->
-  <meta http-equiv="Cache-Control" content="public, max-age=31536000">
-  <meta http-equiv="Expires" content="Wed, 12 May 2025 12:00:00 GMT">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/particles.css" />
+  <link rel="stylesheet" href="css/games.css" />
 </head>
 
 <body>
-  <div class="loader">
-    <div class="loader-content">
-      <h1 class="loader-text">GaonaDev</h1>
-      <div class="loader-bar">
-        <div class="loader-progress"></div>
-      </div>
-    </div>
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-spinner"></div>
+    <p class="preloader-text">CARGANDO...</p>
   </div>
-  <header class="portfolio">
-    <div class="container-nav">
-      <h3 class="logo">Portfolio</h3>
-      <button class="hamburger" aria-label="Toggle Menu" aria-expanded="false">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+  <div id="custom-cursor" aria-hidden="true"></div>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+      <a href="#inicio" class="nav-logo" aria-label="Ir al inicio"><span class="logo-text">Portafolio</span></a>
+      <div class="nav-links" id="nav-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#estadisticas">Estadísticas</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
-      <nav aria-label="Main navigation">
-        <ul class="menu">
-          <li><a href="#home" aria-label="Go to Home section">Home</a></li>
-          <li><a href="#portfolio" aria-label="Go to Projects section">Projects</a></li>
-          <li><a href="#skills" aria-label="Go to Skills section">Skills</a></li>
-          <li><a href="#services" aria-label="Go to Services section">Services</a></li>
-          <li><a href="#stats" aria-label="Go to Stats section">Stats</a></li>
-          <li><a href="#faq" aria-label="Go to FAQ section">FAQ</a></li>
-          <li><a href="#contact" aria-label="Go to Contact section">Contact</a></li>
-        </ul>
-      </nav>
     </div>
-    <div class="general-description">
-      <div class="container-description">
-        <section class="home" id="home">
-          <h1>Hello! I'm David Gaona</h1>
-          <p>
-            I’m a passionate tech enthusiast specializing in web development,
-            graphic design, and digital solutions. I love learning new
-            technologies and applying my skills to create innovative projects.
-          </p>
-        </section>
-        <div class="icons-socials">
-          <div class="icons">
-            <a href="https://www.facebook.com/profile.php?id=100012821021744" target="_blank"><i
-                class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/davidgaonahenao/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@xxinfinite_117xx" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://discord.com/channels/@me" target="_blank"><i class="fab fa-discord"></i></a>
-            <a href="https://github.com/xXINFINITE117Xx" target="_blank"><i class="fab fa-github"></i></a>
+  </nav>
+
+  <section class="hero section" id="inicio">
+    <div class="container">
+      <div class="hero-content fade-in">
+        <div class="profile-wrapper">
+          <img class="profile-img" src="assets/images/profile.jpg" alt="David Gaona - Foto de perfil" width="160"
+            height="160" onerror="this.onerror=null;this.src='assets/images/profile.svg';" />
+        </div>
+        <h1 class="hero-name">David Gaona Henao</h1>
+        <p class="hero-bio">Soy un apasionado entusiasta de la tecnología especializado en desarrollo web, Diseño
+          gráfico y soluciones digitales. Me encanta aprender de nuevas tecnologías y aplicar mis habilidades para crear
+          proyectos innovadores.</p>
+        <p class="hero-bio-en">I'm a passionate tech enthusiast specializing in web development, graphic design, and
+          digital solutions. I love learning new technologies and applying my skills to create innovative projects.</p>
+        <div class="social-links">
+          <a href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer" class="discord"
+            aria-label="Discord"><i class="fab fa-discord"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=100012821021744" target="_blank" rel="noopener noreferrer"
+            class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/davidgaonahenao/" target="_blank" rel="noopener noreferrer"
+            class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/xXINFINITE117Xx" target="_blank" rel="noopener noreferrer" class="github"
+            aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.tiktok.com/@davidgaona205" target="_blank" rel="noopener noreferrer" class="tiktok"
+            aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <a href="#proyectos" class="btn btn-primary"><i class="fas fa-rocket"></i> Ver Proyectos</a>
+        <a class="download-cv" href="CV/Portafolio.pdf" download>Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="proyectos">
+    <div class="container">
+      <h2 class="section-title fade-in">Proyectos</h2>
+      <p class="section-subtitle fade-in">Algunos de mis trabajos y experimentos</p>
+      <div class="projects-filter fade-in">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="juegos">Juegos</button>
+        <button class="filter-btn" data-filter="apps">Aplicaciones Web</button>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+        <article class="project-card fade-in" data-category="juegos">
+          <div class="project-img"><i class="fas fa-running"></i></div>
+          <div class="project-body">
+            <h3 class="project-title">Cyber Runner</h3>
+            <div class="project-tags"><span class="tag">HTML5</span><span class="tag">Canvas</span><span
+                class="tag pink">JS</span></div>
+            <p class="project-desc">Infinite runner cyberpunk. Salta obstáculos neón, acumula distancia y supera tu
+              récord.</p>
+            <div class="project-actions"><a href="games/cyber-runner/cyber-runner.html" class="btn btn-primary"
+                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> Jugar</a></div>
           </div>
-          <a class="download-cv" href="Portafolio.pdf" download>Download CV</a>
-        </div>
+        </article>
+        <article class="project-card fade-in" data-category="juegos">
+          <div class="project-img"><i class="fas fa-space-shuttle"></i></div>
+          <div class="project-body">
+            <h3 class="project-title">Space Invaders Remix</h3>
+            <div class="project-tags"><span class="tag">Canvas</span><span class="tag">JS</span><span
+                class="tag pink">Shooter</span></div>
+            <p class="project-desc">Clásico reinventado con estética neón, power-ups, barreras destructibles y múltiples
+              niveles.</p>
+            <div class="project-actions"><a href="games/space-invaders-remix/space-invaders.html"
+                class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> Jugar</a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="juegos">
+          <div class="project-img"><i class="fas fa-puzzle-piece"></i></div>
+          <div class="project-body">
+            <h3 class="project-title">Neon Puzzle</h3>
+            <div class="project-tags"><span class="tag">Puzzle</span><span class="tag">JS</span><span
+                class="tag pink">CSS</span></div>
+            <p class="project-desc">Puzzle deslizante neón. Elige dificultad 3×3, 4×4 o 5×5 y completa el tablero.</p>
+            <div class="project-actions"><a href="games/neon-puzzle/neon-puzzle.html" class="btn btn-primary"
+                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> Jugar</a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="apps">
+          <div class="project-img"><i class="fas fa-laptop-code"></i></div>
+          <div class="project-body">
+            <h3 class="project-title">Dashboard Analytics</h3>
+            <div class="project-tags"><span class="tag">React</span><span class="tag">API</span><span
+                class="tag pink">Charts</span></div>
+            <p class="project-desc">Panel de control con visualización de datos en tiempo real y gráficos interactivos.
+            </p>
+            <div class="project-actions"><a href="#" class="btn btn-outline"><i class="fas fa-external-link-alt"></i>
+                Ver Demo</a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="apps">
+          <div class="project-img"><i class="fas fa-shopping-cart"></i></div>
+          <div class="project-body">
+            <h3 class="project-title">E-Commerce UI</h3>
+            <div class="project-tags"><span class="tag">HTML/CSS</span><span class="tag">JS</span><span
+                class="tag pink">Responsive</span></div>
+            <p class="project-desc">Interfaz de tienda online moderna con carrito, filtros y diseño mobile-first.</p>
+            <div class="project-actions"><a href="apps/e-commerce/index.html" class="btn btn-outline" target="_blank"
+                rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="apps">
+          <div class="project-img"><i class="fas fa-tasks"></i></div>
+          <div class="project-body">
+            <h3 class="project-title">Task Manager Pro</h3>
+            <div class="project-tags"><span class="tag">JS</span><span class="tag">LocalStorage</span><span
+                class="tag pink">PWA</span></div>
+            <p class="project-desc">Gestor de tareas con categorías, prioridades y sincronización offline.</p>
+            <div class="project-actions"><a href="apps/task-manager/index.html" class="btn btn-outline" target="_blank"
+                rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+          </div>
+        </article>
       </div>
-      <section class="profile-picture">
-        <img src="img/Logo-Perfil.jpg" alt="David Gaona Profile Picture" loading="lazy" />
-      </section>
     </div>
-  </header>
-  <main class="main-home">
-    <section class="services" id="portfolio">
-      <h2>My <span>Projects</span></h2>
-      <!-- Botones de filtro -->
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="games">Games</button>
-        <button class="filter-btn" data-filter="web-apps">Web Apps</button>
-      </div>
-      <div class="card">
-        <!-- Proyecto 1: Soccer -->
-        <div class="container-card" data-category="web-apps" data-modal="modal-soccer">
-          <picture>
-            <source srcset="img/futbol.webp" type="image/webp" />
-            <img src="img/futbol.webp" alt="Soccer web app screenshot showing live scores and player stats"
-              loading="lazy" width="100" height="100" />
-          </picture>
-          <h3>Soccer</h3>
-          <p>
-            A dynamic web application for soccer enthusiasts, featuring live
-            scores, player stats, and team updates.
-          </p>
-          <button class="view-details">View Details</button>
-        </div>
-        <!-- Proyecto 2: Rock, Paper, Scissors -->
-        <div class="container-card" data-category="games" data-modal="modal-rps">
-          <picture>
-            <source srcset="img/image-tijera_piedra_papel.png" type="image/webp">
-            <img src="img/image-tijera_piedra_papel.png"
-              alt="Rock Paper Scissors game interface with interactive buttons" loading="lazy" width="100" height="100">
-          </picture>
-          <h3>Rock, Paper, Scissors</h3>
-          <p>An interactive game built with JavaScript, featuring smooth animations and a user-friendly interface.</p>
-          <button class="view-details">View Details</button>
-        </div>
-        <!-- Proyecto 3: Blackjack 21 -->
-        <div class="container-card" data-category="games" data-modal="modal-blackjack">
-          <picture>
-            <source srcset="img/image-21.png" type="image/webp">
-            <img src="img/image-21.png" alt="Blackjack 21 card game interface with virtual cards and scoring"
-              loading="lazy" width="100" height="100">
-          </picture>
-          <h3>Blackjack 21</h3>
-          <p>A classic card game developed with HTML, CSS, and JavaScript, offering an engaging gameplay experience.</p>
-          <button class="view-details">View Details</button>
-        </div>
-        <div class="container-card" data-category="games" data-modal="modal-pong">
-          <picture>
-            <source srcset="img/Pong.jpg" type="image/webp">
-            <img src="img/Pong.jpg" alt="Blackjack 21 card game interface with virtual cards and scoring" loading="lazy"
-              width="100" height="100">
-          </picture>
-          <h3>Pong</h3>
-          <p>A classic Pong game built with HTML5 Canvas and JavaScript, featuring smooth gameplay and a simple AI
-            opponent.</p>
-          <button class="view-details">View Details</button>
-        </div>
-        <div class="container-card" data-category="web-apps" data-modal="modal-calculator">
-          <picture>
-            <source srcset="img/calculator.webp" type="image/webp" />
-            <img src="img/calculator.webp" alt="Calculator web app screenshot showing live operations and results"
-              loading="lazy" width="100" height="100" />
-          </picture>
-          <h3>Calculator</h3>
-          <p>
-            A sleek, responsive calculator web app with a cyberpunk neon design, supporting basic arithmetic,
-            percentage, and square root operations
-          </p>
-          <button class="view-details">View Details</button>
-        </div>
-    </section>
+  </section>
 
-    <!-- Modals (mantener los modales existentes sin cambios) -->
-    <!-- Modal Soccer -->
-    <div class="modal" id="modal-soccer">
-      <div class="modal-content">
-        <span class="close-modal">×</span>
-        <h3>Soccer</h3>
-        <img src="img/futbol.webp" alt="Soccer Project" loading="lazy" />
-        <p>
-          A dynamic web application for soccer enthusiasts, featuring live
-          scores, player stats, and team updates.
-        </p>
-        <div class="modal-details">
-          <h4>Technologies Used:</h4>
-          <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>REST API for live scores</li>
-            <li>Bootstrap for responsive design</li>
-          </ul>
-          <h4>Challenges:</h4>
-          <p>
-            Integrating real-time data from a third-party API and ensuring the
-            app remains responsive during high traffic.
-          </p>
-          <h4>Links:</h4>
-          <p>
-            <a href="soccer.html" target="_blank">Live Demo</a> |
-            <a href="#" target="_blank">GitHub Repository</a>
-          </p>
+  <section class="section" id="habilidades">
+    <div class="container">
+      <h2 class="section-title fade-in">Habilidades</h2>
+      <p class="section-subtitle fade-in">Tecnologías y herramientas que domino</p>
+      <div class="skills-grid">
+        <div class="skill-card fade-in" data-percent="95">
+          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+          <div class="skill-name">HTML</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">95%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="92">
+          <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+          <div class="skill-name">CSS</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">92%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="88">
+          <div class="skill-icon"><i class="fab fa-js"></i></div>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">88%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="75">
+          <div class="skill-icon"><i class="fab fa-java"></i></div>
+          <div class="skill-name">Java</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">75%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="85">
+          <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+          <div class="skill-name">Diseño Gráfico</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">85%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="80">
+          <div class="skill-icon"><i class="fab fa-react"></i></div>
+          <div class="skill-name">React</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">80%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="70">
+          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <div class="skill-name">MongoDB</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">70%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="78">
+          <div class="skill-icon"><i class="fas fa-server"></i></div>
+          <div class="skill-name">MySQL</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">78%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="82">
+          <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+          <div class="skill-name">API</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">82%</div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Modal Rock, Paper, Scissors -->
-    <div class="modal" id="modal-rps">
-      <div class="modal-content">
-        <span class="close-modal">×</span>
-        <h3>Rock, Paper, Scissors</h3>
-        <img src="img/image-tijera_piedra_papel.png" alt="Rock Paper Scissors Project" loading="lazy" />
-        <p>
-          An interactive game built with JavaScript, featuring smooth
-          animations and a user-friendly interface.
-        </p>
-        <div class="modal-details">
-          <h4>Technologies Used:</h4>
-          <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>Custom animations with CSS keyframes</li>
+  <section class="section" id="servicios">
+    <div class="container">
+      <h2 class="section-title fade-in">Servicios</h2>
+      <p class="section-subtitle fade-in">Lo que puedo hacer por ti</p>
+      <div class="services-grid">
+        <article class="service-card fade-in">
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h3 class="service-title">Desarrollo Web</h3>
+          <p class="service-desc">Sitios y aplicaciones web modernas, rápidas y responsive con las mejores prácticas.
+          </p>
+          <ul class="service-features">
+            <li>Landing pages</li>
+            <li>SPAs con React</li>
+            <li>Integración de APIs</li>
+            <li>Optimización SEO</li>
           </ul>
-          <h4>Challenges:</h4>
-          <p>
-            Ensuring the game logic was fair and handling edge cases like
-            ties.
-          </p>
-          <h4>Links:</h4>
-          <p>
-            <a href="rps.html" target="_blank">Live Demo</a> |
-            <a href="#" target="_blank">GitHub Repository</a>
-          </p>
-        </div>
+        </article>
+        <article class="service-card fade-in">
+          <div class="service-icon"><i class="fas fa-palette"></i></div>
+          <h3 class="service-title">Diseño Gráfico</h3>
+          <p class="service-desc">Identidad visual, branding y piezas digitales con estética profesional.</p>
+          <ul class="service-features">
+            <li>Logotipos e identidad</li>
+            <li>UI/UX design</li>
+            <li>Banners y redes</li>
+            <li>Material publicitario</li>
+          </ul>
+        </article>
+        <article class="service-card fade-in">
+          <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3 class="service-title">Soluciones Digitales</h3>
+          <p class="service-desc">Automatizaciones, herramientas a medida y sistemas que resuelven problemas reales.</p>
+          <ul class="service-features">
+            <li>Scripts y bots</li>
+            <li>Dashboards</li>
+            <li>Integraciones</li>
+            <li>Consultoría técnica</li>
+          </ul>
+        </article>
+        <article class="service-card fade-in">
+          <div class="service-icon"><i class="fas fa-headset"></i></div>
+          <h3 class="service-title">Consultoría Tech</h3>
+          <p class="service-desc">Asesoría para elegir stack, arquitectura y mejores prácticas en tus proyectos.</p>
+          <ul class="service-features">
+            <li>Arquitectura de software</li>
+            <li>Code review</li>
+            <li>Mentoría</li>
+            <li>Planificación técnica</li>
+          </ul>
+        </article>
       </div>
     </div>
+  </section>
 
-    <!-- Modal Blackjack 21 -->
-    <div class="modal" id="modal-blackjack">
-      <div class="modal-content">
-        <span class="close-modal">×</span>
-        <h3>Blackjack 21</h3>
-        <img src="img/image-21.png" alt="Blackjack 21 Project" loading="lazy" />
-        <p>
-          A classic card game developed with HTML, CSS, and JavaScript,
-          offering an engaging gameplay experience.
-        </p>
-        <div class="modal-details">
-          <h4>Technologies Used:</h4>
-          <ul>
-            <li>HTML, CSS, JavaScript</li>
-            <li>LocalStorage for saving game state</li>
-          </ul>
-          <h4>Challenges:</h4>
-          <p>
-            Implementing the game logic for card dealing and scoring while
-            keeping the UI intuitive.
-          </p>
-          <h4>Links:</h4>
-          <p>
-            <a href="blackjack.html" target="_blank">Live Demo</a> |
-            <a href="#" target="_blank">GitHub Repository</a>
-          </p>
+  <section class="section" id="estadisticas">
+    <div class="container">
+      <h2 class="section-title fade-in">Estadísticas</h2>
+      <p class="section-subtitle fade-in">Números que hablan</p>
+      <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <div class="stat-number" data-target="25" data-suffix="+">0</div>
+          <div class="stat-label">Proyectos Completados</div>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number" data-target="15" data-suffix="+">0</div>
+          <div class="stat-label">Clientes Satisfechos</div>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number" data-target="50" data-suffix="K+">0</div>
+          <div class="stat-label">Líneas de Código</div>
+        </div>
+        <div class="stat-card fade-in">
+          <div class="stat-number" data-target="999" data-suffix="+">0</div>
+          <div class="stat-label">Tazas de Café</div>
         </div>
       </div>
     </div>
-    <!-- Pong Modal -->
-    <div class="modal" id="modal-pong">
-      <div class="modal-content">
-        <span class="close-modal">×</span>
-        <h3>Pong: Cyber Edition</h3>
-        <img src="img/Pong.jpg" alt="Pong Game" loading="lazy" />
-        <p>
-          A futuristic take on the classic Pong game, built with HTML5 Canvas and JavaScript, featuring neon visuals,
-          particle effects, power-ups, and a dynamic AI opponent.
-        </p>
-        <div class="modal-details">
-          <h4>Technologies Used:</h4>
-          <ul>
-            <li>HTML5 Canvas for rendering</li>
-            <li>JavaScript for game logic and animations</li>
-            <li>CSS with neon animations and Orbitron font</li>
-          </ul>
-          <h4>Challenges:</h4>
-          <p>
-            Implementing smooth particle effects, dynamic power-ups, and a responsive AI while maintaining high
-            performance in the browser.
-          </p>
-          <h4>Links:</h4>
-          <p>
-            <a href="pong.html" target="_blank">Live Demo</a> |
-            <a href="#" target="_blank">GitHub Repository</a>
-          </p>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <h2 class="section-title fade-in">Preguntas Frecuentes</h2>
+      <p class="section-subtitle fade-in">Respuestas a las dudas más comunes</p>
+      <div class="faq-list">
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false"><span>¿Qué tecnologías utilizas en tus
+              proyectos?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Trabajo principalmente con HTML5, CSS3, JavaScript vanilla y React. También
+              uso Node.js, MongoDB, MySQL y APIs REST según las necesidades del proyecto. Para diseño empleo
+              herramientas como Figma y Adobe Suite.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false"><span>¿Cuánto tiempo tarda un proyecto web
+              típico?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Depende del alcance. Una landing page puede estar lista en 1-2 semanas. Una
+              aplicación web completa suele tomar entre 4 y 8 semanas. Siempre defino hitos claros y comunico avances
+              regularmente.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false"><span>¿Ofreces mantenimiento después de la
+              entrega?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sí. Ofrezco planes de mantenimiento mensuales que incluyen actualizaciones de
+              seguridad, corrección de bugs menores y pequeños ajustes de contenido. También puedo capacitar a tu equipo
+              para que gestione el sitio de forma autónoma.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false"><span>¿Cómo funciona el proceso de presupuesto?</span><span
+              class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Tras una reunión inicial para entender tus necesidades, elaboro una propuesta
+              detallada con alcance, plazos y precio fijo (o por fases). No hay costos ocultos: todo queda por escrito
+              antes de empezar.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false"><span>¿Puedes trabajar con diseños ya
+              existentes?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Por supuesto. Puedo implementar diseños de Figma, Adobe XD o PSD con alta
+              fidelidad, o rediseñar y modernizar sitios existentes manteniendo la identidad de marca.</div>
+          </div>
+        </div>
+        <div class="faq-item fade-in">
+          <button class="faq-question" aria-expanded="false"><span>¿Los sitios son responsive y optimizados para
+              móviles?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Absolutamente. Todos los proyectos se desarrollan con enfoque mobile-first. Se
+              prueban en múltiples dispositivos y resoluciones para garantizar una experiencia fluida en cualquier
+              pantalla.</div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- Calculator Modal -->
-    <div class="modal" id="modal-calculator">
-      <div class="modal-content">
-        <span class="close-modal">×</span>
-        <h3>Calculator: Cyber Edition</h3>
-        <img src="img/calculator.webp" alt="Calculator App">
-        <p>A sleek, responsive calculator web app built with HTML, CSS, and JavaScript, featuring a cyberpunk-inspired
-          neon design, support for basic arithmetic operations, percentage, square root, keyboard input, and
-          touch-friendly controls for mobile devices.</p>
-        <div class="modal-details">
-          <h4>Technologies Used:</h4>
-          <ul>
-            <li>HTML5 for structure</li>
-            <li>CSS with neon animations and Orbitron font</li>
-            <li>JavaScript for calculator logic and event handling</li>
-          </ul>
-          <h4>Challenges:</h4>
-          <p>Implementing robust arithmetic logic, error handling for invalid inputs, responsive design across multiple
-            breakpoints, and ensuring smooth touch and keyboard interactions in a cyberpunk-themed UI.</p>
-          <h4>Links:</h4>
-          <p>
-            <a href="calculator.html" target="_blank">Live Demo</a> |
-            <a href="#" target="_blank">GitHub Repository</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <section class="skills" id="skills">
-      <h2>My <span>Skills</span></h2>
-      <div class="skills-container">
-        <div class="skill">
-          <img src="img/html.gif" alt="HTML Icon" loading="lazy" />
-          <h4>HTML</h4>
-          <p>
-            Experiencia en creación de estructuras semánticas y accesibles.
-          </p>
-        </div>
-        <div class="skill">
-          <img src="img/css.gif" alt="CSS Icon" />
-          <h4>CSS</h4>
-          <p>Diseño de interfaces responsivas con animaciones avanzadas.</p>
-        </div>
-        <div class="skill">
-          <img src="img/secuencia-de-comandos-de-java.png" alt="JavaScript Icon" loading="lazy" />
-          <h4>JavaScript</h4>
-          <p>Desarrollo de aplicaciones interactivas y dinámicas.</p>
-        </div>
-        <div class="skill">
-          <img src="img/grafico-de-barras.gif" alt="Graphic Design Icon" loading="lazy" />
-          <h4>Graphic Design</h4>
-          <p>Creación de diseños visuales para branding y marketing.</p>
-        </div>
-        <div class="skill">
-          <img src="img/java.gif" alt="Graphic Design Icon" loading="lazy" />
-          <h4>JAVA</h4>
-          <p>
-            Experiencia en desarrollo backend robusto y orientado a objetos
-            con Java, aplicando buenas prácticas y patrones de diseño.
-          </p>
-        </div>
-        <div class="skill">
-          <img src="img/React.gif" alt="Graphic Design Icon" loading="lazy" />
-          <h4>REACT</h4>
-          <p>
-            Dominio en creación de interfaces dinámicas y reutilizables con
-            React, garantizando una experiencia de usuario fluida.
-          </p>
-        </div>
-        <div class="skill">
-          <img src="img/Mongo DB.gif" alt="Graphic Design Icon" loading="lazy" />
-          <h4>MONGO DB</h4>
-          <p>
-            Manejo de bases de datos NoSQL con MongoDB, ideal para estructuras
-            de datos flexibles y escalables.
-          </p>
-        </div>
-        <div class="skill">
-          <img src="img/Base De Datos.gif" alt="Graphic Design Icon" loading="lazy" />
-          <h4>MySQL</h4>
-          <p>
-            Conocimiento sólido en diseño y consultas de bases de datos
-            relacionales con MySQL, garantizando integridad y rendimiento.
-          </p>
-        </div>
-        <div class="skill">
-          <img src="img/api.gif" alt="Graphic Design Icon" loading="lazy" />
-          <h4>POSTMAN</h4>
-          <p>
-            Uso de Postman para pruebas de APIs REST, validación de endpoints
-            y automatización de flujos de prueba.
-          </p>
-        </div>
-      </div>
-    </section>
-    <section class="testimonials" id="testimonials">
-      <h2>My <span>Testimonials</span></h2>
-      <div class="testimonials-container">
-        <div class="testimonial-card">
-          <img src="img/Profile testimonial.png" alt="Client 1 Photo" loading="lazy" width="80" height="80">
-          <h4>Juan Pérez</h4>
-          <p class="testimonial-text">"David created an incredible website for my business. His approach to design and
-            functionality was exceptional. Highly recommended!"</p>
-          <p class="testimonial-role">CEO, Tech Solutions</p>
-        </div>
-        <div class="testimonial-card">
-          <img src="img/Profile testimonial 2.png" alt="Client 2 Photo" loading="lazy" width="80" height="80">
-          <h4>María Gómez</h4>
-          <p class="testimonial-text">"Working with David was an incredible experience. He perfectly understood what I
-            needed and delivered the project on time."</p>
-          <p class="testimonial-role">Freelance Designer</p>
-        </div>
-        <div class="testimonial-card">
-          <img src="img/Profile testimonial 3.png" alt="Client 3 Photo" loading="lazy" width="80" height="80">
-          <h4>Carlos Rodríguez</h4>
-          <p class="testimonial-text">"The game David developed exceeded my expectations. The attention to detail and
-            animations are breathtaking."</p>
-          <p class="testimonial-role">Game Enthusiast</p>
-        </div>
-      </div>
-    </section>
-    <section class="blog" id="blog">
-      <h2>My <span>Blog</span></h2>
-      <div class="blog-container">
-        <div class="blog-post">
-          <img src="img/Mastering Responsive.png" alt="Blog post about web development" loading="lazy" width="300"
-            height="200">
-          <h4>Mastering Responsive Design</h4>
-          <p class="blog-date">May 10, 2025</p>
-          <p class="blog-excerpt">Learn how to create responsive websites that work seamlessly across all devices using
-            modern CSS techniques.</p>
-          <a href="blog/mastering-responsive-design.html" class="read-more">Read More</a>
-        </div>
-        <div class="blog-post">
-          <img src="img/Interactive Games.png" alt="Blog post about JavaScript games" loading="lazy" width="300"
-            height="200">
-          <h4>Building Interactive Games with JavaScript</h4>
-          <p class="blog-date">May 8, 2025</p>
-          <p class="blog-excerpt">A deep dive into creating engaging games like Rock, Paper, Scissors using JavaScript
-            and animations.</p>
-          <a href="blog/building-interactive-games.html" class="read-more">Read More</a>
-        </div>
-        <div class="blog-post">
-          <img src="img/Grafipc Design.png" alt="Blog post about graphic design" loading="lazy" width="300"
-            height="200">
-          <h4>Top Graphic Design Trends for 2025</h4>
-          <p class="blog-date">May 5, 2025</p>
-          <p class="blog-excerpt">Explore the latest trends in graphic design that will shape the industry this year.
-          </p>
-          <a href="blog/graphic-design-trends-2025.html" class="read-more">Read More</a>
-        </div>
-      </div>
-    </section>
-    <section class="subscription" id="subscription">
-      <h2>Subscribe to My <span>Newsletter</span></h2>
-      <p class="subscription-text">Stay updated with my latest projects, tutorials, and tech insights!</p>
-      <div class="subscription-container">
-        <form class="subscription-form">
+  </section>
+
+  <section class="section" id="contacto">
+    <div class="container">
+      <h2 class="section-title fade-in">Contacto</h2>
+      <p class="section-subtitle fade-in">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+      <div class="contact-wrapper">
+        <form class="contact-form fade-in" id="contact-form" novalidate>
           <div class="form-group">
-            <label for="subscription-email">Email Address</label>
-            <input type="email" id="subscription-email" placeholder="Your Email" required>
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required autocomplete="name" />
+            <span class="form-error">Por favor ingresa tu nombre</span>
           </div>
-          <button type="submit">Subscribe</button>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email" />
+            <span class="form-error">Ingresa un email válido</span>
+          </div>
+          <div class="form-group">
+            <label for="subject">Asunto</label>
+            <input type="text" id="subject" name="subject" placeholder="¿Sobre qué quieres hablar?" required />
+            <span class="form-error">El asunto es obligatorio</span>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
+            <span class="form-error">Escribe un mensaje</span>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fas fa-paper-plane"></i> Enviar
+            Mensaje</button>
+          <div class="form-status" id="form-status" role="alert"></div>
         </form>
-      </div>
-    </section>
-    <section class="projects" id="services">
-      <h2>Our <span>Services</span></h2>
-      <div class="project">
-        <div class="container-projects">
-          <img src="img/web-designing-icon-22 (1).png" alt="Web Development Icon" loading="lazy" />
-          <h4>Web Development</h4>
-          <p>
-            Building responsive and modern websites tailored to your needs
-            using the latest technologies.
-          </p>
-          <a href="#services">Read More</a>
-        </div>
-        <div class="container-projects">
-          <img src="img/graphic-design-icon.png" alt="Graphic Design Icon" loading="lazy" />
-          <h4>Graphic Design</h4>
-          <p>
-            Creating visually appealing designs for branding, marketing, and
-            digital media.
-          </p>
-          <a href="#services">Read More</a>
-        </div>
-        <div class="container-projects">
-          <img src="img/marketing_design-removebg-preview.png" alt="Digital Marketing Icon" loading="lazy" />
-          <h4>Digital Marketing</h4>
-          <p>
-            Strategizing and executing campaigns to boost your online presence
-            and engagement.
-          </p>
-          <a href="#services">Read More</a>
-        </div>
-      </div>
-    </section>
-    <section class="contact" id="contact">
-      <h2>Contact <span>Me</span></h2>
-      <div class="contact-container">
-        <form class="contact-form">
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="full-name">Full Name</label>
-              <input type="text" id="full-name" placeholder="Your Name" required />
-            </div>
-            <div class="form-group">
-              <label for="email-address">Email Address</label>
-              <input type="email" id="email-address" placeholder="Your Email" required />
-            </div>
-            <div class="form-group">
-              <label for="mobile-number">Mobile Number</label>
-              <input type="tel" id="mobile-number" placeholder="Your Number" />
-            </div>
-            <div class="form-group">
-              <label for="email-subject">Subject</label>
-              <input type="text" id="email-subject" placeholder="Subject" />
+        <div class="contact-info fade-in">
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-text">
+              <h4>Email</h4>
+              <p>davidgaonahenao@gmail.com</p>
             </div>
           </div>
-          <div class="form-group textarea-group">
-            <label for="message">Message</label>
-            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-text">
+              <h4>Ubicación</h4>
+              <p>Latinoamérica Colombia · Remoto</p>
+            </div>
           </div>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-    </section>
-  </main>
-  <section class="stats" id="stats">
-    <h2>My <span>Stats</span></h2>
-    <div class="stats-container">
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="2">0</h3>
-        <p>Years of Experience</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="5">0</h3>
-        <p>Projects Completed</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="10">0</h3>
-        <p>Happy Clients</p>
-      </div>
-      <div class="stat-card">
-        <h3 class="stat-number" data-target="10000">0</h3>
-        <p>Hours of Coding</p>
-      </div>
-    </div>
-  </section>
-  <section class="faq" id="faq">
-    <h2>Frequently Asked <span>Questions</span></h2>
-    <div class="faq-container">
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
-          What services do you offer?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-1">
-          <p>I offer a range of services including web development, UI/UX design, and custom software solutions. Whether
-            you need a stunning portfolio, a dynamic website, or a tailored application, I can help bring your vision to
-            life.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-          How long does a project typically take?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-2">
-          <p>The timeline for a project depends on its complexity. A simple website might take 2-4 weeks, while a more
-            complex application could take 2-3 months. I’ll provide a detailed timeline after discussing your
-            requirements.</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
-          What is your pricing structure?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-3">
-          <p>My pricing is project-based and depends on the scope of work. I offer competitive rates and will provide a
-            detailed quote after understanding your needs. Contact me for more details!</p>
-        </div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
-          Do you provide ongoing support after project completion?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer" id="faq-answer-4">
-          <p>Yes, I offer ongoing support and maintenance to ensure your project runs smoothly. This includes updates,
-            bug fixes, and any additional features you might need in the future.</p>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <div class="info-text">
+              <h4>Disponibilidad</h4>
+              <p>Lun – Vie · 9:00 – 18:00</p>
+            </div>
+          </div>
+          <div class="social-links contact-social-links">
+            <a href="https://discord.com/channels/@me" target="_blank" rel="noopener" class="discord"
+              aria-label="Discord"><i class="fab fa-discord"></i></a>
+            <a href="https://github.com/xXINFINITE117Xx" target="_blank" rel="noopener" class="github"
+              aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/davidgaonahenao/" target="_blank" rel="noopener" class="instagram"
+              aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
   <footer class="footer">
-    <div class="footer-text">
-      <p>© 2025 Portfolio | David Gaona</p>
-    </div>
-    <div class="icons-socials">
-      <div class="icons">
-        <a href="https://www.facebook.com/profile.php?id=100012821021744" target="_blank"><i
-            class="fab fa-facebook-f"></i></a>
-        <a href="https://www.instagram.com/davidgaonahenao/" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.tiktok.com/@xxinfinite_117xx" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://discord.com/channels/@me" target="_blank"><i class="fab fa-discord"></i></a>
-        <a href="https://github.com/xXINFINITE117Xx" target="_blank"><i class="fab fa-github"></i></a>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Portafolio</div>
+        <div class="footer-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#proyectos">Proyectos</a>
+          <a href="#habilidades">Habilidades</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <p class="footer-copy">© 2026 David Gaona. Hecho con <span>💜</span> y mucho <span>☕</span></p>
       </div>
-    </div>
     </div>
   </footer>
-  <button class="back-to-top" aria-label="Back to Top">
-    <span class="back-to-top-icon">↑</span>
-  </button>
 
-  <canvas id="particle-canvas"></canvas>
-
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-  <!-- Lógica de la página (ver script.js) -->
-  <script src="script.js" defer></script>
+  <script src="js/particles.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/projects-filter.js" defer></script>
+  <script src="js/contact.js" defer></script>
+  <script src="js/stats.js" defer></script>
+  <script src="js/faq.js" defer></script>
 </body>
 
 </html>

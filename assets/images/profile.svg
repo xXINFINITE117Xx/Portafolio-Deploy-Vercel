@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1A1F2E"/>
+      <stop offset="100%" style="stop-color:#0A0F1B"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFD1"/>
+      <stop offset="100%" style="stop-color:#FF007A"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a3348"/>
+      <stop offset="100%" style="stop-color:#1a2030"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#bg)"/>
+  <!-- Head silhouette -->
+  <ellipse cx="100" cy="85" rx="42" ry="48" fill="url(#face)"/>
+  <!-- Shoulders -->
+  <ellipse cx="100" cy="175" rx="70" ry="40" fill="url(#face)"/>
+  <!-- Neon visor / glasses -->
+  <rect x="68" y="78" width="64" height="14" rx="3" fill="none" stroke="url(#neon)" stroke-width="3"/>
+  <line x1="100" y1="78" x2="100" y2="92" stroke="url(#neon)" stroke-width="2"/>
+  <!-- Glow eyes -->
+  <circle cx="82" cy="85" r="4" fill="#00FFD1" opacity="0.9"/>
+  <circle cx="118" cy="85" r="4" fill="#FF007A" opacity="0.9"/>
+  <!-- Collar neon line -->
+  <path d="M55 145 Q100 125 145 145" fill="none" stroke="url(#neon)" stroke-width="2" opacity="0.7"/>
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="96" fill="none" stroke="url(#neon)" stroke-width="3" opacity="0.5"/>
+</svg>

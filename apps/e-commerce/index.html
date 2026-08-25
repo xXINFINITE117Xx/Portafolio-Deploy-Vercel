@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Neon Shop — E-Commerce UI Demo cyberpunk" />
+  <title>Neon Shop | E-Commerce UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png" />
+  <link rel="shortcut icon" href="../../assets/favicon.ico" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="e-commerce.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="shop-header">
+    <div class="header-inner">
+      <a href="../../index.html" class="logo" aria-label="Neon Shop">
+        <span class="logo-mark">N</span>
+        <span class="logo-text">NEON SHOP</span>
+      </a>
+
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="search" id="search-input" placeholder="Buscar productos..." autocomplete="off" />
+      </div>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="filter-toggle" aria-label="Filtros" title="Filtros">
+          <i class="fas fa-sliders-h"></i>
+        </button>
+        <button class="icon-btn cart-btn" id="cart-toggle" aria-label="Carrito">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shop-main">
+    <!-- Sidebar filtros -->
+    <aside class="filters" id="filters">
+      <div class="filters-header">
+        <h2>Filtros</h2>
+        <button class="close-filters" id="close-filters" aria-label="Cerrar filtros">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="filter-group">
+        <h3>Categoría</h3>
+        <div class="chip-list" id="category-filters">
+          <button class="chip active" data-cat="all">Todas</button>
+          <button class="chip" data-cat="audio">Audio</button>
+          <button class="chip" data-cat="wearables">Wearables</button>
+          <button class="chip" data-cat="gaming">Gaming</button>
+          <button class="chip" data-cat="tech">Tech</button>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Precio máx.</h3>
+        <input type="range" id="price-range" min="0" max="500" value="500" step="10" aria-label="Precio máximo" />
+        <div class="price-labels">
+          <span>$0</span>
+          <span id="price-value">$500</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <h3>Ordenar</h3>
+        <select id="sort-select" title="Ordenar productos" aria-label="Ordenar productos">
+          <option value="featured">Destacados</option>
+          <option value="price-asc">Precio: menor a mayor</option>
+          <option value="price-desc">Precio: mayor a menor</option>
+          <option value="name">Nombre A-Z</option>
+        </select>
+      </div>
+
+      <button class="btn-reset" id="reset-filters">Limpiar filtros</button>
+    </aside>
+
+    <!-- Productos -->
+    <section class="products-section">
+      <div class="products-toolbar">
+        <p id="results-count">0 productos</p>
+      </div>
+      <div class="products-grid" id="products-grid"></div>
+      <div class="empty-state hidden" id="empty-state">
+        <i class="fas fa-box-open"></i>
+        <p>No hay productos con esos filtros</p>
+        <button class="btn-primary" id="empty-reset">Ver todos</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Carrito lateral -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-header">
+      <h2>Tu carrito</h2>
+      <button class="icon-btn" id="cart-close" aria-label="Cerrar carrito">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <strong id="cart-total">$0.00</strong>
+      </div>
+      <button class="btn-primary btn-block" id="checkout-btn">Finalizar compra</button>
+      <button class="btn-ghost btn-block" id="clear-cart">Vaciar carrito</button>
+    </div>
+  </aside>
+
+  <!-- Modal producto -->
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal" id="product-modal" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modal-close" aria-label="Cerrar">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast hidden" id="toast"></div>
+
+  <!-- Checkout success -->
+  <div class="modal-overlay hidden" id="checkout-overlay">
+    <div class="modal checkout-modal">
+      <div class="checkout-success">
+        <div class="success-icon"><i class="fas fa-check"></i></div>
+        <h2>¡Pedido recibido!</h2>
+        <p>Gracias por tu compra en Neon Shop (demo).</p>
+        <button class="btn-primary" id="checkout-done">Seguir comprando</button>
+        <a href="../../index.html" class="back-link">← Volver al portafolio</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="shop-footer">
+    <p>Neon Shop · Demo UI · <a href="../../index.html">Portafolio</a></p>
+  </footer>
+
+  <script src="e-commerce.js"></script>
+</body>
+
+</html>

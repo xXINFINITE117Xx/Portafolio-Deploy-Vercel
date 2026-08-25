@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Space Invaders Remix | Portafolio Gamer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="space-invaders.css" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png" />
+  <link rel="shortcut icon" href="../../assets/favicon.ico" />
+</head>
+
+<body>
+  <div id="game-container">
+    <canvas id="game-canvas"></canvas>
+
+    <div id="ui-hud">
+      <div>SCORE: <span id="score">0</span></div>
+      <div>LVL: <span id="level">1</span></div>
+      <button id="pause-btn" class="hud-btn" title="Pausar (P / Esc)" aria-label="Pausar">⏸</button>
+      <div id="lives">♥ ♥ ♥</div>
+      <div>HI: <span id="hi-score">0</span></div>
+    </div>
+
+    <div id="start-screen" class="overlay">
+      <h1 class="game-title">SPACE INVADERS</h1>
+      <p class="game-sub">REMIX NEÓN</p>
+      <div class="controls-box">
+        <p><strong>Teclado:</strong> ← → / A D mover · ESPACIO disparar · P / ESC pausa</p>
+        <p><strong>Móvil:</strong> Arrastra para mover · Toca para disparar</p>
+      </div>
+      <div class="power-legend">
+        <span class="pl shield">S Escudo</span>
+        <span class="pl rapid">R Rápido</span>
+        <span class="pl multi">M Multi</span>
+      </div>
+      <button id="start-btn" class="game-btn">INICIAR</button>
+      <a href="../../index.html" class="back-link">← Volver al portafolio</a>
+    </div>
+
+    <div id="pause-screen" class="overlay hidden">
+      <h2 class="game-title">PAUSA</h2>
+      <p class="game-sub">El juego está en pausa</p>
+      <button id="resume-btn" class="game-btn">CONTINUAR</button>
+      <button id="pause-restart-btn" class="game-btn game-btn-outline">REINICIAR</button>
+      <a href="../../index.html" class="back-link">← Volver al portafolio</a>
+    </div>
+
+    <div id="gameover-screen" class="overlay hidden">
+      <h2 class="game-title" id="end-title">GAME OVER</h2>
+      <p class="final-score">Puntuación: <span id="final-score">0</span></p>
+      <button id="restart-btn" class="game-btn">REINICIAR</button>
+      <a href="../../index.html" class="back-link">← Volver al portafolio</a>
+    </div>
+  </div>
+  <script src="space-invaders.js"></script>
+</body>
+
+</html>
