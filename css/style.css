@@ -1547,6 +1547,7 @@ button {
   font-weight: 600;
   color: var(--accent-cyan);
   transition: color var(--transition-fast);
+  cursor: pointer;
 }
 
 .cert-link:hover {
