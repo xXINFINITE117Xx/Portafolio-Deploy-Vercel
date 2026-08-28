@@ -1,12 +1,14 @@
 /**
- * i18n.js — Switch ES / EN
+ * i18n.js — Switch ES / EN con persistencia en localStorage
  */
 (function () {
   "use strict";
 
-  const DICT = {
+  var STORAGE_KEY = "portfolio_lang";
+
+  var DICT = {
     es: {
-      preloader: "CARGANDO...",
+      'preloader': "CARGANDO...",
       "nav.home": "Inicio",
       "nav.projects": "Proyectos",
       "nav.experience": "Experiencia",
@@ -131,7 +133,7 @@
       "contact.submit": "Enviar Mensaje",
     },
     en: {
-      preloader: "LOADING...",
+      'preloader': "LOADING...",
       "nav.home": "Home",
       "nav.projects": "Projects",
       "nav.experience": "Experience",
@@ -261,28 +263,76 @@
     },
   };
 
-  let lang = localStorage.getItem("portfolio_lang") || "es";
+  var lang = "es";
+
+  function normalizeLang(value) {
+    if (!value) return "es";
+    value = String(value).toLowerCase().trim();
+    if (value === "en" || value.indexOf("en") === 0) return "en";
+    return "es";
+  }
+
+  function getSavedLang() {
+    try {
+      return normalizeLang(localStorage.getItem(STORAGE_KEY));
+    } catch (err) {
+      return "es";
+    }
+  }
+
+  function saveLang(code) {
+    try {
+      localStorage.setItem(STORAGE_KEY, code);
+    } catch (err) {
+      /* private mode / blocked storage */
+    }
+  }
 
   function apply(langCode) {
-    lang = langCode;
-    localStorage.setItem("portfolio_lang", lang);
-    document.documentElement.lang = lang;
-    const dict = DICT[lang] || DICT.es;
+    lang = normalizeLang(langCode);
+    saveLang(lang);
 
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const key = el.getAttribute("data-i18n");
-      if (dict[key] != null) el.textContent = dict[key];
-    });
+    if (document.documentElement) {
+      document.documentElement.setAttribute("lang", lang);
+      document.documentElement.setAttribute("data-lang", lang);
+    }
 
-    const label = document.getElementById("lang-label");
-    if (label) label.textContent = lang.toUpperCase();
+    var dict = DICT[lang] || DICT.es;
+    var nodes = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var key = el.getAttribute("data-i18n");
+      if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
+        el.textContent = dict[key];
+      }
+    }
 
-    const btn = document.getElementById("lang-toggle");
-    if (btn)
+    var label = document.getElementById("lang-label");
+    if (label) {
+      label.textContent = lang.toUpperCase();
+    }
+
+    var btn = document.getElementById("lang-toggle");
+    if (btn) {
       btn.setAttribute(
         "aria-label",
         lang === "es" ? "Switch to English" : "Cambiar a español",
       );
+      btn.setAttribute(
+        "title",
+        lang === "es" ? "Español · click for EN" : "English · click for ES",
+      );
+      btn.setAttribute("data-lang", lang);
+    }
+
+    // Notificar a otros módulos si lo necesitan
+    try {
+      document.dispatchEvent(
+        new CustomEvent("portfolio:langchange", { detail: { lang: lang } }),
+      );
+    } catch (err) {
+      /* IE / entornos muy antiguos */
+    }
   }
 
   function toggle() {
@@ -292,11 +342,41 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    apply(lang);
-    const btn = document.getElementById("lang-toggle");
-    if (btn) btn.addEventListener("click", toggle);
+  function bindToggle() {
+    var btn = document.getElementById("lang-toggle");
+    if (!btn || btn.getAttribute("data-i18n-bound") === "1") return;
+    btn.setAttribute("data-i18n-bound", "1");
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      toggle();
+    });
+  }
+
+  function init() {
+    // Leer SIEMPRE de localStorage en el init (no confiar solo en el valor del parseo)
+    apply(getSavedLang());
+    bindToggle();
+  }
+
+  // Inicialización robusta: cubre defer, DOM ya listo y recargas
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  // Refuerzo tras load por si algún script reescribe el DOM
+  window.addEventListener("load", function () {
+    apply(getSavedLang());
+    bindToggle();
   });
 
-  window.PortfolioI18n = { apply, toggle, getLang: () => lang };
+  window.PortfolioI18n = {
+    apply: apply,
+    toggle: toggle,
+    getLang: function () {
+      return lang;
+    },
+    getSavedLang: getSavedLang,
+  };
 })();
