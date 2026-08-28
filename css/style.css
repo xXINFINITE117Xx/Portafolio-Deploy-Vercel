@@ -1439,6 +1439,170 @@ button {
   background: rgba(255, 0, 122, 0.06);
 }
 
+/* =========================================================
+   CERTIFICADOS
+   ========================================================= */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.cert-card {
+  background: var(--background-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-md, 12px);
+  padding: 1.4rem;
+  display: flex;
+  gap: 1rem;
+  transition: transform var(--transition-smooth), border-color var(--transition-fast), box-shadow var(--transition-smooth);
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 255, 209, 0.3);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3), 0 0 22px var(--shadow-cyan-soft);
+}
+
+.cert-card.cert-add {
+  border-style: dashed;
+  border-color: rgba(0, 255, 209, 0.25);
+  opacity: 0.85;
+}
+
+.cert-card.cert-add:hover {
+  opacity: 1;
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 22px var(--shadow-pink-soft);
+}
+
+.cert-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(0, 255, 209, 0.1);
+  border: 1px solid rgba(0, 255, 209, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-cyan);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  transition: transform var(--transition-bounce), color var(--transition-fast);
+}
+
+.cert-card:hover .cert-icon {
+  transform: scale(1.08) rotate(-6deg);
+  color: var(--accent-pink);
+  border-color: rgba(255, 0, 122, 0.35);
+  background: rgba(255, 0, 122, 0.1);
+}
+
+.cert-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.cert-issuer {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  margin-bottom: 0.35rem;
+}
+
+.cert-name {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.cert-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 0.85rem;
+}
+
+.cert-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cert-year {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: var(--font-title);
+}
+
+.cert-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  transition: color var(--transition-fast);
+}
+
+.cert-link:hover {
+  color: var(--accent-pink);
+}
+
+/* =========================================================
+   NAV CONTROLS — idioma + sonido
+   ========================================================= */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.75rem;
+}
+
+.ctrl-btn {
+  min-width: 40px;
+  height: 36px;
+  padding: 0 0.65rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--background-card);
+  color: var(--text-muted);
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.ctrl-btn:hover,
+.ctrl-btn.active {
+  color: var(--accent-cyan);
+  border-color: rgba(0, 255, 209, 0.4);
+  box-shadow: 0 0 14px var(--shadow-cyan-soft);
+}
+
+.ctrl-btn.active {
+  background: rgba(0, 255, 209, 0.1);
+}
+
+#lang-label {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .nav-controls {
+    margin-left: auto;
+    margin-right: 0.5rem;
+  }
+}
+
 @media (max-width: 576px) {
   .timeline-line {
     left: 18px;

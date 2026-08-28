@@ -21,6 +21,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/particles.css" />
@@ -39,14 +40,24 @@
     <div class="nav-container">
       <a href="#inicio" class="nav-logo" aria-label="Ir al inicio"><span class="logo-text">Portafolio</span></a>
       <div class="nav-links" id="nav-links">
-        <a href="#inicio">Inicio</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#experiencia">Experiencia</a>
-        <a href="#habilidades">Habilidades</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#estadisticas">Estadísticas</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#inicio" data-i18n="nav.home">Inicio</a>
+        <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+        <a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
+        <a href="#habilidades" data-i18n="nav.skills">Habilidades</a>
+        <a href="#servicios" data-i18n="nav.services">Servicios</a>
+        <a href="#certificados" data-i18n="nav.certs">Certificados</a>
+        <a href="#estadisticas" data-i18n="nav.stats">Estadísticas</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      </div>
+      <div class="nav-controls">
+        <button type="button" class="ctrl-btn" id="lang-toggle" aria-label="Cambiar idioma" title="ES / EN">
+          <span id="lang-label">ES</span>
+        </button>
+        <button type="button" class="ctrl-btn" id="sound-toggle" aria-pressed="false" aria-label="Activar sonidos"
+          title="Sonido">
+          <i class="fas fa-volume-mute" id="sound-icon"></i>
+        </button>
       </div>
       <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -62,11 +73,9 @@
             height="160" onerror="this.onerror=null;this.src='assets/images/profile.svg';" />
         </div>
         <h1 class="hero-name">David Gaona Henao</h1>
-        <p class="hero-bio">Soy un apasionado entusiasta de la tecnología especializado en desarrollo web, Diseño
-          gráfico y soluciones digitales. Me encanta aprender de nuevas tecnologías y aplicar mis habilidades para crear
-          proyectos innovadores.</p>
-        <p class="hero-bio-en">I'm a passionate tech enthusiast specializing in web development, graphic design, and
-          digital solutions. I love learning new technologies and applying my skills to create innovative projects.</p>
+        <p class="hero-bio" data-i18n="hero.bio">Soy un apasionado entusiasta de la tecnología especializado en
+          desarrollo web, Diseño gráfico y soluciones digitales. Me encanta aprender de nuevas tecnologías y aplicar mis
+          habilidades para crear proyectos innovadores.</p>
         <div class="social-links">
           <a href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer" class="discord"
             aria-label="Discord"><i class="fab fa-discord"></i></a>
@@ -81,20 +90,21 @@
           <a href="https://www.tiktok.com/@davidgaona205" target="_blank" rel="noopener noreferrer" class="tiktok"
             aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         </div>
-        <a href="#proyectos" class="btn btn-primary"><i class="fas fa-rocket"></i> Ver Proyectos</a>
-        <a class="download-cv" href="CV/Portafolio.pdf" download>Download CV</a>
+        <a href="#proyectos" class="btn btn-primary"><i class="fas fa-rocket"></i> <span data-i18n="hero.cta">Ver
+            Proyectos</span></a>
+        <a class="download-cv" href="CV/Portafolio.pdf" download data-i18n="download.cv">Descargar CV</a>
       </div>
     </div>
   </section>
 
   <section class="section" id="proyectos">
     <div class="container">
-      <h2 class="section-title fade-in">Proyectos</h2>
-      <p class="section-subtitle fade-in">Algunos de mis trabajos y experimentos</p>
+      <h2 class="section-title fade-in" data-i18n="projects.title"></h2>
+      <p class="section-subtitle fade-in" data-i18n="projects.sub">Algunos de mis trabajos y experimentos</p>
       <div class="projects-filter fade-in">
-        <button class="filter-btn active" data-filter="todos">Todos</button>
-        <button class="filter-btn" data-filter="juegos">Juegos</button>
-        <button class="filter-btn" data-filter="apps">Aplicaciones Web</button>
+        <button class="filter-btn active" data-filter="todos" data-i18n="projects.all">Todos</button>
+        <button class="filter-btn" data-filter="juegos" data-i18n="projects.games">Juegos</button>
+        <button class="filter-btn" data-filter="apps" data-i18n="projects.apps">Aplicaciones Web</button>
       </div>
       <div class="projects-grid" id="projects-grid">
         <article class="project-card fade-in" data-category="juegos">
@@ -103,10 +113,12 @@
             <h3 class="project-title">Cyber Runner</h3>
             <div class="project-tags"><span class="tag">HTML5</span><span class="tag">Canvas</span><span
                 class="tag pink">JS</span></div>
-            <p class="project-desc">Infinite runner cyberpunk. Salta obstáculos neón, acumula distancia y supera tu
+            <p class="project-desc" data-i18n="descriptión.cyber">Infinite runner cyberpunk. Salta obstáculos neón,
+              acumula distancia y supera tu
               récord.</p>
             <div class="project-actions"><a href="games/cyber-runner/cyber-runner.html" class="btn btn-primary"
-                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> Jugar</a></div>
+                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> <span
+                  data-i18n="play.btn">Jugar</span></a></div>
           </div>
         </article>
         <article class="project-card fade-in" data-category="juegos">
@@ -115,10 +127,12 @@
             <h3 class="project-title">Space Invaders Remix</h3>
             <div class="project-tags"><span class="tag">Canvas</span><span class="tag">JS</span><span
                 class="tag pink">Shooter</span></div>
-            <p class="project-desc">Clásico reinventado con estética neón, power-ups, barreras destructibles y múltiples
+            <p class="project-desc" data-i18n="descriptión.space">Clásico reinventado con estética neón, power-ups,
+              barreras destructibles y múltiples
               niveles.</p>
             <div class="project-actions"><a href="games/space-invaders-remix/space-invaders.html"
-                class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> Jugar</a></div>
+                class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> <span
+                  data-i18n="play.btn">Jugar</span></a></div>
           </div>
         </article>
         <article class="project-card fade-in" data-category="juegos">
@@ -127,9 +141,11 @@
             <h3 class="project-title">Neon Puzzle</h3>
             <div class="project-tags"><span class="tag">Puzzle</span><span class="tag">JS</span><span
                 class="tag pink">CSS</span></div>
-            <p class="project-desc">Puzzle deslizante neón. Elige dificultad 3×3, 4×4 o 5×5 y completa el tablero.</p>
+            <p class="project-desc" data-i18n="descriptión.puzzle">Puzzle deslizante neón. Elige dificultad 3×3, 4×4 o
+              5×5 y completa el tablero.</p>
             <div class="project-actions"><a href="games/neon-puzzle/neon-puzzle.html" class="btn btn-primary"
-                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> Jugar</a></div>
+                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> <span
+                  data-i18n="play.btn">Jugar</span></a></div>
           </div>
         </article>
         <article class="project-card fade-in" data-category="apps">
@@ -138,10 +154,12 @@
             <h3 class="project-title">Dashboard Analytics</h3>
             <div class="project-tags"><span class="tag">React</span><span class="tag">API</span><span
                 class="tag pink">Charts</span></div>
-            <p class="project-desc">Panel de control con visualización de datos en tiempo real y gráficos interactivos.
+            <p class="project-desc" data-i18n="descriptión.dashboard">Panel de control con visualización de datos en
+              tiempo real y gráficos interactivos.
             </p>
             <div class="project-actions"><a href="apps/dashboard-analytics/index.html" class="btn btn-outline"
-                target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+                target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> <span
+                  data-i18n="view.demo.btn">Ver Demo</span></a></div>
           </div>
         </article>
         <article class="project-card fade-in" data-category="apps">
@@ -150,9 +168,11 @@
             <h3 class="project-title">E-Commerce UI</h3>
             <div class="project-tags"><span class="tag">HTML/CSS</span><span class="tag">JS</span><span
                 class="tag pink">Responsive</span></div>
-            <p class="project-desc">Interfaz de tienda online moderna con carrito, filtros y diseño mobile-first.</p>
+            <p class="project-desc" data-i18n="descriptión.ecommerce">Interfaz de tienda online moderna con carrito,
+              filtros y diseño mobile-first.</p>
             <div class="project-actions"><a href="apps/e-commerce/index.html" class="btn btn-outline" target="_blank"
-                rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+                rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view.demo.btn">Ver
+                  Demo</span></a></div>
           </div>
         </article>
         <article class="project-card fade-in" data-category="apps">
@@ -161,9 +181,11 @@
             <h3 class="project-title">Task Manager Pro</h3>
             <div class="project-tags"><span class="tag">JS</span><span class="tag">LocalStorage</span><span
                 class="tag pink">PWA</span></div>
-            <p class="project-desc">Gestor de tareas con categorías, prioridades y sincronización offline.</p>
+            <p class="project-desc" data-i18n="descriptión.taskmanager">Gestor de tareas con categorías, prioridades y
+              sincronización offline.</p>
             <div class="project-actions"><a href="apps/task-manager/index.html" class="btn btn-outline" target="_blank"
-                rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+                rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view.demo.btn">Ver
+                  Demo</span></a></div>
           </div>
         </article>
       </div>
@@ -172,19 +194,19 @@
 
   <section class="section" id="habilidades">
     <div class="container">
-      <h2 class="section-title fade-in">Habilidades</h2>
-      <p class="section-subtitle fade-in">Tecnologías y herramientas que domino</p>
+      <h2 class="section-title fade-in" data-i18n="skills.title">Habilidades</h2>
+      <p class="section-subtitle fade-in" data-i18n="skills.sub">Tecnologías y herramientas que domino</p>
       <div class="skills-grid">
-        <div class="skill-card fade-in" data-percent="95">
-          <div class="skill-icon"><i class="fab fa-html5"></i></div>
+        <div class="skill-card fade-in" data-percent="82">
+          <div class="skill-icon"><i class="devicon-html5-plain colored"></i></div>
           <div class="skill-name">HTML</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
           </div>
-          <div class="skill-percent">95%</div>
+          <div class="skill-percent">82%</div>
         </div>
         <div class="skill-card fade-in" data-percent="92">
-          <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+          <div class="skill-icon"><i class="devicon-css3-plain colored"></i></div>
           <div class="skill-name">CSS</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -192,7 +214,7 @@
           <div class="skill-percent">92%</div>
         </div>
         <div class="skill-card fade-in" data-percent="88">
-          <div class="skill-icon"><i class="fab fa-js"></i></div>
+          <div class="skill-icon"><i class="devicon-javascript-plain colored"></i></div>
           <div class="skill-name">JavaScript</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -200,7 +222,7 @@
           <div class="skill-percent">88%</div>
         </div>
         <div class="skill-card fade-in" data-percent="75">
-          <div class="skill-icon"><i class="fab fa-java"></i></div>
+          <div class="skill-icon"><i class="devicon-java-plain colored"></i></div>
           <div class="skill-name">Java</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -208,7 +230,7 @@
           <div class="skill-percent">75%</div>
         </div>
         <div class="skill-card fade-in" data-percent="85">
-          <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+          <div class="skill-icon"><i class="devicon-photoshop-plain colored"></i></div>
           <div class="skill-name">Diseño Gráfico</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -216,7 +238,7 @@
           <div class="skill-percent">85%</div>
         </div>
         <div class="skill-card fade-in" data-percent="80">
-          <div class="skill-icon"><i class="fab fa-react"></i></div>
+          <div class="skill-icon"><i class="devicon-react-plain colored"></i></div>
           <div class="skill-name">React</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -224,7 +246,7 @@
           <div class="skill-percent">80%</div>
         </div>
         <div class="skill-card fade-in" data-percent="70">
-          <div class="skill-icon"><i class="fas fa-database"></i></div>
+          <div class="skill-icon"><i class="devicon-mongodb-plain colored"></i></div>
           <div class="skill-name">MongoDB</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -232,7 +254,7 @@
           <div class="skill-percent">70%</div>
         </div>
         <div class="skill-card fade-in" data-percent="78">
-          <div class="skill-icon"><i class="fas fa-server"></i></div>
+          <div class="skill-icon"><i class="devicon-mysql-plain colored"></i></div>
           <div class="skill-name">MySQL</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
@@ -240,12 +262,36 @@
           <div class="skill-percent">78%</div>
         </div>
         <div class="skill-card fade-in" data-percent="82">
-          <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+          <div class="skill-icon"><i class="devicon-postman-plain colored"></i></div>
           <div class="skill-name">API</div>
           <div class="skill-bar">
             <div class="skill-progress"></div>
           </div>
           <div class="skill-percent">82%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="82">
+          <div class="skill-icon"><i class="devicon-typescript-plain colored"></i></div>
+          <div class="skill-name">TypeScript</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">82%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="89">
+          <div class="skill-icon"><i class="devicon-python-plain colored"></i></div>
+          <div class="skill-name">Python</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">89%</div>
+        </div>
+        <div class="skill-card fade-in" data-percent="80">
+          <div class="skill-icon"><i class="devicon-php-plain colored"></i></div>
+          <div class="skill-name">PHP</div>
+          <div class="skill-bar">
+            <div class="skill-progress"></div>
+          </div>
+          <div class="skill-percent">80%</div>
         </div>
       </div>
     </div>
@@ -253,52 +299,56 @@
 
   <section class="section" id="servicios">
     <div class="container">
-      <h2 class="section-title fade-in">Servicios</h2>
-      <p class="section-subtitle fade-in">Lo que puedo hacer por ti</p>
+      <h2 class="section-title fade-in" data-i18n="services.title">Servicios</h2>
+      <p class="section-subtitle fade-in" data-i18n="services.sub">Lo que puedo hacer por ti</p>
       <div class="services-grid">
         <article class="service-card fade-in">
           <div class="service-icon"><i class="fas fa-code"></i></div>
-          <h3 class="service-title">Desarrollo Web</h3>
-          <p class="service-desc">Sitios y aplicaciones web modernas, rápidas y responsive con las mejores prácticas.
+          <h3 class="service-title" data-i18n="services.web.title">Desarrollo Web</h3>
+          <p class="service-desc" data-i18n="services.web.desc">Sitios y aplicaciones web modernas, rápidas y responsive
+            con las mejores prácticas.
           </p>
           <ul class="service-features">
-            <li>Landing pages</li>
-            <li>SPAs con React</li>
-            <li>Integración de APIs</li>
-            <li>Optimización SEO</li>
+            <li data-i18n="web.features1">Landing pages</li>
+            <li data-i18n="web.features2">SPAs con React</li>
+            <li data-i18n="web.features3">Integración de APIs</li>
+            <li data-i18n="web.features4">Optimización SEO</li>
           </ul>
         </article>
         <article class="service-card fade-in">
           <div class="service-icon"><i class="fas fa-palette"></i></div>
-          <h3 class="service-title">Diseño Gráfico</h3>
-          <p class="service-desc">Identidad visual, branding y piezas digitales con estética profesional.</p>
+          <h3 class="service-title" data-i18n="services.graphic.title">Diseño Gráfico</h3>
+          <p class="service-desc" data-i18n="services.graphic.desc">Identidad visual, branding y piezas digitales con
+            estética profesional.</p>
           <ul class="service-features">
-            <li>Logotipos e identidad</li>
-            <li>UI/UX design</li>
-            <li>Banners y redes</li>
-            <li>Material publicitario</li>
+            <li data-i18n="graphic.features1">Logotipos e identidad</li>
+            <li data-i18n="graphic.features2">UI/UX design</li>
+            <li data-i18n="graphic.features3">Banners y redes</li>
+            <li data-i18n="graphic.features4">Material publicitario</li>
           </ul>
         </article>
         <article class="service-card fade-in">
           <div class="service-icon"><i class="fas fa-lightbulb"></i></div>
-          <h3 class="service-title">Soluciones Digitales</h3>
-          <p class="service-desc">Automatizaciones, herramientas a medida y sistemas que resuelven problemas reales.</p>
+          <h3 class="service-title" data-i18n="services.digital.title">Soluciones Digitales</h3>
+          <p class="service-desc" data-i18n="services.digital.desc">Automatizaciones, herramientas a medida y sistemas
+            que resuelven problemas reales.</p>
           <ul class="service-features">
-            <li>Scripts y bots</li>
-            <li>Dashboards</li>
-            <li>Integraciones</li>
-            <li>Consultoría técnica</li>
+            <li data-i18n="digital.features1">Scripts y bots</li>
+            <li data-i18n="digital.features2">Dashboards</li>
+            <li data-i18n="digital.features3">Integraciones</li>
+            <li data-i18n="digital.features4">Consultoría técnica</li>
           </ul>
         </article>
         <article class="service-card fade-in">
           <div class="service-icon"><i class="fas fa-headset"></i></div>
-          <h3 class="service-title">Consultoría Tech</h3>
-          <p class="service-desc">Asesoría para elegir stack, arquitectura y mejores prácticas en tus proyectos.</p>
+          <h3 class="service-title" data-i18n="services.consulting.title">Consultoría Tech</h3>
+          <p class="service-desc" data-i18n="services.consulting.desc">Asesoría para elegir stack, arquitectura y
+            mejores prácticas en tus proyectos.</p>
           <ul class="service-features">
-            <li>Arquitectura de software</li>
-            <li>Code review</li>
-            <li>Mentoría</li>
-            <li>Planificación técnica</li>
+            <li data-i18n="consulting.features1">Arquitectura de software</li>
+            <li data-i18n="consulting.features2">Code review</li>
+            <li data-i18n="consulting.features3">Mentoría</li>
+            <li data-i18n="consulting.features4">Planificación técnica</li>
           </ul>
         </article>
       </div>
@@ -307,8 +357,8 @@
 
   <section class="section" id="experiencia">
     <div class="container">
-      <h2 class="section-title fade-in">Experiencia</h2>
-      <p class="section-subtitle fade-in">Formación y proyectos reales en el SENA</p>
+      <h2 class="section-title fade-in" data-i18n="exp.title">Experiencia</h2>
+      <p class="section-subtitle fade-in" data-i18n="exp.sub">Formación y proyectos reales en el SENA</p>
 
       <div class="timeline fade-in">
         <div class="timeline-line" aria-hidden="true"></div>
@@ -346,8 +396,8 @@
               <span class="timeline-date">SENA · SPORT FULL</span>
             </div>
             <h3 class="timeline-title">SPORT FULL</h3>
-            <p class="timeline-role">Colaborador en el desarrollo del sistema</p>
-            <p class="timeline-desc">
+            <p class="timeline-role" data-i18n="contact.role">Colaborador en el desarrollo del sistema</p>
+            <p class="timeline-desc" data-i18n="contact.desc">
               Plataforma orientada a la gestión deportiva de fútbol. El sistema permite administrar canchas,
               crear y gestionar perfiles de jugadores, ofrecer planes <strong>VIP</strong> para clientes,
               publicar ofertas y coordinar eventos deportivos en un solo lugar.
@@ -396,24 +446,24 @@
 
   <section class="section" id="estadisticas">
     <div class="container">
-      <h2 class="section-title fade-in">Estadísticas</h2>
-      <p class="section-subtitle fade-in">Números que hablan</p>
+      <h2 class="section-title fade-in" data-i18n="stats.title">Estadísticas</h2>
+      <p class="section-subtitle fade-in" data-i18n="stats.sub">Números que hablan</p>
       <div class="stats-grid">
         <div class="stat-card fade-in">
           <div class="stat-number" data-target="25" data-suffix="+">0</div>
-          <div class="stat-label">Proyectos Completados</div>
+          <div class="stat-label" data-i18n="stats.projects">Proyectos Completados</div>
         </div>
         <div class="stat-card fade-in">
           <div class="stat-number" data-target="15" data-suffix="+">0</div>
-          <div class="stat-label">Clientes Satisfechos</div>
+          <div class="stat-label" data-i18n="stats.clients">Clientes Satisfechos</div>
         </div>
         <div class="stat-card fade-in">
           <div class="stat-number" data-target="50" data-suffix="K+">0</div>
-          <div class="stat-label">Líneas de Código</div>
+          <div class="stat-label" data-i18n="stats.lines">Líneas de Código</div>
         </div>
         <div class="stat-card fade-in">
           <div class="stat-number" data-target="20000" data-suffix="+">0</div>
-          <div class="stat-label">Horas de Trabajo</div>
+          <div class="stat-label" data-i18n="stats.hours">Horas de Trabajo</div>
         </div>
       </div>
     </div>
@@ -421,58 +471,69 @@
 
   <section class="section" id="faq">
     <div class="container">
-      <h2 class="section-title fade-in">Preguntas Frecuentes</h2>
-      <p class="section-subtitle fade-in">Respuestas a las dudas más comunes</p>
+      <h2 class="section-title fade-in" data-i18n="faq.title">Preguntas Frecuentes</h2>
+      <p class="section-subtitle fade-in" data-i18n="faq.sub">Respuestas a las dudas más comunes</p>
       <div class="faq-list">
         <div class="faq-item fade-in">
-          <button class="faq-question" aria-expanded="false"><span>¿Qué tecnologías utilizas en tus
+          <button class="faq-question" aria-expanded="false"><span data-i18n="faq.question1">¿Qué tecnologías utilizas
+              en tus
               proyectos?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Trabajo principalmente con HTML5, CSS3, JavaScript vanilla y React. También
+            <div class="faq-answer-inner" data-i18n="faq.answer1">Trabajo principalmente con HTML5, CSS3, JavaScript,
+              TypeScript, Java, vanilla y React. También
               uso Node.js, MongoDB, MySQL y APIs REST según las necesidades del proyecto. Para diseño empleo
               herramientas como Figma y Adobe Suite.</div>
           </div>
         </div>
         <div class="faq-item fade-in">
-          <button class="faq-question" aria-expanded="false"><span>¿Cuánto tiempo tarda un proyecto web
+          <button class="faq-question" aria-expanded="false"><span data-i18n="faq.question2">¿Cuánto tiempo tarda un
+              proyecto web
               típico?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Depende del alcance. Una landing page puede estar lista en 1-2 semanas. Una
+            <div class="faq-answer-inner" data-i18n="faq.answer2">Depende del alcance. Una landing page puede estar
+              lista en 1-2 semanas. Una
               aplicación web completa suele tomar entre 4 y 8 semanas. Siempre defino hitos claros y comunico avances
               regularmente.</div>
           </div>
         </div>
         <div class="faq-item fade-in">
-          <button class="faq-question" aria-expanded="false"><span>¿Ofreces mantenimiento después de la
+          <button class="faq-question" aria-expanded="false"><span data-i18n="faq.question3">¿Ofreces mantenimiento
+              después de la
               entrega?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Sí. Ofrezco planes de mantenimiento mensuales que incluyen actualizaciones de
+            <div class="faq-answer-inner" data-i18n="faq.answer3">Sí. Ofrezco planes de mantenimiento mensuales que
+              incluyen actualizaciones de
               seguridad, corrección de bugs menores y pequeños ajustes de contenido. También puedo capacitar a tu equipo
               para que gestione el sitio de forma autónoma.</div>
           </div>
         </div>
         <div class="faq-item fade-in">
-          <button class="faq-question" aria-expanded="false"><span>¿Cómo funciona el proceso de presupuesto?</span><span
-              class="faq-icon"><i class="fas fa-plus"></i></span></button>
+          <button class="faq-question" aria-expanded="false"><span data-i18n="faq.question4">¿Cómo funciona el proceso
+              de presupuesto?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Tras una reunión inicial para entender tus necesidades, elaboro una propuesta
+            <div class="faq-answer-inner" data-i18n="faq.answer4">Tras una reunión inicial para entender tus
+              necesidades, elaboro una propuesta
               detallada con alcance, plazos y precio fijo (o por fases). No hay costos ocultos: todo queda por escrito
               antes de empezar.</div>
           </div>
         </div>
         <div class="faq-item fade-in">
-          <button class="faq-question" aria-expanded="false"><span>¿Puedes trabajar con diseños ya
+          <button class="faq-question" aria-expanded="false"><span data-i18n="faq.question5">¿Puedes trabajar con
+              diseños ya
               existentes?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Por supuesto. Puedo implementar diseños de Figma, Adobe XD o PSD con alta
+            <div class="faq-answer-inner" data-i18n="faq.answer5">Por supuesto. Puedo implementar diseños de Figma,
+              Adobe XD o PSD con alta
               fidelidad, o rediseñar y modernizar sitios existentes manteniendo la identidad de marca.</div>
           </div>
         </div>
         <div class="faq-item fade-in">
-          <button class="faq-question" aria-expanded="false"><span>¿Los sitios son responsive y optimizados para
+          <button class="faq-question" aria-expanded="false"><span data-i18n="faq.question6">¿Los sitios son responsive
+              y optimizados para
               móviles?</span><span class="faq-icon"><i class="fas fa-plus"></i></span></button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Absolutamente. Todos los proyectos se desarrollan con enfoque mobile-first. Se
+            <div class="faq-answer-inner" data-i18n="faq.answer6">Absolutamente. Todos los proyectos se desarrollan con
+              enfoque mobile-first. Se
               prueban en múltiples dispositivos y resoluciones para garantizar una experiencia fluida en cualquier
               pantalla.</div>
           </div>
@@ -481,34 +542,79 @@
     </div>
   </section>
 
+  <section class="section" id="certificados">
+    <div class="container">
+      <h2 class="section-title fade-in" data-i18n="certs.title">Certificados</h2>
+      <p class="section-subtitle fade-in" data-i18n="certs.sub">Formación y credenciales de mi carrera</p>
+
+      <div class="certs-grid">
+        <article class="cert-card fade-in">
+          <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+          <div class="cert-body">
+            <span class="cert-issuer" data-i18n="certs.placeholder.issuer">Institución</span>
+            <h3 class="cert-name" data-i18n="certs.placeholder.name">Nombre del certificado</h3>
+            <p class="cert-desc" data-i18n="certs.placeholder.desc">Descripción breve. Reemplaza este texto con tu
+              certificado real.</p>
+            <div class="cert-meta">
+              <span class="cert-year">20XX</span>
+              <a href="#" class="cert-link" data-i18n="certs.view">Ver credencial</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="cert-card fade-in">
+          <div class="cert-icon"><i class="fas fa-award"></i></div>
+          <div class="cert-body">
+            <span class="cert-issuer">SENA</span>
+            <h3 class="cert-name" data-i18n="certs.sena.name">Programa de formación técnica</h3>
+            <p class="cert-desc" data-i18n="certs.sena.desc">Certificado o título obtenido en el SENA. Completa los
+              datos de tu carrera aquí.</p>
+            <div class="cert-meta">
+              <span class="cert-year">20XX</span>
+              <a href="#" class="cert-link" data-i18n="certs.view">Ver credencial</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="cert-card fade-in cert-add">
+          <div class="cert-icon"><i class="fas fa-plus"></i></div>
+          <div class="cert-body">
+            <h3 class="cert-name" data-i18n="certs.add.title">Agregar certificado</h3>
+            <p class="cert-desc" data-i18n="certs.add.desc">Duplica esta tarjeta en el HTML e inserta el nombre,
+              institución, año y enlace de tu credencial.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="contacto">
     <div class="container">
-      <h2 class="section-title fade-in">Contacto</h2>
-      <p class="section-subtitle fade-in">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+      <h2 class="section-title fade-in" data-i18n="contact.title">Contacto</h2>
+      <p class="section-subtitle fade-in" data-i18n="contact.sub">¿Tienes un proyecto en mente? ¡Hablemos!</p>
       <div class="contact-wrapper">
         <form class="contact-form fade-in" id="contact-form" novalidate>
           <div class="form-group">
-            <label for="name">Nombre</label>
+            <label for="name" data-i18n="contact.name">Nombre</label>
             <input type="text" id="name" name="name" placeholder="Tu nombre" required autocomplete="name" />
-            <span class="form-error">Por favor ingresa tu nombre</span>
+            <span class="form-error" data-i18n="contact.name.error">Por favor ingresa tu nombre</span>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email" data-i18n="contact.email">Email</label>
             <input type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email" />
-            <span class="form-error">Ingresa un email válido</span>
+            <span class="form-error" data-i18n="contact.email.error">Ingresa un email válido</span>
           </div>
           <div class="form-group">
-            <label for="subject">Asunto</label>
+            <label for="subject" data-i18n="contact.subject">Asunto</label>
             <input type="text" id="subject" name="subject" placeholder="¿Sobre qué quieres hablar?" required />
-            <span class="form-error">El asunto es obligatorio</span>
+            <span class="form-error" data-i18n="contact.subject.error">El asunto es obligatorio</span>
           </div>
           <div class="form-group">
-            <label for="message">Mensaje</label>
+            <label for="message" data-i18n="contact.message">Mensaje</label>
             <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
-            <span class="form-error">Escribe un mensaje</span>
+            <span class="form-error" data-i18n="contact.message.error">Escribe un mensaje</span>
           </div>
-          <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fas fa-paper-plane"></i> Enviar
-            Mensaje</button>
+          <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fas fa-paper-plane"></i> <span data-i18n="contact.submit">Enviar Mensaje</span></button>
           <div class="form-status" id="form-status" role="alert"></div>
         </form>
         <div class="contact-info fade-in">
@@ -522,15 +628,22 @@
           <div class="info-card">
             <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
             <div class="info-text">
-              <h4>Ubicación</h4>
+              <h4 data-i18n="contact.location">Ubicación</h4>
               <p>Latinoamérica Colombia · Remoto</p>
             </div>
           </div>
           <div class="info-card">
             <div class="info-icon"><i class="fas fa-clock"></i></div>
             <div class="info-text">
-              <h4>Disponibilidad</h4>
+              <h4 data-i18n="contact.availability">Disponibilidad</h4>
               <p>Lun – Vie · 9:00 – 18:00</p>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-phone"></i></div>
+            <div class="info-text">
+              <h4 data-i18n="contact.whatsapp">WhatsApp</h4>
+              <p>+57 320638095</p>
             </div>
           </div>
           <div class="social-links contact-social-links">
@@ -553,10 +666,10 @@
       <div class="footer-content">
         <div class="footer-logo">Portafolio</div>
         <div class="footer-links">
-          <a href="#inicio">Inicio</a>
-          <a href="#proyectos">Proyectos</a>
-          <a href="#habilidades">Habilidades</a>
-          <a href="#contacto">Contacto</a>
+          <a href="#inicio" data-i18n="nav.home">Inicio</a>
+          <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+          <a href="#certificados" data-i18n="nav.certs">Certificados</a>
+          <a href="#contacto" data-i18n="nav.contact">Contacto</a>
         </div>
         <p class="footer-copy">© 2026 David Gaona. <span>Todos los derechos reservados</span></p>
       </div>
@@ -564,6 +677,8 @@
   </footer>
 
   <script src="js/particles.js" defer></script>
+  <script src="js/i18n.js" defer></script>
+  <script src="js/sound.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/projects-filter.js" defer></script>
   <script src="js/contact.js" defer></script>
