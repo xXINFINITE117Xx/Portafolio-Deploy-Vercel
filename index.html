@@ -26,6 +26,15 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/particles.css" />
   <link rel="stylesheet" href="css/games.css" />
+  <script>
+    (function () {
+      try {
+        var l = (localStorage.getItem('portfolio_lang') || 'es').toLowerCase();
+        document.documentElement.lang = (l === 'en') ? 'en' : 'es';
+        document.documentElement.setAttribute('data-lang', document.documentElement.lang);
+      } catch (e) { }
+    })();
+  </script>
 </head>
 
 <body>
@@ -550,48 +559,53 @@
   <section class="section" id="certificados">
     <div class="container">
       <h2 class="section-title fade-in" data-i18n="certs.title">Certificados</h2>
-      <p class="section-subtitle fade-in" data-i18n="certs.sub">Formación y credenciales de mi carrera</p>
-
-      <div class="certs-grid">
-        <article class="cert-card fade-in">
-          <div class="cert-icon"><i class="fas fa-certificate"></i></div>
-          <div class="cert-body">
-            <span class="cert-issuer" data-i18n="certs.placeholder.issuer">Institución</span>
-            <h3 class="cert-name" data-i18n="certs.placeholder.name">Nombre del certificado</h3>
-            <p class="cert-desc" data-i18n="certs.placeholder.desc">Descripción breve. Reemplaza este texto con tu
-              certificado real.</p>
-            <div class="cert-meta">
-              <span class="cert-year">20XX</span>
-              <a href="#" class="cert-link" data-i18n="certs.view">Ver credencial</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="cert-card fade-in">
-          <div class="cert-icon"><i class="fas fa-award"></i></div>
-          <div class="cert-body">
-            <span class="cert-issuer">SENA</span>
-            <h3 class="cert-name" data-i18n="certs.sena.name">Programa de formación técnica</h3>
-            <p class="cert-desc" data-i18n="certs.sena.desc">Certificado o título obtenido en el SENA. Completa los
-              datos de tu carrera aquí.</p>
-            <div class="cert-meta">
-              <span class="cert-year">20XX</span>
-              <a href="#" class="cert-link" data-i18n="certs.view">Ver credencial</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="cert-card fade-in cert-add">
-          <div class="cert-icon"><i class="fas fa-plus"></i></div>
-          <div class="cert-body">
-            <h3 class="cert-name" data-i18n="certs.add.title">Agregar certificado</h3>
-            <p class="cert-desc" data-i18n="certs.add.desc">Duplica esta tarjeta en el HTML e inserta el nombre,
-              institución, año y enlace de tu credencial.</p>
-          </div>
-        </article>
-      </div>
+      <p class="section-subtitle fade-in" data-i18n="certs.sub">Formación y credenciales verificadas</p>
+      <div class="certs-grid" id="certs-grid"></div>
     </div>
   </section>
+
+  <div class="cert-overlay" id="cert-overlay" hidden>
+    <div class="cx-dialog" role="dialog" aria-modal="true" aria-labelledby="cx-title">
+      <header class="cx-head">
+        <div class="cx-head__left">
+          <div class="cx-icon" id="cx-icon"><i class="fas fa-certificate"></i></div>
+          <div>
+            <p class="cx-issuer"><span class="cx-dot"></span><span id="cx-issuer"></span> · <span
+                data-i18n="certs.verified">Credencial verificada</span></p>
+            <h2 class="cx-title" id="cx-title"></h2>
+          </div>
+          <span class="cx-year" id="cx-year"></span>
+        </div>
+        <button type="button" class="cx-x" id="cx-close" aria-label="Cerrar"><i class="fas fa-times"></i></button>
+      </header>
+
+      <div class="cx-preview" id="cx-preview">
+        <div class="cx-empty" id="cx-empty" hidden>
+          <i class="fas fa-file-excel"></i>
+          <p data-i18n="certs.load.error">No se pudo cargar el archivo. Verifica que existe en <code>certs/</code></p>
+        </div>
+        <img class="cx-img" id="cx-img" alt="Certificado" hidden />
+        <iframe class="cx-pdf" id="cx-pdf" title="Certificado PDF" hidden></iframe>
+      </div>
+
+      <p class="cx-desc" id="cx-desc"></p>
+
+      <footer class="cx-foot">
+        <a class="cx-btn cx-btn-primary" id="cx-open" href="#" target="_blank" rel="noopener">
+          <i class="fas fa-external-link-alt"></i>
+          <span data-i18n="certs.openTab">Abrir en nueva pestaña</span>
+        </a>
+        <a class="cx-btn cx-btn-ghost" id="cx-download" href="#" download>
+          <i class="fas fa-download"></i>
+          <span data-i18n="certs.download">Descargar</span>
+        </a>
+        <button type="button" class="cx-btn cx-btn-mute" id="cx-done">
+          <i class="fas fa-times"></i>
+          <span data-i18n="certs.close">Cerrar</span>
+        </button>
+      </footer>
+    </div>
+  </div>
 
   <section class="section" id="contacto">
     <div class="container">
@@ -684,6 +698,7 @@
 
   <script src="js/particles.js" defer></script>
   <script src="js/i18n.js" defer></script>
+  <script src="js/certs.js" defer></script>
   <script src="js/sound.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/projects-filter.js" defer></script>

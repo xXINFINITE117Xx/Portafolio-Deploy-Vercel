@@ -109,6 +109,11 @@
       "consulting.features3": "Mentoría",
       "consulting.features4": "Planificación técnica",
       "certs.title": "Certificados",
+      "certs.load.error":
+        "No se pudo cargar el archivo. Verifica que existe en <code>certs/</code>",
+      "certs.openTab": "Abrir en nueva pestaña",
+      "certs.download": "Descargar",
+      "certs.close": "Cerrar",
       "certs.sub": "Formación y credenciales de mi carrera",
       "certs.view": "Ver credencial",
       "certs.placeholder.issuer": "Institución",
@@ -269,6 +274,11 @@
       "consulting.features4": "Technical planning",
       "services.sub": "What I can do for you",
       "certs.title": "Certificates",
+      "certs.load.error":
+        "Could not load the file. Check that it exists in <code>certs/</code>",
+      "certs.openTab": "Open in new tab",
+      "certs.download": "Download",
+      "certs.close": "Close",
       "certs.sub": "Training and credentials from my career",
       "certs.view": "View credential",
       "certs.placeholder.issuer": "Institution",

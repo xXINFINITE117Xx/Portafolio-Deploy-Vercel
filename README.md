@@ -12,6 +12,7 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 │
 │
 ├── apps/
+|   ├── dashboard-analytics
 │   ├── e-commerce
 │   └── task-manager
 │
@@ -35,12 +36,14 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 │
 │
 ├── js/
+│   ├── certs.js
+│   ├── contact.js
+|   ├── i18n.js
 │   ├── main.js
 │   ├── particles.js
 │   ├── projects-filter.js
-│   ├── contact.js
-│   ├── stats.js
-│   └── faq.js
+│   ├── sound.js
+│   └── stats.js
 │
 │
 ├── games/
