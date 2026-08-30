@@ -1,10 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const PUBLIC_KEY = "TU_PUBLIC_KEY";
-  const SERVICE_ID = "TU_SERVICE_ID";
-  const TEMPLATE_ID = "TU_TEMPLATE_ID";
-
-  if (typeof emailjs !== "undefined" && PUBLIC_KEY !== "TU_PUBLIC_KEY") {
-    emailjs.init(PUBLIC_KEY);
+  // ====== CONFIG EMAILJS - TUS DATOS REALES ======
+  const PUBLIC_KEY = "2huM6p7GTbcU0piHC";
+  const SERVICE_ID = "service_9afijun";
+  const TEMPLATE_ID = "template_5qs75zl";
+  // ===============================================
+  if (typeof emailjs !== "undefined" && PUBLIC_KEY) {
+    try {
+      emailjs.init(PUBLIC_KEY);
+      console.log("EmailJS inicializado OK");
+    } catch (e) {
+      console.error("Error init EmailJS:", e);
+    }
+  } else {
+    console.warn("EmailJS no cargado. Revisa el CDN en <head>");
   }
 
   const form = document.getElementById("contact-form");
@@ -13,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!form) return;
 
-  // Validación en tiempo real
   const fields = {
     name: {
       el: form.querySelector("#name"),
@@ -56,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Validar todos
     let valid = true;
     Object.values(fields).forEach(({ el, validate }) => {
       if (!el) return;
@@ -72,29 +78,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Si no hay EmailJS configurado, simular éxito (demo)
-    if (PUBLIC_KEY === "TU_PUBLIC_KEY" || typeof emailjs === "undefined") {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML =
-        '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-      setTimeout(() => {
-        showStatus(
-          "¡Mensaje enviado correctamente! (modo demo — configura EmailJS para producción)",
-          "success",
-        );
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML =
-          '<i class="fas fa-paper-plane"></i> Enviar Mensaje';
-      }, 1200);
+    // Si EmailJS no está cargado, modo demo
+    if (typeof emailjs === "undefined") {
+      showStatus("EmailJS no cargado. Revisa tu conexión.", "error");
       return;
     }
 
     submitBtn.disabled = true;
+    const originalText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
 
     try {
-      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form);
+      // sendForm lee los name="name", "email", etc de tu form
+      const result = await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form);
+      console.log("EmailJS OK:", result.status, result.text);
       showStatus(
         "¡Mensaje enviado correctamente! Te responderé pronto.",
         "success",
@@ -102,20 +99,35 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
     } catch (err) {
       console.error("EmailJS error:", err);
-      showStatus(
-        "Hubo un error al enviar. Intenta de nuevo o escríbeme directamente.",
-        "error",
-      );
+      // Mensaje más útil según error
+      if (err.text && err.text.includes("template")) {
+        showStatus(
+          "Error: Revisa que el TEMPLATE_ID coincida con EmailJS.",
+          "error",
+        );
+      } else if (err.text && err.text.includes("service")) {
+        showStatus(
+          "Error: Revisa que el SERVICE_ID coincida con EmailJS.",
+          "error",
+        );
+      } else {
+        showStatus(
+          "Hubo un error al enviar. Escríbeme directo a davidgaonahenao@gmail.com",
+          "error",
+        );
+      }
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensaje';
+      submitBtn.innerHTML = originalText;
     }
   });
 
   function showStatus(msg, type) {
     if (!statusEl) return;
     statusEl.textContent = msg;
-    statusEl.className = "form-status " + type;
+    statusEl.className = "form-status " + type + " visible";
+    // Scroll al status en móvil
+    statusEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
     setTimeout(() => {
       statusEl.className = "form-status";
       statusEl.textContent = "";

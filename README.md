@@ -9,6 +9,12 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 ```
 /
 ├── index.html
+|
+|
+├── certs/
+|   ├── Certificado_Programación_Basica.jpg
+|   ├── Certificado_Python.jpg
+|   └── Certificado_Tecnologo_adso.jpg
 │
 │
 ├── apps/

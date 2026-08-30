@@ -18,6 +18,7 @@
       "nav.stats": "Estadísticas",
       "nav.faq": "FAQ",
       "nav.contact": "Contacto",
+      "nav.logo": "Portafolio",
       "hero.bio":
         "Soy un apasionado entusiasta de la tecnología especializado en desarrollo web, Diseño gráfico y soluciones digitales. Me encanta aprender de nuevas tecnologías y aplicar mis habilidades para crear proyectos innovadores.",
       "hero.cta": "Ver Proyectos",
@@ -178,6 +179,7 @@
       "nav.stats": "Stats",
       "nav.faq": "FAQ",
       "nav.contact": "Contact",
+      "nav.logo": "Portfolio",
       "hero.bio":
         "I'm a passionate tech enthusiast specializing in web development, graphic design, and digital solutions. I love learning new technologies and applying my skills to create innovative projects.",
       "hero.cta": "View Projects",
