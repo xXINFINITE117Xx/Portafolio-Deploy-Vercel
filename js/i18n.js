@@ -51,6 +51,16 @@
       "exp.sportfull.desc":
         "Plataforma orientada a la gestión deportiva de fútbol. El sistema permite administrar canchas, crear y gestionar perfiles de jugadores, ofrecer planes VIP para clientes, publicar ofertas y coordinar eventos deportivos en un solo lugar.",
       "exp.personal.title": "Desarrollo independiente",
+      "exp.maxfilm.badge": "Proyecto personal",
+      "exp.maxfilm.title": "MaxFilm - Plataforma de Películas",
+      "exp.maxfilm.role": "Desarrollador Front-End",
+      "exp.maxfilm.desc":
+        "Desarrollo de una página web dedicada a la exploración de películas, donde los usuarios pueden ver trailers oficiales, leer sinopsis y descripciones detalladas.",
+      "exp.maxfilm.features1": "Reproducción de trailers",
+      "exp.maxfilm.features2": "Ficha y descripción",
+      "exp.maxfilm.features3": "Búsqueda por género",
+      "exp.maxfilm.features4": "Diseño responsive",
+      "exp.maxfilm.tag4": "UI Cinematográfica",
       "exp.personal.desc":
         "Construcción de aplicaciones web, juegos y dashboards (E-Commerce, Task Manager, Analytics) aplicando MySQL, PostMan, Java, React y APIs, con enfoque en experiencia de usuario y estética moderna.",
       "exp.sub": "Formación y proyectos reales en el SENA",
@@ -117,6 +127,7 @@
       "certs.close": "Cerrar",
       "certs.sub": "Formación y credenciales de mi carrera",
       "certs.view": "Ver credencial",
+      "certs.verified": "Verificado",
       "certs.placeholder.issuer": "Institución",
       "certs.placeholder.name": "Nombre del certificado",
       "certs.placeholder.desc":
@@ -228,6 +239,16 @@
       "exp.sportfull.tag3": "Business logic",
       "exp.sportfull.tag4": "Team collaboration",
       "exp.personal.badge": "Ongoing",
+      "exp.maxfilm.badge": "Personal project",
+      "exp.maxfilm.title": "MaxFilm - Movie Platform",
+      "exp.maxfilm.role": "Front-End Developer",
+      "exp.maxfilm.desc":
+        "Development of a web platform for movie exploration, where users can watch official trailers, read synopsis and detailed descriptions.",
+      "exp.maxfilm.features1": "Trailer playback",
+      "exp.maxfilm.features2": "Movie details",
+      "exp.maxfilm.features3": "Search by genre",
+      "exp.maxfilm.features4": "Responsive design",
+      "exp.maxfilm.tag4": "Cinematic UI",
       "exp.personal.desc":
         "Building web applications, games, and dashboards (E-Commerce, Task Manager, Analytics) using MySQL, PostMan, Java, React, and APIs, with a focus on user experience and modern aesthetics.",
       "exp.personal.date": "Personal projects",
@@ -283,6 +304,7 @@
       "certs.close": "Close",
       "certs.sub": "Training and credentials from my career",
       "certs.view": "View credential",
+      "certs.verified": "Verified",
       "certs.placeholder.issuer": "Institution",
       "certs.placeholder.name": "Certificate name",
       "certs.placeholder.desc":

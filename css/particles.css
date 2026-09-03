@@ -10,19 +10,123 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.85;
+  filter: blur(0.3px) contrast(1.2);
+  animation: canvasPulse 8s ease-in-out infinite;
 }
 
+@keyframes canvasPulse {
+
+  0%,
+  100% {
+    opacity: 0.75;
+    filter: blur(0.3px) brightness(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    filter: blur(0px) brightness(1.15);
+  }
+}
+
+/* Scanlines - efecto CRT */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(0deg,
+  background:
+    repeating-linear-gradient(0deg,
       transparent,
       transparent 2px,
-      rgba(0, 0, 0, 0.03) 2px,
-      rgba(0, 0, 0, 0.03) 4px);
+      rgba(0, 255, 209, 0.02) 2px,
+      rgba(0, 255, 209, 0.02) 3px),
+    repeating-linear-gradient(90deg,
+      transparent,
+      transparent 80px,
+      rgba(255, 0, 122, 0.015) 80px,
+      rgba(255, 0, 122, 0.015) 81px);
   pointer-events: none;
   z-index: 1;
-  opacity: 0.4;
+  opacity: 0.6;
+  animation: scanMove 10s linear infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* Vignette cyberpunk - oscurece bordes para profundidad */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+      transparent 60%,
+      rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Brillo ambiental que se mueve - efecto neón */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%,
+      rgba(0, 255, 209, 0.08) 0%,
+      transparent 50%),
+    radial-gradient(circle at 70% 80%,
+      rgba(255, 0, 122, 0.06) 0%,
+      transparent 50%);
+  pointer-events: none;
+  animation: ambientMove 15s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes ambientMove {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-5%, -5%) rotate(3deg);
+  }
+}
+
+/* Optimización móvil - apaga efectos pesados */
+@media (max-width: 768px) {
+  #particles-canvas {
+    opacity: 0.4;
+    filter: none;
+    animation: none;
+  }
+
+  body::after {
+    animation: none;
+    opacity: 0.3;
+  }
+
+  body::before,
+  .hero::after {
+    display: none;
+  }
+}
+
+/* Reduce motion para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+
+  #particles-canvas,
+  body::after,
+  .hero::after {
+    animation: none !important;
+  }
 }
