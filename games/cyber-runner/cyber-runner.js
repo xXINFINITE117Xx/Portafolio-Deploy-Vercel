@@ -275,12 +275,17 @@
   });
 
   function fitCanvas() {
-    const scale =
-      Math.min(window.innerWidth / W, window.innerHeight / H) * 0.95;
-    canvas.style.width = W * scale + "px";
-    canvas.style.height = H * scale + "px";
+    const pad = window.innerWidth < 600 ? 0 : 16;
+    const availW = Math.max(200, window.innerWidth - pad * 2);
+    const availH = Math.max(160, window.innerHeight - pad * 2);
+    const scale = Math.min(availW / W, availH / H);
+    canvas.style.width = Math.floor(W * scale) + "px";
+    canvas.style.height = Math.floor(H * scale) + "px";
   }
   window.addEventListener("resize", fitCanvas);
+  window.addEventListener("orientationchange", () =>
+    setTimeout(fitCanvas, 120),
+  );
   fitCanvas();
   loop();
 })();

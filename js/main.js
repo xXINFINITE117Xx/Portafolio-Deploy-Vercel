@@ -1,3 +1,7 @@
+/**
+ * main.js — Navegación, menú móvil, animaciones de entrada, cursor y preloader
+ */
+
 document.addEventListener("DOMContentLoaded", () => {
   // ----- Preloader -----
   const preloader = document.getElementById("preloader");
@@ -30,24 +34,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("nav-links");
 
+  function setNavOpen(isOpen) {
+    if (!hamburger || !navLinks) return;
+    navLinks.classList.toggle("open", isOpen);
+    hamburger.classList.toggle("active", isOpen);
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    hamburger.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    document.body.classList.toggle("nav-open", isOpen);
+  }
+
   if (hamburger && navLinks) {
-    hamburger.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("open");
-      hamburger.classList.toggle("active", isOpen);
-      hamburger.setAttribute("aria-expanded", String(isOpen));
-      hamburger.setAttribute(
-        "aria-label",
-        isOpen ? "Cerrar menú" : "Abrir menú",
-      );
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setNavOpen(!navLinks.classList.contains("open"));
     });
 
-    // Cerrar al hacer click en un link
     navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-        hamburger.classList.remove("active");
-        hamburger.setAttribute("aria-expanded", "false");
-      });
+      link.addEventListener("click", () => setNavOpen(false));
+    });
+
+    // Cerrar al tocar el backdrop / fuera del panel
+    document.addEventListener("click", (e) => {
+      if (!navLinks.classList.contains("open")) return;
+      if (navLinks.contains(e.target) || hamburger.contains(e.target)) return;
+      setNavOpen(false);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") setNavOpen(false);
     });
   }
 
@@ -68,6 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ----- Intersection Observer para fade-in -----
+
+  // Cerrar menú móvil al pasar a desktop
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && navLinks && hamburger) {
+      navLinks.classList.remove("open");
+      hamburger.classList.remove("active");
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.setAttribute("aria-label", "Abrir menú");
+    }
+  });
+
   const fadeEls = document.querySelectorAll(".fade-in");
   const observer = new IntersectionObserver(
     (entries) => {

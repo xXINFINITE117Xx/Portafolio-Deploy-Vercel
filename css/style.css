@@ -1841,47 +1841,90 @@ button {
   overflow: hidden;
 }
 
+@media (max-width: 576px) {
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cx-foot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cx-btn-mute {
+    margin-left: 0;
+  }
+
+  .cx-preview {
+    max-height: 42vh;
+  }
+
+  .cx-pdf {
+    height: 42vh;
+  }
+}
+
 /* =========================================================
    RESPONSIVE
-   Breakpoints (mobile-first, según guía de dispositivos):
-   · 352–480  → smartphones pequeños
-   · 481–768  → tablets y smartphones grandes
-   · 769–920  → tablets landscape / laptops compactos
-   · 921–1279 → laptops, tablets landscape grandes, desktop pequeño
-   · 1280+    → desktop y monitores grandes
+   Breakpoints:
+   · ≤480   smartphones pequeños
+   · 481–768 tablets / smartphones grandes  (menú hamburguesa)
+   · 769–920 tablets landscape / laptops compactos
+   · 921–1279 laptops / desktop pequeño
+   · 1280+  desktop grande
    ========================================================= */
 
-/* ---------- Base móvil (≤480 / default) ---------- */
+/* ---------- Defaults mobile-first ---------- */
 .container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+  box-sizing: border-box;
 }
 
 .nav-container {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
+.nav-logo {
+  flex-shrink: 0;
+  z-index: 1102;
+}
+
+/* Controles (idioma + sonido) siempre visibles a la derecha del logo en móvil */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  margin-right: 0.35rem;
+  flex-shrink: 0;
+  z-index: 1102;
+}
+
+.ctrl-btn {
+  min-width: 38px;
+  height: 38px;
+}
+
+/* Drawer oculto por defecto en móvil (se abre con .open) */
 .nav-links {
   display: none;
-  /* menú off-canvas en móvil; se activa abajo */
 }
 
 .hamburger {
   display: flex;
-}
-
-.nav-controls {
-  margin-left: auto;
-  margin-right: 0.35rem;
-  gap: 0.35rem;
-}
-
-.ctrl-btn {
-  min-width: 36px;
-  height: 34px;
-  padding: 0 0.5rem;
 }
 
 .projects-grid {
@@ -1917,6 +1960,7 @@ button {
 }
 
 .projects-filter {
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
@@ -1936,57 +1980,165 @@ button {
 .footer-links {
   flex-wrap: wrap;
   justify-content: center;
+  gap: 0.75rem 1rem;
 }
 
-/* Menú hamburguesa (hasta 768px inclusive) */
+/* =========================================================
+   MENÚ HAMBURGUESA — hasta 768px
+   Layout barra: [Logo] ........ [ES][🔊] [☰]
+   ========================================================= */
 @media (max-width: 768px) {
-  .nav-links {
-    display: flex;
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: min(82vw, 300px);
-    height: 100vh;
-    height: 100dvh;
-    background: rgba(10, 15, 27, 0.98);
-    -webkit-backdrop-filter: blur(18px);
-    backdrop-filter: blur(18px);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 5rem 1.5rem 2rem;
-    gap: 1.1rem;
-    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    border-left: 1px solid rgba(0, 255, 209, 0.15);
-    z-index: 1000;
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
+  .navbar {
+    padding: 0.65rem 0;
   }
 
-  .nav-links.open {
-    right: 0;
+  .navbar.scrolled {
+    padding: 0.5rem 0;
   }
 
-  .nav-links a {
-    font-size: 1.05rem;
-    width: 100%;
-    padding: 0.35rem 0;
+  .nav-container {
+    position: relative;
+    min-height: 48px;
   }
 
   .hamburger {
     display: flex;
-    z-index: 1001;
+  }
+
+  /* Panel lateral */
+  .nav-links {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(86vw, 320px);
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 5.5rem 1.35rem 2rem;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    background: linear-gradient(165deg,
+        rgba(12, 18, 32, 0.98) 0%,
+        rgba(10, 15, 27, 0.99) 100%);
+    -webkit-backdrop-filter: blur(20px) saturate(1.15);
+    backdrop-filter: blur(20px) saturate(1.15);
+    border-left: 1px solid rgba(0, 255, 209, 0.2);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.55);
+    z-index: 1100;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateX(105%);
+    visibility: hidden;
+    transition:
+      transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0.35s;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .nav-links a {
+    display: block;
+    width: 100%;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .nav-links a::after {
+    display: none;
+    /* sin underline en drawer */
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--accent-cyan);
+    background: rgba(0, 255, 209, 0.08);
+    border-color: rgba(0, 255, 209, 0.25);
+    box-shadow: 0 0 16px rgba(0, 255, 209, 0.1);
+  }
+
+  /* Backdrop oscuro detrás del menú */
+  body:has(.nav-links.open)::before,
+  body.nav-open::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 8, 16, 0.62);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    z-index: 1090;
+    animation: nav-backdrop-in 0.3s ease;
+  }
+
+  body:has(.nav-links.open),
+  body.nav-open {
+    overflow: hidden;
+  }
+}
+
+@keyframes nav-backdrop-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
 /* =========================================================
-   352–480px — Smaller smartphones
+   ≤480px — Smaller smartphones
    ========================================================= */
 @media (max-width: 480px) {
 
   .container,
   .nav-container {
-    padding-left: 0.85rem;
-    padding-right: 0.85rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .nav-controls {
+    margin-right: 0.25rem;
+    gap: 0.3rem;
+  }
+
+  .ctrl-btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 0.4rem;
+    font-size: 0.7rem;
+  }
+
+  .hamburger {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-links {
+    width: min(92vw, 300px);
+    padding-top: 5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.98rem;
+    padding: 0.75rem 0.85rem;
   }
 
   .section {
@@ -1999,11 +2151,10 @@ button {
 
   .section-subtitle {
     font-size: 0.9rem;
-    padding: 0 0.25rem;
   }
 
   .hero {
-    padding-top: 5.5rem;
+    padding-top: 5.25rem;
     min-height: 0;
   }
 
@@ -2018,7 +2169,6 @@ button {
 
   .hero-bio {
     font-size: 0.92rem;
-    padding: 0 0.15rem;
   }
 
   .btn {
@@ -2037,27 +2187,16 @@ button {
   }
 
   .skill-icon {
-    font-size: 1.6rem;
-  }
-
-  .skill-name {
-    font-size: 0.78rem;
+    font-size: 1.55rem;
   }
 
   .stats-grid {
+    grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 
   .stat-card {
     padding: 1.25rem 1rem;
-  }
-
-  .stat-number {
-    font-size: 1.75rem;
-  }
-
-  .timeline-line {
-    left: 16px;
   }
 
   .timeline-item {
@@ -2071,31 +2210,21 @@ button {
     font-size: 0.8rem;
   }
 
+  .timeline-line {
+    left: 16px;
+  }
+
   .timeline-features {
     grid-template-columns: 1fr;
-  }
-
-  .timeline-card {
-    padding: 1rem;
-  }
-
-  .project-card .project-body {
-    padding: 1rem;
   }
 
   .service-card {
     padding: 1.35rem 1.1rem;
   }
 
-  .faq-question {
-    font-size: 0.9rem;
-    padding: 0.9rem 1rem;
-  }
-
   .contact-form input,
   .contact-form textarea {
     font-size: 16px;
-    /* evita zoom iOS */
   }
 
   .cx-dialog {
@@ -2163,46 +2292,88 @@ button {
     grid-template-columns: 1fr 1fr;
   }
 
-  .contact-wrapper {
-    grid-template-columns: 1fr;
+  .nav-links {
+    width: min(70vw, 340px);
   }
 }
 
 /* =========================================================
-   769–920px — Laptops compactos / tablets landscape
+   769px+ — Nav horizontal (sin hamburguesa)
    ========================================================= */
-@media (min-width: 769px) and (max-width: 920px) {
+@media (min-width: 769px) {
   .hamburger {
-    display: none;
+    display: none !important;
   }
 
   .nav-links {
-    display: flex;
+    display: flex !important;
     position: static;
+    transform: none !important;
+    visibility: visible !important;
     width: auto;
     height: auto;
+    max-height: none;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     padding: 0;
-    gap: 0.75rem 1rem;
+    gap: 0.65rem 1rem;
     background: transparent;
     border: none;
     box-shadow: none;
     overflow: visible;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
   }
 
   .nav-links a {
-    font-size: 0.8rem;
+    width: auto;
+    font-size: 0.82rem;
+    font-weight: 500;
+    padding: 0.2rem 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .nav-links a::after {
+    display: block;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: transparent;
+    border-color: transparent;
+    box-shadow: none;
   }
 
   .nav-controls {
-    margin-left: 0.5rem;
+    margin-left: 0.75rem;
+    margin-right: 0;
   }
 
+  body:has(.nav-links.open)::before {
+    display: none;
+  }
+}
+
+/* =========================================================
+   769–920px — Laptops compactos
+   ========================================================= */
+@media (min-width: 769px) and (max-width: 920px) {
   .container {
     max-width: 900px;
-    padding-left: 1.35rem;
-    padding-right: 1.35rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .nav-links {
+    gap: 0.5rem 0.85rem;
+  }
+
+  .nav-links a {
+    font-size: 0.78rem;
   }
 
   .section {
@@ -2236,35 +2407,21 @@ button {
 }
 
 /* =========================================================
-   921–1279px — Laptops, tablets landscape grandes, desktop chico
+   921–1279px — Laptops / desktop pequeño
    ========================================================= */
 @media (min-width: 921px) and (max-width: 1279px) {
-  .hamburger {
-    display: none;
-  }
-
-  .nav-links {
-    display: flex;
-    position: static;
-    width: auto;
-    height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0;
-    gap: 0.85rem 1.15rem;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .nav-links a {
-    font-size: 0.84rem;
-  }
-
   .container {
     max-width: 1100px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+
+  .nav-links {
+    gap: 0.75rem 1.1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.84rem;
   }
 
   .section {
@@ -2297,38 +2454,23 @@ button {
 }
 
 /* =========================================================
-   1280+ — Larger desktops and monitors
+   1280+ — Desktop grande
    ========================================================= */
 @media (min-width: 1280px) {
-  .hamburger {
-    display: none;
-  }
 
-  .nav-links {
-    display: flex;
-    position: static;
-    width: auto;
-    height: auto;
-    flex-direction: row;
-    padding: 0;
-    gap: 1.4rem;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-  }
-
-  .nav-links a {
-    font-size: 0.88rem;
-  }
-
-  .container {
+  .container,
+  .nav-container {
     max-width: 1200px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
-  .nav-container {
-    max-width: 1200px;
+  .nav-links {
+    gap: 1.35rem;
+  }
+
+  .nav-links a {
+    font-size: 0.88rem;
   }
 
   .section {
@@ -2362,7 +2504,6 @@ button {
   }
 }
 
-/* Muy anchos: limitar hero text */
 @media (min-width: 1440px) {
 
   .container,
@@ -2371,7 +2512,7 @@ button {
   }
 }
 
-/* Evitar desbordes comunes en todos los anchos */
+/* Evitar desbordes */
 img,
 video,
 iframe,
@@ -2390,12 +2531,21 @@ svg {
   min-width: 0;
 }
 
-/* GPU / rendimiento */
 @media (prefers-reduced-motion: no-preference) {
 
   .btn-primary,
   .logo-text,
   .section-title {
     will-change: filter;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-links {
+    transition: none;
+  }
+
+  body:has(.nav-links.open)::before {
+    animation: none;
   }
 }

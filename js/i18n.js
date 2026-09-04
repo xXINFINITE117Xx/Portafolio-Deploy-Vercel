@@ -51,7 +51,7 @@
       "exp.sportfull.desc":
         "Plataforma orientada a la gestión deportiva de fútbol. El sistema permite administrar canchas, crear y gestionar perfiles de jugadores, ofrecer planes VIP para clientes, publicar ofertas y coordinar eventos deportivos en un solo lugar.",
       "exp.personal.title": "Desarrollo independiente",
-      "exp.maxfilm.badge": "Proyecto personal",
+      "exp.maxfilm.badge": "Proyecto Colaborativo",
       "exp.maxfilm.title": "MaxFilm - Plataforma de Películas",
       "exp.maxfilm.role": "Desarrollador Front-End",
       "exp.maxfilm.desc":
@@ -239,7 +239,7 @@
       "exp.sportfull.tag3": "Business logic",
       "exp.sportfull.tag4": "Team collaboration",
       "exp.personal.badge": "Ongoing",
-      "exp.maxfilm.badge": "Personal project",
+      "exp.maxfilm.badge": "Collaborative Project",
       "exp.maxfilm.title": "MaxFilm - Movie Platform",
       "exp.maxfilm.role": "Front-End Developer",
       "exp.maxfilm.desc":

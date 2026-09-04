@@ -673,13 +673,186 @@
 
   // Resize
   function fit() {
-    const s = Math.min(window.innerWidth / W, window.innerHeight / H) * 0.96;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    let padX = 0;
+    let padY = 0;
+    if (vw <= 480) {
+      padX = 0;
+      padY = 0;
+    } else if (vw <= 768) {
+      padX = 12;
+      padY = 12;
+    } else if (vw <= 920) {
+      padX = 20;
+      padY = 16;
+    } else if (vw <= 1279) {
+      padX = 28;
+      padY = 24;
+    } else {
+      padX = 40;
+      padY = 32;
+    }
+    const availW = Math.max(180, vw - padX * 2);
+    const availH = Math.max(200, vh - padY * 2);
+    const s = Math.min(availW / W, availH / H);
     canvas.style.width = Math.floor(W * s) + "px";
     canvas.style.height = Math.floor(H * s) + "px";
   }
   window.addEventListener("resize", fit);
+  window.addEventListener("orientationchange", () => setTimeout(fit, 120));
   fit();
 
   // Arranque: dibujar fondo vacío hasta que inicie
   loop();
+
+  // ---------- Fondo: partículas de naves (fuera del canvas de juego) ----------
+  (function initBgShips() {
+    const bg = document.getElementById("bg-ships");
+    if (!bg) return;
+    const bctx = bg.getContext("2d");
+    const reduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function countForWidth() {
+      const w = window.innerWidth;
+      if (reduced) return 8;
+      if (w <= 480) return 12;
+      if (w <= 768) return 18;
+      if (w <= 920) return 22;
+      if (w <= 1279) return 28;
+      return 34;
+    }
+
+    let ships = [];
+
+    function resize() {
+      bg.width = window.innerWidth;
+      bg.height = window.innerHeight;
+    }
+
+    function makeShip() {
+      const type = Math.floor(Math.random() * 3);
+      const scale = 0.45 + Math.random() * 0.85;
+      return {
+        x: Math.random() * bg.width,
+        y: Math.random() * bg.height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: 0.15 + Math.random() * 0.45,
+        scale: scale,
+        type: type,
+        rot: (Math.random() - 0.5) * 0.25,
+        alpha: 0.12 + Math.random() * 0.28,
+        color: Math.random() > 0.55 ? "#00FFD1" : "#FF007A",
+        blink: Math.random() * Math.PI * 2,
+      };
+    }
+
+    function rebuild() {
+      const n = countForWidth();
+      ships = [];
+      for (let i = 0; i < n; i++) ships.push(makeShip());
+    }
+
+    function drawShip(s) {
+      const x = s.x;
+      const y = s.y;
+      const sc = s.scale;
+      bctx.save();
+      bctx.translate(x, y);
+      bctx.rotate(s.rot);
+      bctx.globalAlpha = s.alpha * (0.75 + 0.25 * Math.sin(s.blink));
+      bctx.fillStyle = s.color;
+      bctx.shadowColor = s.color;
+      bctx.shadowBlur = 8 * sc;
+
+      if (s.type === 0) {
+        // Nave invasora rectangular con alas
+        const w = 22 * sc;
+        const h = 14 * sc;
+        bctx.fillRect(-w / 2, -h / 2 + 2 * sc, w, h - 2 * sc);
+        bctx.fillRect(-w / 2 - 3 * sc, -2 * sc, 4 * sc, 5 * sc);
+        bctx.fillRect(w / 2 - 1 * sc, -2 * sc, 4 * sc, 5 * sc);
+        bctx.fillStyle = "rgba(10,15,27,0.85)";
+        bctx.fillRect(-5 * sc, -3 * sc, 3 * sc, 3 * sc);
+        bctx.fillRect(2 * sc, -3 * sc, 3 * sc, 3 * sc);
+      } else if (s.type === 1) {
+        // Diamante / saucer
+        const w = 18 * sc;
+        const h = 12 * sc;
+        bctx.beginPath();
+        bctx.moveTo(0, -h / 2);
+        bctx.lineTo(w / 2 + 2 * sc, 0);
+        bctx.lineTo(0, h / 2);
+        bctx.lineTo(-w / 2 - 2 * sc, 0);
+        bctx.closePath();
+        bctx.fill();
+        bctx.fillStyle = "rgba(10,15,27,0.85)";
+        bctx.fillRect(-2.5 * sc, -2 * sc, 5 * sc, 4 * sc);
+      } else {
+        // Nave jugador estilizada (triángulo)
+        const w = 16 * sc;
+        const h = 18 * sc;
+        bctx.beginPath();
+        bctx.moveTo(0, -h / 2);
+        bctx.lineTo(w / 2, h / 2);
+        bctx.lineTo(0, h / 2 - 4 * sc);
+        bctx.lineTo(-w / 2, h / 2);
+        bctx.closePath();
+        bctx.fill();
+      }
+
+      // Estela suave
+      bctx.globalAlpha = s.alpha * 0.35;
+      bctx.shadowBlur = 0;
+      bctx.fillStyle = s.color;
+      bctx.fillRect(-1.5 * sc, 8 * sc, 3 * sc, 6 * sc + Math.random() * 4 * sc);
+
+      bctx.restore();
+    }
+
+    function loop() {
+      bctx.clearRect(0, 0, bg.width, bg.height);
+
+      // Estrellas de fondo sutiles
+      bctx.fillStyle = "rgba(255,255,255,0.25)";
+      for (let i = 0; i < 40; i++) {
+        const sx = (i * 97 + 13) % bg.width;
+        const sy =
+          (i * 53 + Date.now() * 0.01 * (0.2 + (i % 5) * 0.05)) % bg.height;
+        bctx.globalAlpha = 0.15 + (i % 3) * 0.1;
+        bctx.fillRect(sx, sy, 1 + (i % 2), 1 + (i % 2));
+      }
+      bctx.globalAlpha = 1;
+
+      ships.forEach(function (s) {
+        s.x += s.vx;
+        s.y += s.vy;
+        s.blink += 0.04;
+        if (s.y > bg.height + 30) {
+          s.y = -30;
+          s.x = Math.random() * bg.width;
+        }
+        if (s.x < -40) s.x = bg.width + 20;
+        if (s.x > bg.width + 40) s.x = -20;
+        drawShip(s);
+      });
+
+      requestAnimationFrame(loop);
+    }
+
+    resize();
+    rebuild();
+    if (!reduced) {
+      requestAnimationFrame(loop);
+    } else {
+      ships.forEach(drawShip);
+    }
+
+    window.addEventListener("resize", function () {
+      resize();
+      rebuild();
+    });
+  })();
 })();

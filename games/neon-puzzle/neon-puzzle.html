@@ -3,59 +3,73 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Neon Puzzle | Portafolio Gamer</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="neon-puzzle.css" />
-  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
-  <link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../../assets/favicon-16.png" />
-  <link rel="shortcut icon" href="../../assets/favicon.ico" />
 </head>
 
 <body>
+  <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
   <div id="app">
-    <h1 class="title">NEON PUZZLE</h1>
-    <div class="controls">
-      <label>Dificultad:
-        <select id="difficulty">
-          <option value="3">3x3 Facil</option>
-          <option value="4" selected>4x4 Normal</option>
-          <option value="5">5x5 Dificil</option>
+    <header class="top-bar">
+      <h1 class="title">NEON PUZZLE</h1>
+      <a href="../../index.html" class="back-link">← Portafolio</a>
+    </header>
+
+    <div class="toolbar">
+      <label class="field">
+        <span>Dificultad</span>
+        <select id="difficulty" aria-label="Dificultad">
+          <option value="3">3×3 Fácil</option>
+          <option value="4" selected>4×4 Normal</option>
+          <option value="5">5×5 Difícil</option>
         </select>
       </label>
-      <button id="shuffle-btn" class="btn">MEZCLAR</button>
-      <button id="pause-btn" class="btn btn-outline" title="P / Esc">PAUSA</button>
+      <button type="button" id="shuffle-btn" class="btn">MEZCLAR</button>
+      <button type="button" id="pause-btn" class="btn btn-outline" title="P / Esc">PAUSA</button>
     </div>
+
     <div class="stats">
-      <span>Movimientos: <strong id="moves">0</strong></span>
-      <span>Tiempo: <strong id="timer">00:00</strong></span>
-    </div>
-    <div id="board" class="board"></div>
-    <p class="hint">Pausa: tecla P o ESC</p>
-
-    <div id="pause-modal" class="modal hidden">
-      <div class="modal-content">
-        <h2>PAUSA</h2>
-        <p>El juego está en pausa</p>
-        <button id="resume-btn" class="btn">CONTINUAR</button>
-        <button id="pause-shuffle-btn" class="btn btn-outline">MEZCLAR</button>
-      </div>
+      <div class="stat"><span class="stat-label">Movimientos</span><strong id="moves">0</strong></div>
+      <div class="stat"><span class="stat-label">Tiempo</span><strong id="timer">00:00</strong></div>
     </div>
 
-    <div id="win-modal" class="modal hidden">
-      <div class="modal-content">
-        <h2>VICTORIA!</h2>
-        <p>Movimientos: <span id="win-moves">0</span></p>
-        <p>Tiempo: <span id="win-time">00:00</span></p>
-        <p class="hi">Mejor: <span id="win-hi">-</span></p>
-        <button id="play-again" class="btn">JUGAR DE NUEVO</button>
-      </div>
+    <div class="board-wrap">
+      <div id="board" class="board" role="grid" aria-label="Tablero del puzzle"></div>
     </div>
-    <a href="../../index.html" class="back-link">Volver al portafolio</a>
+
+    <p class="hint">Toca una ficha junto al hueco · <kbd>P</kbd> / <kbd>ESC</kbd> pausa</p>
   </div>
-  <canvas id="confetti"></canvas>
+
+  <!-- Pausa -->
+  <div id="pause-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+    <div class="modal-card">
+      <div class="pause-icon" aria-hidden="true">⏸</div>
+      <h2 id="pause-title">PAUSA</h2>
+      <p class="modal-sub">El tablero está congelado</p>
+      <button type="button" id="resume-btn" class="btn btn-block">CONTINUAR</button>
+      <button type="button" id="pause-shuffle-btn" class="btn btn-outline btn-block">MEZCLAR</button>
+      <p class="modal-hint"><kbd>P</kbd> o <kbd>ESC</kbd> para reanudar</p>
+      <a href="../../index.html" class="back-link">← Volver al portafolio</a>
+    </div>
+  </div>
+
+  <!-- Victoria -->
+  <div id="win-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <h2>¡VICTORIA!</h2>
+      <p>Movimientos: <span id="win-moves">0</span></p>
+      <p>Tiempo: <span id="win-time">00:00</span></p>
+      <p class="hi">Mejor: <span id="win-hi">—</span></p>
+      <button type="button" id="play-again" class="btn btn-block">JUGAR DE NUEVO</button>
+    </div>
+  </div>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
   <script src="neon-puzzle.js"></script>
+  <script src="../../js/particles.js"></script>
 </body>
 
 </html>
