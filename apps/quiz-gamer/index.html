@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Programación Gamer | Portafolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+    <link rel="stylesheet" href="quiz.css" />
+</head>
+
+<body>
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="app">
+        <header class="header">
+            <a href="../../index.html" class="back" aria-label="Volver al portafolio" title="Volver al portafolio"><i
+                    class="fas fa-arrow-left" aria-hidden="true"></i></a>
+            <h1 class="logo">QUIZ <span>GAMER</span></h1>
+            <div class="lives" id="lives" aria-label="Vidas">♥ ♥ ♥</div>
+        </header>
+
+        <section id="screen-start" class="screen">
+            <p class="kicker">HTML · CSS · JAVASCRIPT</p>
+            <h2>Programación<br />Gamer Edition</h2>
+            <p class="lead">10 preguntas · tiempo por pregunta · 3 vidas · ranking local</p>
+            <label class="field">Nombre jugador
+                <input type="text" id="player-name" maxlength="16" placeholder="NeonCoder" />
+            </label>
+            <button type="button" id="btn-start" class="btn">INICIAR</button>
+            <div class="rank-box">
+                <h3>Ranking</h3>
+                <ol id="rank-list">
+                    <li class="empty">Sin récords aún</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="screen-play" class="screen hidden">
+            <div class="hud">
+                <span>Q <strong id="q-num">1</strong>/10</span>
+                <span class="timer" id="timer">15</span>
+                <span>PTS <strong id="score">0</strong></span>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="category" id="category">JS</p>
+            <h2 class="question" id="question">¿?</h2>
+            <div class="answers" id="answers"></div>
+        </section>
+
+        <section id="screen-end" class="screen hidden">
+            <h2 id="end-title">GAME OVER</h2>
+            <p class="end-score">Puntuación: <strong id="end-score">0</strong></p>
+            <p class="end-msg" id="end-msg"></p>
+            <button type="button" id="btn-retry" class="btn">REINTENTAR</button>
+            <a href="../../index.html" class="back-link">← Portafolio</a>
+        </section>
+    </div>
+    <script src="quiz.js"></script>
+</body>
+
+</html>

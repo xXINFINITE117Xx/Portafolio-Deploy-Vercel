@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown + Code Playground | Portafolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+    <link rel="stylesheet" href="playground.css" />
+</head>
+
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header-left">
+                <a href="../../index.html" class="back" title="Volver al inicio" aria-label="Volver al inicio"><i
+                        class="fas fa-arrow-left" aria-hidden="true"></i></a>
+                <h1 class="logo">MD <span>PLAYGROUND</span></h1>
+            </div>
+            <div class="actions">
+                <button type="button" id="btn-sample" class="tool-btn" title="Ejemplo"><i
+                        class="fas fa-file-code"></i></button>
+                <button type="button" id="btn-copy" class="tool-btn" title="Copiar markdown"><i
+                        class="fas fa-copy"></i></button>
+                <button type="button" id="btn-clear" class="tool-btn" title="Limpiar"><i
+                        class="fas fa-trash"></i></button>
+            </div>
+        </header>
+
+        <div class="workspace">
+            <section class="pane editor-pane">
+                <div class="pane-label"><i class="fas fa-code"></i> Markdown</div>
+                <textarea id="editor" spellcheck="false" aria-label="Editor markdown"
+                    placeholder="Escribe markdown aquí..."></textarea>
+            </section>
+            <section class="pane preview-pane">
+                <div class="pane-label"><i class="fas fa-eye"></i> Preview</div>
+                <article id="preview" class="preview prose"></article>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <span id="stats">0 caracteres</span>
+            <span class="hint">Guarda automático en este navegador</span>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="playground.js"></script>
+</body>
+
+</html>

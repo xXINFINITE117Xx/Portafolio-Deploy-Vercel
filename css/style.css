@@ -110,6 +110,18 @@ button {
   position: relative;
 }
 
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: var(--gradient);
+  opacity: 0.5;
+}
+
 .section-title {
   font-family: var(--font-title);
   font-size: clamp(1.8rem, 4vw, 2.8rem);

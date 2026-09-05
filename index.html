@@ -156,6 +156,20 @@
                   data-i18n="play.btn">Jugar</span></a></div>
           </div>
         </article>
+        <article class="project-card fade-in" data-category="juegos">
+          <div class="project-img"><i class="fas fa-spell-check"></i></div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="Word Search">Sopa de Letras</h3>
+            <div class="project-tags"><span class="tag">Puzzle</span><span class="tag">HTML/CSS</span><span
+                class="tag">JS</span><span class="tag pink">Touch</span></div>
+            <p class="project-desc" data-i18n="Word Search.desc">Encuentra palabras tech en la cuadrícula neón. 8
+              direcciones, 3 dificultades y
+              récord de tiempo.</p>
+            <div class="project-actions"><a href="games/word-search/word-search.html" class="btn btn-primary"
+                target="_blank" rel="noopener"><i class="fas fa-gamepad"></i> <span
+                  data-i18n="play.btn">Jugar</span></a></div>
+          </div>
+        </article>
         <article class="project-card fade-in" data-category="apps">
           <div class="project-img"><i class="fas fa-laptop-code"></i></div>
           <div class="project-body">
@@ -194,6 +208,42 @@
             <div class="project-actions"><a href="apps/task-manager/index.html" class="btn btn-outline" target="_blank"
                 rel="noopener"><i class="fas fa-external-link-alt"></i> <span data-i18n="view.demo.btn">Ver
                   Demo</span></a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="apps">
+          <div class="project-img"><i class="fas fa-cloud-sun"></i></div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="project.climate.title">Clima Cyberpunk</h3>
+            <div class="project-tags"><span class="tag">API</span><span class="tag">OpenWeather</span><span
+                class="tag pink">UI</span></div>
+            <p class="project-desc" data-i18n="project.climate.desc">Clima en tiempo real con fondo que cambia según el cielo. OpenWeather + modo demo
+              visual.</p>
+            <div class="project-actions"><a href="apps/climate/index.html" class="btn btn-outline" target="_blank"
+                rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="apps">
+          <div class="project-img"><i class="fas fa-gamepad"></i></div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="project.quiz.title">Quiz Programación Gamer</h3>
+            <div class="project-tags"><span class="tag">JS</span><span class="tag">HTML/CSS</span><span
+                class="tag pink">Quiz</span></div>
+            <p class="project-desc" data-i18n="project.quiz.desc">Preguntas de JS, HTML y CSS con vidas, temporizador y ranking local. Edición gamer.
+            </p>
+            <div class="project-actions"><a href="apps/quiz-gamer/index.html" class="btn btn-outline" target="_blank"
+                rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
+          </div>
+        </article>
+        <article class="project-card fade-in" data-category="apps">
+          <div class="project-img"><i class="devicon-markdown-plain"></i></div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="project.markdown.title">Markdown Playground</h3>
+            <div class="project-tags"><span class="tag">Markdown</span><span class="tag">Highlight</span><span
+                class="tag pink">Tool</span></div>
+            <p class="project-desc" data-i18n="project.markdown.desc">Editor markdown + preview en vivo con resaltado de código. Ideal como herramienta
+              real.</p>
+            <div class="project-actions"><a href="apps/markdown-playground/index.html" class="btn btn-outline"
+                target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Ver Demo</a></div>
           </div>
         </article>
       </div>
@@ -704,12 +754,16 @@
             </div>
           </div>
           <div class="social-links contact-social-links">
-            <a href="https://github.com/xXINFINITE117Xx" target="_blank" rel="noopener" class="github"
-              aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.instagram.com/davidgaonahenao/" target="_blank" rel="noopener" class="instagram"
-              aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100012821021744" target="_blank" rel="noopener noreferrer"
+              class="facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/davidgaonahenao/" target="_blank" rel="noopener noreferrer"
+              class="instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.linkedin.com/in/david-gaona-b4b71631b/" target="_blank" rel="noopener noreferrer"
               class="linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/xXINFINITE117Xx" target="_blank" rel="noopener noreferrer" class="github"
+              aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.tiktok.com/@davidgaona205" target="_blank" rel="noopener noreferrer" class="tiktok"
+              aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           </div>
         </div>
       </div>
@@ -719,14 +773,15 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <div class="footer-logo">Portafolio</div>
+        <div class="footer-logo" data-i18n="nav.logo">Portafolio</div>
         <div class="footer-links">
           <a href="#inicio" data-i18n="nav.home">Inicio</a>
           <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
           <a href="#certificados" data-i18n="nav.certs">Certificados</a>
           <a href="#contacto" data-i18n="nav.contact">Contacto</a>
         </div>
-        <p class="footer-copy">© 2026 David Gaona. <span>Todos los derechos reservados</span></p>
+        <p class="footer-copy">© 2026 David Gaona. <span data-i18n="footer.copyright">Todos los derechos
+            reservados</span></p>
       </div>
     </div>
   </footer>

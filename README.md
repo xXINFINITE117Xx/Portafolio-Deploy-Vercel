@@ -18,9 +18,12 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 │
 │
 ├── apps/
-|   ├── dashboard-analytics
-│   ├── e-commerce
-│   └── task-manager
+|   ├── climate/
+|   ├── dashboard-analytics/
+│   ├── e-commerce/
+|   ├── markdown-playground/
+|   ├── quiz-gamer/
+│   └── task-manager/
 │
 │
 ├── apps/dashboard-analytics/
@@ -56,8 +59,9 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 │
 ├── games/
 │   ├── cyber-runner/
-│   ├── space-invaders-remix/
-│   └── neon-puzzle/
+│   ├── neon-puzzle/
+|   ├── space-invaders-remix/
+|   └── word-search/
 │
 │
 ├── assets/

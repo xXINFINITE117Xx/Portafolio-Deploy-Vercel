@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clima Cyberpunk | Portafolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+    <link rel="stylesheet" href="climate.css" />
+</head>
+
+<body data-weather="clear">
+    <div class="bg-fx" id="bg-fx" aria-hidden="true"></div>
+    <div class="app">
+        <header class="header">
+            <a href="../../index.html" class="back"><i class="fas fa-arrow-left"></i> Portafolio</a>
+            <h1 class="logo">CLIMA <span>CYBER</span></h1>
+        </header>
+
+        <form class="search" id="search-form">
+            <input type="text" id="city-input" placeholder="Buscar ciudad..." autocomplete="off" aria-label="Ciudad" />
+            <button type="submit" class="btn-search" aria-label="Buscar"><i class="fas fa-search"></i></button>
+            <button type="button" id="geo-btn" class="btn-geo" title="Mi ubicación" aria-label="Ubicación"><i
+                    class="fas fa-location-crosshairs"></i></button>
+        </form>
+
+        <p class="status" id="status">Escribe una ciudad o usa tu ubicación</p>
+
+        <main class="weather-card" id="weather-card" hidden>
+            <div class="wc-top">
+                <div>
+                    <h2 id="city-name">—</h2>
+                    <p id="date-line" class="muted"></p>
+                    <p id="desc" class="desc"></p>
+                </div>
+                <div class="temp-block">
+                    <span class="icon-main" id="icon-main"><i class="fas fa-cloud"></i></span>
+                    <span class="temp" id="temp">--°</span>
+                </div>
+            </div>
+            <div class="metrics">
+                <div class="metric"><i class="fas fa-temperature-half"></i><span>Sensación</span><strong
+                        id="feels">--°</strong>
+                </div>
+                <div class="metric"><i class="fas fa-droplet"></i><span>Humedad</span><strong id="humidity">--%</strong>
+                </div>
+                <div class="metric"><i class="fas fa-wind"></i><span>Viento</span><strong id="wind">-- km/h</strong>
+                </div>
+                <div class="metric"><i class="fas fa-gauge"></i><span>Presión</span><strong id="pressure">--
+                        hPa</strong></div>
+            </div>
+            <div class="forecast" id="forecast"></div>
+        </main>
+
+        <footer class="footer">
+            <p>Demo con datos simulados si no hay API key. Configura tu key gratis en <code>clima.js</code>
+                (OpenWeather).</p>
+        </footer>
+    </div>
+    <script src="climate.js"></script>
+</body>
+
+</html>
