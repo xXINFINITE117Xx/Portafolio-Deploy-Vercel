@@ -1,0 +1,183 @@
+/* Pasos, gráfica, historial, export */
+.steps-card[hidden] {
+  display: none !important;
+}
+
+.steps-list {
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.steps-list li {
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.steps-list .step-title {
+  display: block;
+  color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.steps-list code {
+  font-family: var(--font-mono);
+  background: var(--cyan-dim);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.history-card {
+  max-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-head .card-label {
+  margin-bottom: 0;
+}
+
+.icon-mini {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.icon-mini:hover {
+  color: var(--pink);
+  border-color: var(--pink);
+}
+
+.hist-search {
+  margin: 0.65rem 0;
+  width: 100%;
+  min-height: 40px;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-solid);
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.hist-search:focus {
+  border-color: var(--cyan);
+}
+
+.history-list {
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 80px;
+}
+
+.history-list li {
+  padding: 0.55rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  margin-bottom: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: flex-start;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.history-list li:hover {
+  border-color: var(--border);
+  background: var(--cyan-dim);
+}
+
+.history-list .h-expr {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--cyan);
+  word-break: break-all;
+}
+
+.history-list .h-res {
+  font-size: 0.85rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.history-list .h-time {
+  font-size: 0.68rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.history-foot {
+  margin-top: 0.55rem;
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.graph-card {
+  border-color: var(--border-pink);
+  box-shadow: var(--glow-pink);
+}
+
+#graph-canvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+  background: var(--canvas-bg);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+}
+
+.graph-eq {
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cyan);
+  text-align: center;
+}
+
+.graph-tools {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+@media (max-width: 960px) {
+  .history-card {
+    max-height: 260px;
+  }
+}
+
+@media (min-width: 961px) {
+  .history-card {
+    position: sticky;
+    top: 0.75rem;
+  }
+}
+
+.history-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.history-foot .neon-btn {
+  flex: 1 1 auto;
+  text-align: center;
+}

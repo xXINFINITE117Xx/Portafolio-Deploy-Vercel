@@ -1,0 +1,231 @@
+/* Display, teclado, botones */
+.input-card {
+  border-color: var(--border);
+  box-shadow: var(--glow-cyan), 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.expr-line {
+  font-family: var(--font-mono);
+  font-size: clamp(1.1rem, 3vw, 1.55rem);
+  color: var(--cyan);
+  min-height: 1.6em;
+  word-break: break-word;
+  text-shadow: 0 0 12px var(--display-glow);
+  margin-bottom: 0.35rem;
+}
+
+.result-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.result-line .eq {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--pink);
+  text-shadow: 0 0 10px rgba(255, 45, 149, 0.5);
+}
+
+.result-line .result {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 5vw, 2.4rem);
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--cyan), #fff, var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  word-break: break-word;
+}
+
+.result-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.export-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pad-card {
+  box-shadow: var(--glow-pink), 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.sci-toolbar {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin-bottom: 0.45rem;
+}
+
+.sci-toolbar.bottom {
+  margin-top: 0.45rem;
+  margin-bottom: 0;
+}
+
+.numpad {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.key {
+  min-height: 46px;
+  border-radius: 10px;
+  border: 1px solid var(--key-border);
+  background: var(--key-bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.2s, border-color 0.15s;
+  touch-action: manipulation;
+}
+
+.key:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+.key.fn {
+  color: var(--cyan);
+  font-size: 0.78rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
+.key.op {
+  color: var(--pink);
+  font-weight: 600;
+}
+
+.key.eq {
+  background: linear-gradient(135deg, var(--cyan), var(--pink));
+  color: var(--eq-text);
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 16px rgba(0, 240, 255, 0.35);
+}
+
+.key.ans,
+.key.inv {
+  font-size: 0.75rem;
+  font-family: var(--font-display);
+}
+
+.key.ans {
+  color: var(--pink);
+  border-color: var(--border-pink);
+}
+
+.key.inv {
+  color: var(--cyan);
+}
+
+.key.active-2nd {
+  background: var(--pink-dim);
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+@media (max-width: 560px) {
+  .sci-toolbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .numpad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .key {
+    min-height: 44px;
+    font-size: 0.92rem;
+  }
+
+  .key.fn {
+    font-size: 0.68rem;
+  }
+
+  .result-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .sci-toolbar {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .numpad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .numpad .key.ans,
+  .numpad .key.inv {
+    font-size: 0.65rem;
+  }
+
+  .key {
+    min-height: 44px;
+    font-size: 0.95rem;
+  }
+
+  .key.fn {
+    font-size: 0.62rem;
+  }
+
+  .basic-keypad {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.4rem;
+  }
+
+  .basic-keypad .key {
+    min-height: 52px;
+    font-size: 1.1rem;
+  }
+
+  .expr-line {
+    font-size: clamp(1rem, 4.5vw, 1.35rem);
+  }
+
+  .result-line .result {
+    font-size: clamp(1.35rem, 6vw, 1.85rem);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .sci-toolbar {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .numpad {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .pad-card {
+    max-width: 520px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .basic-pad {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}

@@ -1,0 +1,358 @@
+/* Secciones de gráfica 2D / 3D y navegación */
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+  padding: 0.35rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--glow-cyan);
+}
+
+.sec-btn {
+  flex: 1 1 auto;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+
+.sec-btn i {
+  font-size: 0.95rem;
+}
+
+.sec-btn:hover {
+  color: var(--cyan);
+  border-color: var(--border);
+  background: var(--cyan-dim);
+}
+
+.sec-btn.active {
+  color: var(--eq-text);
+  background: linear-gradient(90deg, var(--cyan), var(--pink));
+  border-color: transparent;
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.35);
+  font-weight: 700;
+}
+
+.section-panel {
+  display: none;
+  animation: cardIn 0.35s ease both;
+}
+
+.section-panel.active {
+  display: block;
+}
+
+.workspace-calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.75fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.col-main,
+.col-side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.graph-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.graph-controls .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 0.65rem;
+}
+
+.graph-controls .field input {
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel-solid);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.graph-controls .field input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-dim);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.chip {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--cyan);
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.chip:hover {
+  background: var(--cyan-dim);
+}
+
+.range-row {
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.neon-btn.block {
+  width: 100%;
+  margin-bottom: 0.65rem;
+  text-align: center;
+  justify-content: center;
+}
+
+.graph-view #graph-canvas,
+.graph-view #graph3d-canvas {
+  width: 100%;
+  height: auto;
+  min-height: 280px;
+  display: block;
+  border-radius: 12px;
+  background: var(--canvas-bg);
+  border: 1px solid rgba(0, 240, 255, 0.15);
+  cursor: grab;
+}
+
+.graph-view #graph3d-canvas:active {
+  cursor: grabbing;
+}
+
+.hint-3d {
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.35rem;
+}
+
+.ocr-section-wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+
+  .workspace-calc,
+  .graph-layout,
+  .ocr-section-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .sec-btn {
+    min-width: calc(50% - 0.3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .sec-btn span {
+    display: none;
+  }
+
+  .sec-btn {
+    min-width: 0;
+    flex: 1;
+    padding: 0.75rem;
+  }
+
+  .sec-btn i {
+    font-size: 1.1rem;
+  }
+}
+
+/* Básica + Estadística */
+.workspace-basic {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(200px, 0.6fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.basic-keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.basic-keypad .key {
+  min-height: 56px;
+  font-size: 1.2rem;
+  border-radius: 14px;
+}
+
+.basic-keypad .key.eq {
+  grid-column: span 2;
+}
+
+.basic-display .expr-line {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+}
+
+.tip-card .tip-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.tip-card kbd {
+  font-family: var(--font-mono);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  margin-right: 0.35rem;
+}
+
+.stats-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 380px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.stats-controls textarea {
+  width: 100%;
+  min-height: 110px;
+  padding: 0.65rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--panel-solid);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  resize: vertical;
+  outline: none;
+}
+
+.stats-controls textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-dim);
+}
+
+.stats-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.65rem;
+}
+
+.stat-pill {
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, rgba(0, 240, 255, 0.08), rgba(255, 45, 149, 0.06));
+}
+
+.stat-pill .label {
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--muted);
+  font-family: var(--font-display);
+  margin-bottom: 0.25rem;
+}
+
+.stat-pill .value {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Contraste cards — respetan tema */
+.input-card,
+.pad-card {
+  background: var(--panel);
+}
+
+.sec-btn {
+  min-width: 100px;
+}
+
+@media (max-width: 960px) {
+
+  .workspace-basic,
+  .stats-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .graph-layout,
+  .stats-layout,
+  .ocr-section-wrap,
+  .workspace-basic,
+  .workspace-calc {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .graph-view #graph-canvas,
+  .graph-view #graph3d-canvas {
+    min-height: 220px;
+  }
+
+  .stats-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .history-card {
+    max-height: 220px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .stats-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .history-card {
+    max-height: 280px;
+  }
+}

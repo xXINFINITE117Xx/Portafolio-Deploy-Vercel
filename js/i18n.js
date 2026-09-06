@@ -85,6 +85,9 @@
         "Interfaz de tienda online moderna con carrito, filtros y diseño mobile-first.",
       "descriptión.taskmanager":
         "Gestor de tareas con categorías, prioridades y sincronización offline.",
+      "project.calculator.title": "Calculadora Pro",
+      "project.calculator.desc":
+        "Calculadora avanzada: álgebra, física, estadística, pasos detallados, historial, PNG/PDF e imagen a mano.",
       "exp.title": "Experiencia",
       "exp.sena.title": "Servicio Nacional de Aprendizaje (SENA)",
       "exp.sena.desc":
@@ -346,6 +349,9 @@
       "contact.role": "Collaborator in system development",
       "contact.desc":
         "Platform focused on football sports management. The system allows managing fields, creating and managing player profiles, offering VIP plans for clients, publishing offers, and coordinating sports events in one place.",
+      "project.calculator.title": "Pro Calculator",
+      "project.calculator.desc":
+        "Advanced calculator: algebra, physics, statistics, detailed steps, history, PNG/PDF and hand-drawn image.",
       "skills.title": "Skills",
       "skills.sub": "Technologies and tools I work with",
       "services.title": "Services",

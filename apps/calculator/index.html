@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Calculadora Científica Avanzada</title>
+  <link rel="icon" href="assets/img/icon-calc.svg" type="image/svg+xml" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/calculator.css" />
+  <link rel="stylesheet" href="css/ocr.css" />
+  <link rel="stylesheet" href="css/modal.css" />
+  <link rel="stylesheet" href="css/graph.css" />
+</head>
+
+<body>
+  <div class="fx-bg" aria-hidden="true"></div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon"><i class="fas fa-atom"></i></span>
+        <div>
+          <h1>CALCULADORA CIENTÍFICA AVANZADA</h1>
+          <p class="brand-sub">Básica · Científica · Estadística · 2D/3D · OCR</p>
+        </div>
+      </div>
+      <div class="top-meta">
+        <span class="badge online"><i class="fas fa-circle"></i> ONLINE · v3.3.0</span>
+        <label class="theme-switch" title="Cambiar tema" id="theme-label">
+          <span id="theme-label-text">MODO OSCURO</span>
+          <input type="checkbox" id="theme-toggle" checked />
+          <span class="switch"></span>
+        </label>
+        <a href="../../index.html" class="back-btn" title="Portafolio"><i class="fas fa-arrow-left"></i></a>
+      </div>
+    </header>
+
+    <!-- Navegación de secciones -->
+    <nav class="section-nav" role="tablist" aria-label="Secciones">
+      <button type="button" class="sec-btn active" data-section="basic" role="tab" aria-selected="true">
+        <i class="fas fa-grip"></i><span>Básica</span>
+      </button>
+      <button type="button" class="sec-btn" data-section="calc" role="tab" aria-selected="false">
+        <i class="fas fa-square-root-variable"></i><span>Científica</span>
+      </button>
+      <button type="button" class="sec-btn" data-section="stats" role="tab" aria-selected="false">
+        <i class="fas fa-chart-bar"></i><span>Estadística</span>
+      </button>
+      <button type="button" class="sec-btn" data-section="graph2d" role="tab" aria-selected="false">
+        <i class="fas fa-chart-line"></i><span>Gráfica 2D</span>
+      </button>
+      <button type="button" class="sec-btn" data-section="graph3d" role="tab" aria-selected="false">
+        <i class="fas fa-cube"></i><span>Gráfica 3D</span>
+      </button>
+      <button type="button" class="sec-btn" data-section="ocr" role="tab" aria-selected="false">
+        <i class="fas fa-camera"></i><span>OCR</span>
+      </button>
+    </nav>
+
+
+    <!-- ========== SECCIÓN: BÁSICA ========== -->
+    <div id="section-basic" class="section-panel active">
+      <div class="workspace workspace-basic">
+        <div class="col-main">
+          <section class="card input-card basic-display">
+            <div class="card-label">CALCULADORA BÁSICA</div>
+            <div class="expr-line" id="basic-expr">0</div>
+            <div class="result-line">
+              <span class="eq">=</span>
+              <span class="result" id="basic-result">0</span>
+            </div>
+          </section>
+          <section class="card pad-card basic-pad">
+            <div class="basic-keypad" id="basic-keypad"></div>
+          </section>
+        </div>
+        <aside class="col-side">
+          <section class="card tip-card">
+            <div class="card-label">ATAJOS</div>
+            <ul class="tip-list">
+              <li><kbd>Enter</kbd> = calcular</li>
+              <li><kbd>Esc</kbd> = limpiar</li>
+              <li><kbd>⌫</kbd> = borrar</li>
+              <li>Operaciones: + − × ÷ % √</li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ========== SECCIÓN: CALCULADORA ========== -->
+    <div id="section-calc" class="section-panel">
+      <div class="workspace workspace-calc">
+        <div class="col-main">
+          <section class="card input-card">
+            <div class="card-label">ENTRADA / INPUT</div>
+            <div class="expr-line" id="display-expr">0</div>
+            <div class="result-line">
+              <span class="eq">=</span>
+              <span class="result" id="display-result">0</span>
+            </div>
+            <div class="result-meta">
+              <span id="display-meta">Resultado · Precisión: 64-bit</span>
+            </div>
+          </section>
+
+          <section class="card pad-card">
+            <div class="card-label">PANEL CIENTÍFICO</div>
+            <div class="sci-toolbar">
+              <button type="button" class="key fn" data-act="2nd" id="btn-2nd">2nd</button>
+              <button type="button" class="key fn" data-act="deg" id="btn-deg">deg/rad</button>
+              <button type="button" class="key fn" data-act="sin">sin</button>
+              <button type="button" class="key fn" data-act="cos">cos</button>
+              <button type="button" class="key fn" data-act="tan">tan</button>
+              <button type="button" class="key fn" data-act="ln">ln</button>
+            </div>
+            <div class="sci-toolbar">
+              <button type="button" class="key fn" data-act="log10">log₁₀</button>
+              <button type="button" class="key fn" data-act="log2">log₂</button>
+              <button type="button" class="key fn" data-act="exp">eˣ</button>
+              <button type="button" class="key fn" data-act="pow10">10ˣ</button>
+              <button type="button" class="key fn" data-act="sqrt">√</button>
+              <button type="button" class="key fn" data-act="sq">x²</button>
+            </div>
+            <div class="sci-toolbar">
+              <button type="button" class="key fn" data-act="pi">π</button>
+              <button type="button" class="key fn" data-act="e">e</button>
+              <button type="button" class="key fn" data-act="pow">xʸ</button>
+              <button type="button" class="key fn" data-act="invx">y√x</button>
+              <button type="button" class="key op" data-act="(">(</button>
+              <button type="button" class="key op" data-act=")">)</button>
+            </div>
+            <div class="numpad">
+              <button type="button" class="key" data-act="7">7</button>
+              <button type="button" class="key" data-act="8">8</button>
+              <button type="button" class="key" data-act="9">9</button>
+              <button type="button" class="key op" data-act="/">÷</button>
+              <button type="button" class="key ans" data-act="ans">ANS</button>
+              <button type="button" class="key" data-act="4">4</button>
+              <button type="button" class="key" data-act="5">5</button>
+              <button type="button" class="key" data-act="6">6</button>
+              <button type="button" class="key op" data-act="*">×</button>
+              <button type="button" class="key inv" data-act="inv">INV</button>
+              <button type="button" class="key" data-act="1">1</button>
+              <button type="button" class="key" data-act="2">2</button>
+              <button type="button" class="key" data-act="3">3</button>
+              <button type="button" class="key op" data-act="-">−</button>
+              <button type="button" class="key" data-act="back">⌫</button>
+              <button type="button" class="key" data-act="0">0</button>
+              <button type="button" class="key" data-act=".">.</button>
+              <button type="button" class="key" data-act="clear">C</button>
+              <button type="button" class="key op" data-act="+">+</button>
+              <button type="button" class="key eq" data-act="eq">=</button>
+            </div>
+            <div class="sci-toolbar bottom">
+              <button type="button" class="key fn" data-act="sum">Σ</button>
+              <button type="button" class="key fn" data-act="int">∫dx</button>
+              <button type="button" class="key fn" data-act="fact">FACT</button>
+              <button type="button" class="key fn" data-act="mod">MOD</button>
+              <button type="button" class="key fn" data-act="abs">|x|</button>
+              <button type="button" class="key fn" data-act="pct">%</button>
+            </div>
+          </section>
+
+          <section class="card steps-card" id="steps-card" hidden>
+            <div class="card-label">PASOS DETALLADOS</div>
+            <ol id="steps-list" class="steps-list"></ol>
+          </section>
+        </div>
+
+        <aside class="col-side">
+          <section class="card history-card">
+            <div class="history-head">
+              <div class="card-label">HISTORIAL</div>
+              <button type="button" id="btn-hist-clear" class="icon-mini" title="Limpiar"><i
+                  class="fas fa-trash"></i></button>
+            </div>
+            <input type="search" id="hist-search" class="hist-search" placeholder="Buscar en historial…" />
+            <ul id="history-list" class="history-list"></ul>
+            <div class="history-foot">
+              <button type="button" id="btn-hist-png" class="neon-btn cyan sm"><i class="fas fa-image"></i> PNG</button>
+              <button type="button" id="btn-hist-pdf" class="neon-btn pink sm"><i class="fas fa-file-pdf"></i>
+                PDF</button>
+              <button type="button" id="btn-hist-csv" class="neon-btn cyan sm">CSV</button>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+
+    <!-- ========== SECCIÓN: ESTADÍSTICA ========== -->
+    <div id="section-stats" class="section-panel">
+      <div class="stats-layout">
+        <section class="card stats-controls">
+          <div class="card-label">DATOS ESTADÍSTICOS</div>
+          <label class="field">
+            <span>Lista de números (coma o espacio)</span>
+            <textarea id="stats-input" rows="4" placeholder="12, 15, 18, 20, 22, 25, 18, 20"></textarea>
+          </label>
+          <div class="chip-row" id="stats-ops">
+            <button type="button" class="chip" data-stat="all">Todo</button>
+            <button type="button" class="chip" data-stat="mean">Media</button>
+            <button type="button" class="chip" data-stat="median">Mediana</button>
+            <button type="button" class="chip" data-stat="mode">Moda</button>
+            <button type="button" class="chip" data-stat="stdev">Desv. est.</button>
+            <button type="button" class="chip" data-stat="variance">Varianza</button>
+            <button type="button" class="chip" data-stat="range">Rango</button>
+          </div>
+          <button type="button" id="btn-stats-run" class="neon-btn cyan block">CALCULAR ESTADÍSTICA</button>
+        </section>
+        <section class="card stats-results">
+          <div class="card-label">RESULTADOS</div>
+          <div id="stats-summary" class="stats-summary">
+            <p class="muted">Ingresa datos y pulsa calcular.</p>
+          </div>
+          <div class="card-label stats-steps-heading">PASOS</div>
+          <ol id="stats-steps" class="steps-list"></ol>
+        </section>
+      </div>
+    </div>
+
+    <!-- ========== SECCIÓN: GRÁFICA 2D ========== -->
+    <div id="section-graph2d" class="section-panel">
+      <div class="graph-layout">
+        <section class="card graph-controls">
+          <div class="card-label">FUNCIÓN y = f(x)</div>
+          <label class="field">
+            <span>Expresión en x</span>
+            <input type="text" id="fn2d-input" value="sin(x)" placeholder="sin(x) · x^2 · log(x+1)" />
+          </label>
+          <div class="chip-row" id="fn2d-presets">
+            <button type="button" class="chip" data-fn="sin(x)">sin(x)</button>
+            <button type="button" class="chip" data-fn="cos(x)">cos(x)</button>
+            <button type="button" class="chip" data-fn="x^2">x²</button>
+            <button type="button" class="chip" data-fn="x^3-x">x³−x</button>
+            <button type="button" class="chip" data-fn="exp(-x^2)">e^(−x²)</button>
+            <button type="button" class="chip" data-fn="1/x">1/x</button>
+          </div>
+          <div class="range-row">
+            <label class="field">x min<input type="number" id="x-min" value="-6.28" step="0.1" /></label>
+            <label class="field">x max<input type="number" id="x-max" value="6.28" step="0.1" /></label>
+          </div>
+          <button type="button" id="btn-plot-2d" class="neon-btn cyan block">GRAFICAR 2D</button>
+          <div class="graph-tools">
+            <button type="button" id="btn-zoom-in" class="neon-btn cyan sm">ZOOM +</button>
+            <button type="button" id="btn-zoom-out" class="neon-btn pink sm">ZOOM −</button>
+            <button type="button" id="btn-reset-2d" class="neon-btn pink sm">RESET</button>
+          </div>
+        </section>
+        <section class="card graph-view">
+          <div class="card-label">GRÁFICA 2D</div>
+          <canvas id="graph-canvas" width="800" height="420"></canvas>
+          <p class="graph-eq" id="graph-eq">y = sin(x)</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- ========== SECCIÓN: GRÁFICA 3D ========== -->
+    <div id="section-graph3d" class="section-panel">
+      <div class="graph-layout">
+        <section class="card graph-controls">
+          <div class="card-label">SUPERFICIE z = f(x, y)</div>
+          <label class="field">
+            <span>Expresión en x, y</span>
+            <input type="text" id="fn3d-input" value="sin(sqrt(x^2+y^2))" placeholder="sin(sqrt(x^2+y^2))" />
+          </label>
+          <div class="chip-row" id="fn3d-presets">
+            <button type="button" class="chip" data-fn="sin(sqrt(x^2+y^2))">ripple</button>
+            <button type="button" class="chip" data-fn="x^2-y^2">silla</button>
+            <button type="button" class="chip" data-fn="exp(-(x^2+y^2))">gauss</button>
+            <button type="button" class="chip" data-fn="sin(x)*cos(y)">sin·cos</button>
+            <button type="button" class="chip" data-fn="x*y">xy</button>
+          </div>
+          <div class="range-row">
+            <label class="field">Rango<input type="number" id="range-3d" value="3" min="1" max="10"
+                step="0.5" /></label>
+            <label class="field">Resolución<input type="number" id="res-3d" value="28" min="12" max="50"
+                step="1" /></label>
+          </div>
+          <button type="button" id="btn-plot-3d" class="neon-btn pink block">GRAFICAR 3D</button>
+          <p class="hint-3d">Arrastra en el canvas para rotar · rueda para zoom</p>
+        </section>
+        <section class="card graph-view">
+          <div class="card-label">GRÁFICA 3D</div>
+          <canvas id="graph3d-canvas" width="800" height="420"></canvas>
+          <p class="graph-eq" id="graph3d-eq">z = sin(√(x²+y²))</p>
+        </section>
+      </div>
+    </div>
+
+    <!-- ========== SECCIÓN: OCR ========== -->
+    <div id="section-ocr" class="section-panel">
+      <div class="ocr-section-wrap">
+        <section class="card ocr-card" id="ocr-drop">
+          <div class="card-label">RECONOCIMIENTO OCR</div>
+          <div class="ocr-tabs">
+            <button type="button" class="ocr-tab active" data-ocr="upload">IMAGEN</button>
+            <button type="button" class="ocr-tab" data-ocr="draw">MANO</button>
+          </div>
+          <div id="ocr-upload" class="ocr-panel">
+            <input type="file" id="img-input" accept="image/*" hidden />
+            <div class="ocr-inner">
+              <i class="fas fa-cloud-arrow-up"></i>
+              <p><strong>Arrastra una imagen aquí para OCR</strong></p>
+              <p class="ocr-hint">PNG, JPG · Ctrl+V para pegar</p>
+              <button type="button" id="btn-upload" class="neon-btn cyan sm">SUBIR IMAGEN</button>
+            </div>
+            <img id="img-preview" alt="" hidden />
+          </div>
+          <div id="ocr-draw" class="ocr-panel hidden">
+            <div class="canvas-wrap">
+              <canvas id="draw-canvas" aria-label="Escribe la operación"></canvas>
+            </div>
+            <div class="draw-tools">
+              <button type="button" id="btn-draw-clear" class="neon-btn pink sm">LIMPIAR</button>
+            </div>
+          </div>
+          <canvas id="ocr-process" hidden></canvas>
+          <div class="ocr-result-row" id="ocr-row" hidden>
+            <input type="text" id="ocr-result" placeholder="Texto reconocido…" />
+            <button type="button" id="btn-ocr-run" class="neon-btn cyan sm">OCR</button>
+            <button type="button" id="btn-ocr-solve" class="neon-btn pink sm">RESOLVER</button>
+          </div>
+          <p class="ocr-status" id="ocr-status"></p>
+        </section>
+        <section class="card">
+          <div class="card-label">RESULTADO OCR</div>
+          <div class="expr-line" id="ocr-display-expr">—</div>
+          <div class="result-line">
+            <span class="eq">=</span>
+            <span class="result" id="ocr-display-result">—</span>
+          </div>
+          <p class="ocr-hint">Tras resolver, puedes volver a <strong>Calculadora</strong> para ver pasos e historial.
+          </p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/13.2.0/math.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/nerdamer.core.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/Algebra.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/nerdamer@1.1.13/Solve.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+  <script src="js/utils.js"></script>
+  <script src="js/steps.js"></script>
+  <script src="js/history.js"></script>
+  <script src="js/algebra.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/statistics.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/draw.js"></script>
+  <script src="js/ocr.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/graph3d.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

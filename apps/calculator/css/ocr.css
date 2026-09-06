@@ -1,0 +1,131 @@
+/* Zona drag & drop + preview + manuscrita */
+.ocr-card {
+  border-style: dashed;
+  border-color: var(--border-pink);
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.ocr-card.dragover {
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+  box-shadow: var(--glow-cyan);
+}
+
+.ocr-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+}
+
+.ocr-tab {
+  min-height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+}
+
+.ocr-tab.active {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  background: var(--cyan-dim);
+}
+
+.ocr-panel.hidden {
+  display: none !important;
+}
+
+.ocr-inner i {
+  font-size: 1.75rem;
+  color: var(--pink);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.ocr-inner p {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.ocr-hint {
+  color: var(--muted);
+  font-size: 0.75rem !important;
+}
+
+.ocr-hotkey {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+#img-preview {
+  max-width: 100%;
+  max-height: 120px;
+  margin: 0.65rem auto 0;
+  border-radius: 8px;
+  display: block;
+}
+
+.canvas-wrap {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 0.5rem;
+  background: #fff;
+}
+
+#draw-canvas {
+  display: block;
+  width: 100%;
+  height: 160px;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.draw-tools {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.ocr-result-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  align-items: center;
+}
+
+.ocr-result-row input {
+  flex: 1 1 160px;
+  min-height: 40px;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel-solid);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.ocr-result-row input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px var(--cyan-dim);
+}
+
+.ocr-status {
+  margin-top: 0.45rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  min-height: 1.1em;
+}
