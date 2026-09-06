@@ -18,6 +18,7 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 │
 │
 ├── apps/
+|   ├── calculator/
 |   ├── climate/
 |   ├── dashboard-analytics/
 │   ├── e-commerce/
@@ -121,6 +122,7 @@ Sin configurar, el formulario funciona en **modo demo** (simula envío exitoso).
 | Cyber Runner | Espacio / Click / Tap para saltar |
 | Space Invaders | Flechas o A/D mover, Espacio disparar |
 | Neon Puzzle | Click / Tap en piezas adyacentes |
+| Sopa de Letras | Click / Arrastra Diagonal, Verical, Adelante, Atras |
 
 ## Licencia
 
@@ -164,6 +166,7 @@ Uso libre para portafolio personal.
 
 - Neon Puzzle (#): Puzzle deslizante neón. Elige dificultad 3×3, 4×4 o 5×5 y completa el tablero.
 - Space Invaders Remix(#):Clásico reinventado con estética neón, power-ups, barreras destructibles y múltiples niveles.
+- Cyber Runner: Infinite runner cyberpunk. Salta obstáculos neón, acumula distancia y supera tu récord.
 
 ## 📫 Contacto
 
