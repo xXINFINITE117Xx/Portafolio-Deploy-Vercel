@@ -2,7 +2,7 @@
 
 Portafolio web profesional con estética **cyberpunk / gamer**, construido con HTML5, CSS3 y JavaScript vanilla.
 
-¡Hola! Soy aprendiz de **Análisis y Desarrollo de Software**, apasionado por la programación y la creación de soluciones tecnológicas que generen impacto. Actualmente estoy en formación, pero ya cuento con experiencia práctica en tecnologías del frontend, backend, bases de datos y pruebas de APIs.
+¡Hola! Soy aprendiz Tecnologo de **Análisis y Desarrollo de Software**, apasionado por la programación y la creación de soluciones tecnológicas que generen impacto. Actualmente estoy en formación, pero ya cuento con experiencia práctica en tecnologías del frontend, backend, bases de datos y pruebas de APIs.
 
 ## Estructura
 
@@ -59,9 +59,12 @@ Portafolio web profesional con estética **cyberpunk / gamer**, construido con H
 │
 │
 ├── games/
+|   ├── crucigrama/
 │   ├── cyber-runner/
-│   ├── neon-puzzle/
+│   ├── puzzle/
+|   ├── shooter/
 |   ├── space-invaders-remix/
+|   ├── tetris
 |   └── word-search/
 │
 │

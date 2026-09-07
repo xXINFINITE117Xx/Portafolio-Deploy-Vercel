@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Neon Shooter | Portafolio Gamer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="shooter.css" />
+</head>
+
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>SHOOTER</h1>
+      <a href="../../index.html" class="back">← Portafolio</a>
+    </header>
+    <div class="hud">
+      <span>Score <strong id="score">0</strong></span>
+      <span>Vidas <strong id="lives">3</strong></span>
+      <span>Nivel <strong id="level">1</strong></span>
+      <button type="button" id="btn-pause" class="btn">PAUSA</button>
+    </div>
+    <div class="stage-wrap">
+      <canvas id="game" width="480" height="640"></canvas>
+      <div class="touch" id="touch-controls">
+        <button type="button" id="btn-left">◀</button>
+        <button type="button" id="btn-fire">●</button>
+        <button type="button" id="btn-right">▶</button>
+      </div>
+    </div>
+    <p class="help">← → mover · Espacio disparar · P pausa</p>
+  </div>
+  <div id="overlay" class="overlay">
+    <div class="modal">
+      <p class="eyebrow">MINI-GAME</p>
+      <h2 id="ov-title">SHOOTER</h2>
+      <p id="ov-msg">Destruye los drones neón antes de que lleguen abajo</p>
+      <ul>
+        <li>Mueve la nave y dispara</li>
+        <li>3 vidas · sube de nivel</li>
+        <li>Controles táctiles en móvil</li>
+      </ul>
+      <button type="button" id="btn-start" class="btn">INICIAR</button>
+      <a href="../../index.html" class="link-back">← Volver al portafolio</a>
+    </div>
+  </div>
+  <script src="shooter.js"></script>
+</body>
+
+</html>

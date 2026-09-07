@@ -70,12 +70,19 @@
       "ws.timeLabel": "Tiempo:",
       "ws.best": "Mejor:",
       "ws.playAgain": "JUGAR DE NUEVO",
-      "project.climate.title": "Clima Cyberpunk",
+      "project.climate.title": "Clima ",
       "project.climate.desc":
         "Clima en tiempo real con fondo que cambia según el cielo. OpenWeather + modo demo visual.",
       "project.quiz.title": "Quiz Programación Gamer",
       "project.quiz.desc":
         "Preguntas de JS, HTML y CSS con vidas, temporizador y ranking local. Edición gamer.",
+      "Crossword.title": "Crucigrama",
+      "Crossword.desc":
+        "Crucigrama temático de programación. Pistas, verificación y modo pista con estética cyberpunk.",
+      "description.desc.shooter":
+        "Shooter vertical neón. Esquiva drones, dispara, sube de nivel y sobrevive el mayor tiempo posible.",
+      "description.desc.tetris":
+        "Clásico estilo Atari con glow cyberpunk. Rota piezas, limpia líneas y sube el nivel.",
       "project.markdown.title": "Markdown Playground",
       "project.markdown.desc":
         "Editor markdown + preview en vivo con resaltado de código. Ideal como herramienta real.",
@@ -173,17 +180,6 @@
       "certs.close": "Cerrar",
       "certs.sub": "Formación y credenciales de mi carrera",
       "certs.view": "Ver credencial",
-      "certs.verified": "Verificado",
-      "certs.placeholder.issuer": "Institución",
-      "certs.placeholder.name": "Nombre del certificado",
-      "certs.placeholder.desc":
-        "Descripción breve. Reemplaza este texto con tu certificado real.",
-      "certs.sena.name": "Programa de formación técnica",
-      "certs.sena.desc":
-        "Certificado o título obtenido en el SENA. Completa los datos de tu carrera aquí.",
-      "certs.add.title": "Agregar certificado",
-      "certs.add.desc":
-        "Duplica esta tarjeta en el HTML e inserta el nombre, institución, año y enlace de tu credencial.",
       "stats.title": "Estadísticas",
       "stats.sub": "Números que hablan",
       "stats.projects": "Proyectos Completados",
@@ -288,12 +284,19 @@
       "ws.timeLabel": "Time:",
       "ws.best": "Best:",
       "ws.playAgain": "PLAY AGAIN",
-      "project.climate.title": "Cyberpunk Weather",
+      "project.climate.title": "Clima",
       "project.climate.desc":
         "Real-time weather with background changing according to the sky. OpenWeather + visual demo mode.",
       "project.quiz.title": "Gamer Programming Quiz",
       "project.quiz.desc":
         "JS, HTML and CSS questions with lives, timer and local ranking. Gamer edition.",
+      "Crossword.title": "Crossword",
+      "Crossword.desc":
+        "Crossword themed on programming. Clues, verification and hint mode with cyberpunk aesthetics.",
+      "description.desc.shooter":
+        "Vertical neon shooter. Dodge drones, shoot, level up and survive as long as possible.",
+      "description.desc.tetris":
+        "Classic Atari style with cyberpunk glow. Rotate pieces, clear lines and level up.",
       "project.markdown.title": "Markdown Playground",
       "project.markdown.desc":
         "Markdown editor + live preview with code highlighting. Ideal as a real tool.",

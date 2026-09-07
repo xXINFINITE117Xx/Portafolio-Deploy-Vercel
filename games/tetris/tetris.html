@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Neon Tetris | Portafolio Gamer</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="tetris.css" />
+</head>
+
+<body>
+  <div id="app">
+    <header class="top">
+      <h1>TETRIS</h1>
+      <a href="../../index.html" class="back">← Portafolio</a>
+    </header>
+    <div class="hud">
+      <span>Score <strong id="score">0</strong></span>
+      <span>Líneas <strong id="lines">0</strong></span>
+      <span>Nivel <strong id="level">1</strong></span>
+      <button type="button" id="btn-pause" class="btn">PAUSA</button>
+    </div>
+    <div class="main">
+      <canvas id="game" width="300" height="600"></canvas>
+      <div class="side">
+        <div class="panel">
+          <h3>SIGUIENTE</h3>
+          <canvas id="next" width="120" height="120"></canvas>
+        </div>
+        <div class="touch" id="touch">
+          <button type="button" data-act="left">◀</button>
+          <button type="button" data-act="rot">⟳</button>
+          <button type="button" data-act="right">▶</button>
+          <button type="button" data-act="drop">▼</button>
+        </div>
+      </div>
+    </div>
+    <p class="help">← → mover · ↑ rotar · ↓ bajar · Espacio hard drop · P pausa</p>
+  </div>
+  <div id="overlay" class="overlay">
+    <div class="modal">
+      <p class="eyebrow">MINI-GAME</p>
+      <h2 id="ov-title">TETRIS</h2>
+      <p id="ov-msg">Clásico estilo Atari con glow cyberpunk en la cuadrícula neón</p>
+      <ul>
+        <li>Rota y encaja las piezas</li>
+        <li>Limpia líneas para subir de nivel</li>
+        <li>Controles táctiles en móvil</li>
+      </ul>
+      <button type="button" id="btn-start" class="btn">INICIAR</button>
+      <a href="../../index.html" class="link-back">← Volver al portafolio</a>
+    </div>
+  </div>
+  <script src="tetris.js"></script>
+</body>
+
+</html>
