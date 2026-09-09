@@ -790,15 +790,15 @@
             <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..." required></textarea>
             <span class="form-error" data-i18n="contact.message.error">Escribe un mensaje</span>
           </div>
-          <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fas fa-paper-plane"></i> <span
-              data-i18n="contact.submit">Enviar Mensaje</span></button>
+          <button type="submit" class="btn btn-primary" id="submit-btn"><i class="fas fa-paper-plane"></i> Enviar
+            Mensaje</button>
           <div class="form-status" id="form-status" role="alert"></div>
         </form>
         <div class="contact-info fade-in">
           <div class="info-card">
             <div class="info-icon"><i class="fas fa-envelope"></i></div>
             <div class="info-text">
-              <h4>Email</h4>
+              <h4 data-i18n="contact.email">Email</h4>
               <p>davidgaonahenao@gmail.com</p>
             </div>
           </div>
@@ -806,7 +806,7 @@
             <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
             <div class="info-text">
               <h4 data-i18n="contact.location">Ubicación</h4>
-              <p>Latinoamérica Colombia · Remoto</p>
+              <p>Latinoamérica · Remoto</p>
             </div>
           </div>
           <div class="info-card">
@@ -835,10 +835,44 @@
             <a href="https://www.tiktok.com/@davidgaona205" target="_blank" rel="noopener noreferrer" class="tiktok"
               aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
           </div>
+          <div class="qr-card" id="qr-card">
+            <div class="qr-card-head">
+              <i class="fas fa-qrcode"></i>
+              <div>
+                <h4 data-i18n="contact.qrTitle">Código QR del portafolio</h4>
+                <p data-i18n="contact.qrSub">Escanea o descarga para abrir este sitio</p>
+              </div>
+            </div>
+            <div class="qr-frame" id="qr-frame" aria-label="Código QR del portafolio">
+              <canvas id="qr-canvas" width="180" height="180"></canvas>
+            </div>
+            <div class="qr-actions">
+              <button type="button" class="btn btn-primary btn-sm" id="qr-download">
+                <i class="fas fa-download"></i> <span data-i18n="contact.qrDownload">Descargar QR</span>
+              </button>
+              <button type="button" class="btn btn-outline btn-sm" id="qr-copy">
+                <i class="fas fa-link"></i> <span data-i18n="contact.qrCopy">Copiar enlace</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+
+  <!-- Modal éxito contacto -->
+  <div class="mail-success-overlay" id="mail-success" hidden aria-hidden="true">
+    <div class="mail-success-modal" role="dialog" aria-modal="true" aria-labelledby="mail-success-title">
+      <div class="mail-success-ring" aria-hidden="true"></div>
+      <div class="mail-success-icon"><i class="fas fa-check"></i></div>
+      <h3 id="mail-success-title" data-i18n="contact.successTitle">¡Mensaje enviado!</h3>
+      <p data-i18n="contact.successMsg">Tu mensaje se envió satisfactoriamente. Te responderé pronto al correo.</p>
+      <button type="button" class="btn btn-primary" id="mail-success-close">
+        <i class="fas fa-thumbs-up"></i> <span data-i18n="contact.successOk">Entendido</span>
+      </button>
+    </div>
+  </div>
 
   <footer class="footer">
     <div class="container">
@@ -857,12 +891,14 @@
   </footer>
 
   <script src="js/particles.js" defer></script>
+  <script src="js/ambient.js"></script>
   <script src="js/i18n.js" defer></script>
   <script src="js/certs.js" defer></script>
   <script src="js/sound.js" defer></script>
-  <script src="js/ambient.js"></script>
+  <script src="js/send-successfully.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/projects-filter.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
   <script src="js/contact.js" defer></script>
   <script src="js/stats.js" defer></script>
   <script src="js/faq.js" defer></script>

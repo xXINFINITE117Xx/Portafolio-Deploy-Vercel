@@ -219,7 +219,14 @@
       "contact.location": "Ubicación",
       "contact.availability": "Disponibilidad",
       "contact.whatsapp": "WhatsApp",
+      "contact.qrDownload": "Descargar QR",
+      "contact.qrCopy": "Copiar enlace",
       "contact.submit": "Enviar Mensaje",
+      "contact.successTitle": "¡Mensaje enviado!",
+      "contact.successMsg":
+        "Tu mensaje se envió satisfactoriamente. Te responderé pronto al correo.",
+      "contact.qrTitle": "Código QR del portafolio",
+      "contact.qrSub": "Escaneo o descarga para abrir este sitio",
       "footer.copyright": "Todos los derechos reservados",
     },
     en: {
@@ -450,6 +457,13 @@
       "contact.message": "Message",
       "contact.message.error": "Write a message",
       "contact.submit": "Send Message",
+      "contact.successTitle": "Message sent!",
+      "contact.successMsg":
+        "Your message was sent successfully. I will reply to your email soon.",
+      "contact.qrTitle": "Portfolio QR code",
+      "contact.qrSub": "Scan or download to open this site",
+      "contact.qrDownload": "Download QR",
+      "contact.qrCopy": "Copy link",
       "footer.copyright": "All rights reserved",
     },
   };

@@ -1,3 +1,7 @@
+/**
+ * sound.js — Modo sonido: clicks mecánicos + glitch en hover
+ * Web Audio API (sin archivos externos)
+ */
 (function () {
   "use strict";
 
